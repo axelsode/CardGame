@@ -1,7 +1,11 @@
-//package com.example.cardgame
-package layout
+package com.example.cardgame
+//package layout
 
 class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayList<Card>(), var numberOfCards : Int = 0) {
+
+    /*
+        En klass för att hantera en eller flera kortlekar
+     */
 
     fun addDecks(){
         val colors = arrayOf("h","s","d","c")

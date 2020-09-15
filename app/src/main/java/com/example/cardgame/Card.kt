@@ -1,8 +1,10 @@
-package layout
-
+package com.example.cardgame
 import android.content.Context
 
 class Card (var value: Int = 14, var color : String = "h"){
+
+    /*  En klass för kort som skappar ett kort och har en funktion för att hämta dens Image
+    */
 
     fun initRandomCard(){
         value = (2..14).random()

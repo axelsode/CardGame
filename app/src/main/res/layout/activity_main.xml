@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/dealer1"
+        android:visibility="visible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,6 +21,7 @@
 
     <ImageView
         android:id="@+id/dealer2"
+        android:visibility="invisible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,6 +33,7 @@
         app:srcCompat="@drawable/c12" />
     <ImageView
         android:id="@+id/dealer3"
+        android:visibility="invisible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +45,7 @@
         app:srcCompat="@drawable/c12" />
     <ImageView
         android:id="@+id/dealer4"
+        android:visibility="invisible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"

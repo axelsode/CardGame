@@ -1,4 +1,4 @@
-package layout
+package com.example.cardgame
 
 class Dealer(var deck : Decks, var hand :  ArrayList<Int>? = ArrayList<Int>()) {
 
@@ -9,22 +9,22 @@ class Dealer(var deck : Decks, var hand :  ArrayList<Int>? = ArrayList<Int>()) {
     }
 
     fun valuateHand() : Int{
-        var ess = 0
+        var ace = 0
         var restOfHand = 0
         for (elm in this.hand!!) {
             when (elm) {
-                14 -> ess++
+                14 -> ace++
                 10, 11, 12, 13 -> restOfHand += 10
                 else -> restOfHand += elm
             }
         }
-        while (ess > 0) {
+        while (ace > 0) {
             if (restOfHand + 11 < 21) {
                 restOfHand += 11
-                ess--
+                ace--
             } else {
                 restOfHand++
-                ess--
+                ace--
             }
 
         }
