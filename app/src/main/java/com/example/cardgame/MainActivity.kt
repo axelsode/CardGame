@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,10 +44,10 @@ class MainActivity : AppCompatActivity() {
         dealerList?.add(dealerCar4)
 
 
-        val playerCar1 = findViewById<ImageView>(R.id.dealer1)
-        val playerCar2 = findViewById<ImageView>(R.id.dealer2)
-        val playerCar3 = findViewById<ImageView>(R.id.dealer3)
-        val playerCar4 = findViewById<ImageView>(R.id.dealer4)
+        val playerCar1 = findViewById<ImageView>(R.id.player1)
+        val playerCar2 = findViewById<ImageView>(R.id.player2)
+        val playerCar3 = findViewById<ImageView>(R.id.player3)
+        val playerCar4 = findViewById<ImageView>(R.id.player4)
 
 
         val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
@@ -62,7 +63,77 @@ class MainActivity : AppCompatActivity() {
         myDecks.shuffleDecks()
         val myDealer = Dealer(myDecks)
 
-        
+        val dealerFirstCard = myDealer.takeCard()
+        dealerList?.get(0)?.setImageResource(dealerFirstCard.getImageId(this))
+        dealerList?.get(0)?.visibility = View.VISIBLE
+
+        val playerFirstCard = myDealer.takeCard()
+        playerList?.get(0)?.setImageResource(playerFirstCard.getImageId(this))
+        playerList?.get(0)?.visibility = View.VISIBLE
+
+        val playerSecondCard = myDealer.takeCard()
+        playerList?.get(1)?.setImageResource(playerSecondCard.getImageId(this))
+        playerList?.get(1)?.visibility = View.VISIBLE
+
+
+        var dealercardNum = 1
+        var playercardNum = 2
+        val hitButton = findViewById<Button>(R.id.hitButton)
+
+        hitButton.setOnClickListener {
+
+            if (playercardNum < 3){
+                val playedCard = myDealer.takeCard()
+                playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
+                playerList?.get(playercardNum)?.visibility = View.VISIBLE
+                playercardNum++
+
+            }else{
+                val playedCard = myDealer.takeCard()
+                playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
+                playerList?.get(playercardNum)?.visibility = View.VISIBLE
+
+            }
+
+        }
+
+
+
+        val standButton = findViewById<Button>(R.id.standButton)
+
+        standButton.setOnClickListener {
+            /*
+            if (dealercardNum < 3){
+                val playedCard = myDealer.takeCard()
+                dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
+                dealerList?.get(dealercardNum)?.visibility = View.VISIBLE
+                dealercardNum++
+
+            }else{
+                val playedCard = myDealer.takeCard()
+                dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
+                dealerList?.get(dealercardNum)?.visibility = View.VISIBLE
+
+            }
+            */
+            while ((dealercardNum<4) && (myDealer.valuateHand() < 17)){
+                val playedCard = myDealer.takeCard()
+                dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
+                dealerList?.get(dealercardNum)?.visibility = View.VISIBLE
+            }
+
+        }
+
+        val newGameButton = findViewById<Button>(R.id.playAgainButton)
+
+        newGameButton.setOnClickListener {
+        //
+        }
+
+        val dealerScore = findViewById<TextView>(R.id.dealerScoretextView)
+
+
+        val playerScore = findViewById<TextView>(R.id.dealerScoretextView)
 
         /*
         val firstCard = myDealer.takeCard()
