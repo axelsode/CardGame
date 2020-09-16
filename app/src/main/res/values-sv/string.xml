@@ -6,6 +6,6 @@
     <string name="button_hit">Ta kort</string>
     <string name="button_stand">Stanna</string>
     <string name="button_newGame">Nytt spel</string>
-    <string name="dealer_points">Croupierens poäng</string>
-    <string name="player_points">Spelarens poäng</string>
+    <string name="dealer_points">Croupierens poäng: %1$s</string>
+    <string name="player_points">Spelarens poäng: %1$s</string>
 </resources>

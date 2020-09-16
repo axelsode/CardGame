@@ -19,7 +19,7 @@ class Dealer(var deck : Decks, var hand :  ArrayList<Int>? = ArrayList<Int>()) {
             }
         }
         while (ace > 0) {
-            if (restOfHand + 11 < 21) {
+            if (restOfHand + 11 <= 21) {
                 restOfHand += 11
                 ace--
             } else {
