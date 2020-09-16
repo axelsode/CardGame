@@ -34,6 +34,11 @@ class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayLis
     }
 
     fun takeCard() : Card? {
+        if (numberOfCards < 20){
+            clearDecks()
+            addDecks()
+            shuffleDecks()
+        }
         val card = decks?.get(0)
         decks = decks?.drop(1) as ArrayList<Card>?
         if (numberOfCards > 0){

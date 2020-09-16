@@ -61,17 +61,18 @@ class MainActivity : AppCompatActivity() {
         val myDecks = Decks(1)
         myDecks.addDecks()
         myDecks.shuffleDecks()
-        val myDealer = Dealer(myDecks)
+        val dealerDeck = Dealer(myDecks)
+        val playerDeck = Dealer(myDecks)
 
-        val dealerFirstCard = myDealer.takeCard()
+        val dealerFirstCard = dealerDeck.takeCard()
         dealerList?.get(0)?.setImageResource(dealerFirstCard.getImageId(this))
         dealerList?.get(0)?.visibility = View.VISIBLE
 
-        val playerFirstCard = myDealer.takeCard()
+        val playerFirstCard = playerDeck.takeCard()
         playerList?.get(0)?.setImageResource(playerFirstCard.getImageId(this))
         playerList?.get(0)?.visibility = View.VISIBLE
 
-        val playerSecondCard = myDealer.takeCard()
+        val playerSecondCard = playerDeck.takeCard()
         playerList?.get(1)?.setImageResource(playerSecondCard.getImageId(this))
         playerList?.get(1)?.visibility = View.VISIBLE
 
@@ -83,13 +84,13 @@ class MainActivity : AppCompatActivity() {
         hitButton.setOnClickListener {
 
             if (playercardNum < 3){
-                val playedCard = myDealer.takeCard()
+                val playedCard = playerDeck.takeCard()
                 playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
                 playerList?.get(playercardNum)?.visibility = View.VISIBLE
                 playercardNum++
 
             }else{
-                val playedCard = myDealer.takeCard()
+                val playedCard = playerDeck.takeCard()
                 playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
                 playerList?.get(playercardNum)?.visibility = View.VISIBLE
 
@@ -116,8 +117,8 @@ class MainActivity : AppCompatActivity() {
 
             }
             */
-            while ((dealercardNum<4) && (myDealer.valuateHand() < 17)){
-                val playedCard = myDealer.takeCard()
+            while ((dealercardNum<4) && (dealerDeck.valuateHand() < 17)){
+                val playedCard = dealerDeck.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
                 dealerList?.get(dealercardNum)?.visibility = View.VISIBLE
             }
