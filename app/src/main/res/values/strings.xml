@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">CardGame</string>
-    <string name="dealer_hand">Dealers Hand</string>
-    <string name="players_hand">Players Hand</string>
-    <string name="button_hit">Hit</string>
-    <string name="button_stand">Stand</string>
-    <string name="button_newGame">New Game</string>
-    <string name="dealer_points">Dealers points</string>
-    <string name="player_points">Players points</string>
+<string name="dealer_hand">Dealers Hand</string>
+<string name="players_hand">Players Hand</string>
+<string name="button_hit">Hit</string>
+<string name="button_stand">Stand</string>
+<string name="button_newGame">New Game</string>
+<string name="dealer_points">Dealers points</string>
+<string name="player_points">Players points</string>
 </resources>
