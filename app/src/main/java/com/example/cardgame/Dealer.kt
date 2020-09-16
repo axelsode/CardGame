@@ -39,6 +39,4 @@ class Dealer(var deck : Decks, var hand :  ArrayList<Int>? = ArrayList<Int>()) {
         return valuateHand()
     }
 
-
-
 }

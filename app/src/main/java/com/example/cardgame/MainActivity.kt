@@ -148,11 +148,8 @@ class MainActivity : AppCompatActivity() {
         */
         /*
         var cardNum = 0
-
         val testButton = findViewById<Button>(R.id.testButton)
-
         testButton.setOnClickListener {
-
             if (cardNum < 3){
                 val playedCard = myDealer.takeCard()
                 dealerList?.get(cardNum)?.setImageResource(playedCard.getImageId(this))
@@ -167,8 +164,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         */
-
-
         /*
         for (cardNum in 0..3){
             val playedCard = myDealer.takeCard()
@@ -176,10 +171,7 @@ class MainActivity : AppCompatActivity() {
             dealerList?.get(cardNum)?.visibility = View.VISIBLE
             SystemClock.sleep(1000)
         }
-
          */
-
-
     }
 
 }
