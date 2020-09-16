@@ -33,8 +33,9 @@ class MainActivity : AppCompatActivity() {
 
 
         dealerScoreText = findViewById<TextView>(R.id.dealerScoretextView)
-        playerScoreText = findViewById<TextView>(R.id.dealerScoretextView)
-
+        playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
+        dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
+        playerScoreText.text = getString(R.string.player_points, playerScore.toString())
 
         val dealerCar1 = findViewById<ImageView>(R.id.dealer1)
         val dealerCar2 = findViewById<ImageView>(R.id.dealer2)
@@ -161,8 +162,22 @@ class MainActivity : AppCompatActivity() {
         standButton.visibility = View.INVISIBLE
 
         when{
-            dealerHand.valuateHand() > 21
+            dealerHand.valuateHand() > 21 -> {
+                playerScore++
+                playerScoreText.text = getString(R.string.player_points, playerScore.toString())
+            }
+            playerHand.valuateHand() >= dealerHand.valuateHand() -> {
+                playerScore++
+                playerScoreText.text = getString(R.string.player_points, playerScore.toString())
+            }
+            playerHand.valuateHand() < dealerHand.valuateHand() -> {
+                dealerScore++
+                dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
+            }
+
         }
+
+
 
     }
 }
