@@ -22,6 +22,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var dealerScoreText : TextView
     lateinit var playerScoreText : TextView
 
+    /* visa poängen på dealers hand atm.
+    lateinit var dealersHandValue : TextView
+    lateinit var playersHandValue : TextView
+    */
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
         dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
         playerScoreText.text = getString(R.string.player_points, playerScore.toString())
+
+       /*
+        dealersHandValue = findViewById(R.id.dealersHandValue)
+        dealersHandValue.text = playerHand.valuateHand().toString()
+        */
+
 
         val dealerCar1 = findViewById<ImageView>(R.id.dealer1)
         val dealerCar2 = findViewById<ImageView>(R.id.dealer2)
@@ -126,7 +138,6 @@ class MainActivity : AppCompatActivity() {
                 playerScoreText.text = getString(R.string.player_points, playerScore.toString())
             }
         }
-
     }
 
     fun stand(){
@@ -153,7 +164,6 @@ class MainActivity : AppCompatActivity() {
                 dealerScore++
                 dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
             }
-
         }
     }
 }

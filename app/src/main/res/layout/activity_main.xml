@@ -7,6 +7,16 @@
     android:background="#274721"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/playersHandValue"
+        android:layout_width="60dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player4" />
+
     <ImageView
         android:id="@+id/dealer1"
         android:layout_width="80dp"
@@ -186,6 +196,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playAgainButton" />
+
+    <TextView
+        android:id="@+id/dealersHandValue"
+        android:layout_width="60dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
