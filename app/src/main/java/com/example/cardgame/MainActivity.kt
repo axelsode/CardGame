@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     /* att new game knappen är gömd till spelaren el dealern är över 20
     fun newGameButton (){
         when {
-            playerHand.valuateHand() or dealerHand.valuateHand() < 20 -> {
+            playerHand.valuateHand()< 20 && dealerHand.valuateHand()< 16 -> {
                 playAgainButton.visibility = View.INVISIBLE
             }
         }
