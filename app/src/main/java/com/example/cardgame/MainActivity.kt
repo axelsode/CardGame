@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var dealerScoreText : TextView
     lateinit var playerScoreText : TextView
 
+
     /* visa poängen på dealers hand atm.
     lateinit var dealersHandValue : TextView
     lateinit var playersHandValue : TextView
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         dealerScoreText = findViewById<TextView>(R.id.dealerScoretextView)
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
@@ -115,6 +117,16 @@ class MainActivity : AppCompatActivity() {
         standButton.visibility = View.VISIBLE
     }
 
+    /* att new game knappen är gömd till spelaren el dealern är över 20
+    fun newGameButton (){
+        when {
+            playerHand.valuateHand() or dealerHand.valuateHand() < 20 -> {
+                playAgainButton.visibility = View.INVISIBLE
+            }
+        }
+    }
+      */
+
     fun hit(){
         if (playercardNum < 4){
             val playedCard = playerHand.takeCard()
@@ -122,6 +134,7 @@ class MainActivity : AppCompatActivity() {
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
             playercardNum++
         }
+
 
         when{
             playerHand.valuateHand() > 21 -> {
@@ -134,6 +147,7 @@ class MainActivity : AppCompatActivity() {
             playerHand.valuateHand() == 21 -> {
                 hitButton.visibility = View.INVISIBLE
                 standButton.visibility = View.INVISIBLE
+
                 playerScore++
                 playerScoreText.text = getString(R.string.player_points, playerScore.toString())
             }
@@ -164,6 +178,7 @@ class MainActivity : AppCompatActivity() {
                 dealerScore++
                 dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
             }
+
         }
     }
 }
