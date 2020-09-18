@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -115,6 +116,14 @@ class MainActivity : AppCompatActivity() {
 
         hitButton.visibility = View.VISIBLE
         standButton.visibility = View.VISIBLE
+
+
+        if (playerHand.valuateHand() == 21){
+            hitButton.visibility = View.INVISIBLE
+            standButton.visibility = View.INVISIBLE
+            playerWins()
+        }
+
     }
 
     /* att new game knappen är gömd till spelaren över 20 och dealern över 16
@@ -140,16 +149,14 @@ class MainActivity : AppCompatActivity() {
             playerHand.valuateHand() > 21 -> {
                 hitButton.visibility = View.INVISIBLE
                 standButton.visibility = View.INVISIBLE
-                dealerScore++
-                dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
+                dealerWins()
 
             }
             playerHand.valuateHand() == 21 -> {
                 hitButton.visibility = View.INVISIBLE
                 standButton.visibility = View.INVISIBLE
 
-                playerScore++
-                playerScoreText.text = getString(R.string.player_points, playerScore.toString())
+                playerWins()
             }
         }
     }
@@ -167,18 +174,27 @@ class MainActivity : AppCompatActivity() {
 
         when{
             dealerHand.valuateHand() > 21 -> {
-                playerScore++
-                playerScoreText.text = getString(R.string.player_points, playerScore.toString())
+               playerWins()
             }
             playerHand.valuateHand() >= dealerHand.valuateHand() -> {
-                playerScore++
-                playerScoreText.text = getString(R.string.player_points, playerScore.toString())
+                playerWins()
             }
             playerHand.valuateHand() < dealerHand.valuateHand() -> {
-                dealerScore++
-                dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
+                dealerWins()
             }
 
         }
+    }
+
+    fun playerWins(){
+        playerScore++
+        playerScoreText.text = getString(R.string.player_points, playerScore.toString())
+        Toast.makeText(this, getString(R.string.player_wins), Toast.LENGTH_SHORT).show()
+    }
+
+    fun dealerWins(){
+        dealerScore++
+        dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
+        Toast.makeText(this, getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
     }
 }

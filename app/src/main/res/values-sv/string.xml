@@ -8,4 +8,6 @@
     <string name="button_newGame">Nytt spel</string>
     <string name="dealer_points">Croupierens poäng: %1$s</string>
     <string name="player_points">Spelarens poäng: %1$s</string>
+    <string name="dealer_wins">Croupieren vann</string>
+    <string name="player_wins">Spelaren vann</string>
 </resources>
