@@ -172,18 +172,32 @@ class MainActivity : AppCompatActivity() {
         hitButton.visibility = View.INVISIBLE
         standButton.visibility = View.INVISIBLE
 
-        when{
-            dealerHand.valuateHand() > 21 -> {
-               playerWins()
-            }
-            playerHand.valuateHand() >= dealerHand.valuateHand() -> {
-                playerWins()
-            }
-            playerHand.valuateHand() < dealerHand.valuateHand() -> {
-                dealerWins()
-            }
-
+        if (dealerHand.valuateHand() > 21){
+            playerWins()
+        }else if (playerHand.valuateHand() < dealerHand.valuateHand()){
+            dealerWins()
+        }else if (playerHand.valuateHand() > dealerHand.valuateHand()){
+            playerWins()
+        }else if (playerHand.valuateHand() > 18){
+            playerWins()
+        }else{
+            dealerWins()
         }
+
+
+
+        /*
+    when{
+        dealerHand.valuateHand() > 21 -> {
+           playerWins()
+        }
+        playerHand.valuateHand() >= dealerHand.valuateHand() -> {
+            playerWins()
+        }
+        playerHand.valuateHand() < dealerHand.valuateHand() -> {
+            dealerWins()
+        }
+        */
     }
 
     fun playerWins(){
