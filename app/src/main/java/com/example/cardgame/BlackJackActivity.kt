@@ -12,21 +12,21 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class BlackJackActivity : AppCompatActivity() {
 
-    val dealerList : ArrayList<ImageView>? = ArrayList<ImageView>()
-    val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
-    val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
-    val playerResultList : ArrayList<Int>? = ArrayList<Int>()
-    val myDecks = Decks(1)
-    var dealerHand = Dealer(myDecks)
-    var playerHand = Dealer(myDecks)
-    var playerFirstCard = Card()
-    var playerSecondCard = Card()
-    var dealercardNum = 0
-    var playercardNum = 0
-    var dealerScore = 0
-    var playerScore = 0
-    lateinit var dealerScoreText : TextView
-    lateinit var playerScoreText : TextView
+    private val dealerList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
+    private val playerResultList : ArrayList<Int>? = ArrayList<Int>()
+    private val myDecks = Decks(1)
+    private var dealerHand = Dealer(myDecks)
+    private var playerHand = Dealer(myDecks)
+    private var playerFirstCard = Card()
+    private var playerSecondCard = Card()
+    private var dealercardNum = 0
+    private var playercardNum = 0
+    private var dealerScore = 0
+    private var playerScore = 0
+    private lateinit var dealerScoreText : TextView
+    private lateinit var playerScoreText : TextView
 
 
     /* visa poängen på dealers hand atm.
@@ -96,7 +96,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     }
 
-    fun startGame(){
+    private fun startGame(){
         playerSplitList?.clear()
         playerResultList?.clear()
 
@@ -107,20 +107,20 @@ class BlackJackActivity : AppCompatActivity() {
             player.visibility = View.INVISIBLE
         }
 
-        dealerHand = Dealer(myDecks)
-        playerHand = Dealer(myDecks)
+        this.dealerHand = Dealer(myDecks)
+        this.playerHand = Dealer(myDecks)
 
         val dealerFirstCard = dealerHand.takeCard()
-        dealerList?.get(0)?.setImageResource(dealerFirstCard.getImageId(this))
-        dealerList?.get(0)?.visibility = View.VISIBLE
+        dealerList[0].setImageResource(dealerFirstCard.getImageId(this))
+        dealerList[0].visibility = View.VISIBLE
 
         playerFirstCard = playerHand.takeCard()
-        playerList?.get(0)?.setImageResource(playerFirstCard.getImageId(this))
-        playerList?.get(0)?.visibility = View.VISIBLE
+        playerList[0].setImageResource(playerFirstCard.getImageId(this))
+        playerList[0].visibility = View.VISIBLE
 
         playerSecondCard = playerHand.takeCard()
-        playerList?.get(1)?.setImageResource(playerSecondCard.getImageId(this))
-        playerList?.get(1)?.visibility = View.VISIBLE
+        playerList[1].setImageResource(playerSecondCard.getImageId(this))
+        playerList[1].visibility = View.VISIBLE
 
         dealercardNum = 1
         playercardNum = 2
@@ -147,13 +147,14 @@ class BlackJackActivity : AppCompatActivity() {
     }
       */
 
-    fun hit(){
+    private fun hit(){
+        isSplitable()
         if (playercardNum < 4){
             val playedCard = playerHand.takeCard()
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
             playercardNum++
-            isSplitable()
+
         }
 
         if (playerSplitList.isNullOrEmpty() && playerResultList.isNullOrEmpty()){
@@ -183,15 +184,17 @@ class BlackJackActivity : AppCompatActivity() {
         }
     }
 
-    fun split(){
+    private fun split(){
         val cardToMove = playerSecondCard
-        val cardValue = playerHand.hand?.removeAt(1)
+        playerHand.hand?.removeAt(1)
         playerSplitList?.add(cardToMove)
         playerList?.get(1)?.visibility = View.INVISIBLE
         playercardNum = 1
+        playerSecondCard = Card()
+        splitButton.visibility = View.INVISIBLE
     }
 
-    fun isSplitable() {
+    private fun isSplitable() {
         val firstCard : Int
         val secondCard : Int
         when(playerFirstCard.value){
@@ -212,18 +215,18 @@ class BlackJackActivity : AppCompatActivity() {
 
 
     @ExperimentalStdlibApi
-    fun stand(){
+    private fun stand(){
         playerResultList?.add(playerHand.valuateHand())
         if (!playerSplitList.isNullOrEmpty()){
-            playerHand.clear()
+            this.playerHand.clear()
             val firstCard = playerSplitList.first()
-            playerHand.addCard(firstCard)
+            this.playerHand.addCard(firstCard)
             for (cardIm in playerList!!){
                 cardIm.visibility = View.INVISIBLE
             }
-            playerList.get(0).setImageResource(firstCard.getImageId(this))
-            playerList.get(0).visibility = View.VISIBLE
-            playerSplitList?.removeFirst()
+            playerList[0].setImageResource(firstCard.getImageId(this))
+            playerList[0].visibility = View.VISIBLE
+            playerSplitList.removeFirst()
             playercardNum = 1
 
         }else{
@@ -236,6 +239,7 @@ class BlackJackActivity : AppCompatActivity() {
 
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
+            splitButton.visibility = View.INVISIBLE
 
             if (playerResultList != null) {
                 for (elm in playerResultList){
