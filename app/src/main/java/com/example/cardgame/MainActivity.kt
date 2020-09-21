@@ -144,6 +144,7 @@ class MainActivity : AppCompatActivity() {
                 dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
 
             }
+            //fungerar denna
             playerHand.valuateHand() == 21 -> {
                 hitButton.visibility = View.INVISIBLE
                 standButton.visibility = View.INVISIBLE
