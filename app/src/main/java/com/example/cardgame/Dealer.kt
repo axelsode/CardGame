@@ -26,17 +26,8 @@ class Dealer(var deck : Decks, var hand :  ArrayList<Card>? = ArrayList<Card>())
                 restOfHand++
                 ace--
             }
-
         }
         return restOfHand
-    }
-
-    fun playRestOfCards() : Int{
-        while (valuateHand() < 17){
-            val card = takeCard()
-            hand?.add(card)
-        }
-        return valuateHand()
     }
 
     fun addCard(card: Card){
