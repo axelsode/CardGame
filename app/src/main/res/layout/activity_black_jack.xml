@@ -145,7 +145,8 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginBottom="140dp"
-        android:backgroundTint="#CD2F2F"
+
+        android:backgroundTint="#D80E0E"
         android:text="@string/button_stand"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/playAgainButton"
@@ -188,12 +189,21 @@
         app:layout_constraintTop_toBottomOf="@+id/playAgainButton" />
 
     <TextView
-        android:id="@+id/dealersHandValue"
+        android:id="@+id/dealersHandValueView"
         android:layout_width="60dp"
         android:layout_height="53dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/playerHandValue"
+        android:layout_width="60dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

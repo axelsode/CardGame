@@ -24,6 +24,8 @@ class BlackJackActivity : AppCompatActivity() {
     lateinit var dealerScoreText : TextView
     lateinit var playerScoreText : TextView
 
+    lateinit var dealersHandValue : TextView
+
 
     /* visa poängen på dealers hand atm.
     lateinit var dealersHandValue : TextView
@@ -39,10 +41,8 @@ class BlackJackActivity : AppCompatActivity() {
         dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
         playerScoreText.text = getString(R.string.player_points, playerScore.toString())
 
-        /*
-         dealersHandValue = findViewById(R.id.dealersHandValue)
-         dealersHandValue.text = playerHand.valuateHand().toString()
-         */
+        dealersHandValue = findViewById<TextView>(R.id.dealersHandValueView)
+        dealersHandValueView.text = getString(R.string.dealer_points, dealerHand.toString())
 
 
         val dealerCar1 = findViewById<ImageView>(R.id.dealer1)
@@ -123,17 +123,20 @@ class BlackJackActivity : AppCompatActivity() {
             playerWins()
         }
 
+
     }
 
-    /* att new game knappen är gömd till spelaren över 20 och dealern över 16
+    // att new game knappen är gömd till spelaren över 20 och dealern över 16
     fun newGameButton (){
         when {
-            playerHand.valuateHand()< 20 or dealerHand.valuateHand()< 16 -> {
+            playerHand.valuateHand()< 20 -> {
                 playAgainButton.visibility = View.INVISIBLE
+            }
+            dealerHand.valuateHand()< 16 -> {
+                playAgainButton.visibility= View.INVISIBLE
             }
         }
     }
-      */
 
     fun hit(){
         if (playercardNum < 4){
@@ -154,7 +157,6 @@ class BlackJackActivity : AppCompatActivity() {
             playerHand.valuateHand() == 21 -> {
                 hitButton.visibility = View.INVISIBLE
                 standButton.visibility = View.INVISIBLE
-
                 playerWins()
             }
         }
