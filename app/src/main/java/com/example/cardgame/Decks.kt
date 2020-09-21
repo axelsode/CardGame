@@ -23,7 +23,7 @@ class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayLis
     }
 
     fun clearDecks(){
-        decks = null
+        decks = ArrayList<Card>()
     }
 
     fun shuffleDecks(){
