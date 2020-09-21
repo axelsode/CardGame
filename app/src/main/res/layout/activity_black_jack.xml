@@ -123,6 +123,8 @@
         android:layout_marginBottom="40dp"
         android:text="@string/players_hand"
         android:textSize="30sp"
+        android:textColor="#FFF"
+        android:textColorHighlight="#434141"
         app:layout_constraintBottom_toTopOf="@+id/standButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"

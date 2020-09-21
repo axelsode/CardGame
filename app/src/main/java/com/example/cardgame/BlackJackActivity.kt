@@ -86,6 +86,14 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     fun startGame(){
+        for (dealer in dealerList!!){
+            dealer.visibility = View.INVISIBLE
+        }
+        for (player in playerList!!){
+            player.visibility = View.INVISIBLE
+        }
+
+        /*
         dealerList?.get(0)?.visibility = View.INVISIBLE
         dealerList?.get(1)?.visibility = View.INVISIBLE
         dealerList?.get(2)?.visibility = View.INVISIBLE
@@ -94,7 +102,7 @@ class BlackJackActivity : AppCompatActivity() {
         playerList?.get(1)?.visibility = View.INVISIBLE
         playerList?.get(2)?.visibility = View.INVISIBLE
         playerList?.get(3)?.visibility = View.INVISIBLE
-
+        */
         dealerHand = Dealer(myDecks)
         playerHand = Dealer(myDecks)
 
