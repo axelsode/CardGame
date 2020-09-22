@@ -42,8 +42,7 @@ class BlackJackActivity : AppCompatActivity() {
         dealerScoreText = findViewById<TextView>(R.id.dealerScoretextView)
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
         dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
-        playerScoreText.text = getString(R.string.player_points, playerScore.toString())
-
+        playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
         /*
@@ -272,13 +271,12 @@ class BlackJackActivity : AppCompatActivity() {
 
     fun playerWins(){
         playerScore++
-        playerScoreText.text = getString(R.string.player_points, playerScore.toString())
-        Toast.makeText(this, getString(R.string.player_wins), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, playerScoreText.text, Toast.LENGTH_SHORT).show()
     }
 
     fun dealerWins(){
         dealerScore++
-        dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
-        Toast.makeText(this, getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
+        //dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
+        Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
     }
 }
