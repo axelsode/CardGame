@@ -54,20 +54,25 @@ class BlackJackActivity : AppCompatActivity() {
         val dealerCar2 = findViewById<ImageView>(R.id.dealer2)
         val dealerCar3 = findViewById<ImageView>(R.id.dealer3)
         val dealerCar4 = findViewById<ImageView>(R.id.dealer4)
+        val dealerCar5 = findViewById<ImageView>(R.id.dealer5)
+
         val playerCar1 = findViewById<ImageView>(R.id.player1)
         val playerCar2 = findViewById<ImageView>(R.id.player2)
         val playerCar3 = findViewById<ImageView>(R.id.player3)
         val playerCar4 = findViewById<ImageView>(R.id.player4)
+        val playerCar5 = findViewById<ImageView>(R.id.player5)
 
         dealerList?.add(dealerCar1)
         dealerList?.add(dealerCar2)
         dealerList?.add(dealerCar3)
         dealerList?.add(dealerCar4)
+        dealerList?.add(dealerCar5)
 
         playerList?.add(playerCar1)
         playerList?.add(playerCar2)
         playerList?.add(playerCar3)
         playerList?.add(playerCar4)
+        playerList?.add(playerCar5)
 
         myDecks.addDecks()
         myDecks.shuffleDecks()
@@ -149,7 +154,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     private fun hit(){
         isSplitable()
-        if (playercardNum < 4){
+        if (playercardNum < 5){
             val playedCard = playerHand.takeCard()
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
@@ -230,7 +235,7 @@ class BlackJackActivity : AppCompatActivity() {
             playercardNum = 1
 
         }else{
-            while ((dealercardNum<4) && (dealerHand.valuateHand() < 17)){
+            while ((dealercardNum<5) && (dealerHand.valuateHand() < 17)){
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
                 dealerList?.get(dealercardNum)?.visibility = View.VISIBLE

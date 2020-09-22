@@ -11,84 +11,102 @@
         android:id="@+id/dealer1"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22"
+        app:layout_constraintVertical_bias="0.163"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/dealer2"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dealer1"
+        app:layout_constraintStart_toStartOf="@+id/dealer1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219"
+        app:layout_constraintVertical_bias="0.175"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/dealer3"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="12dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dealer2"
+        app:layout_constraintStart_toEndOf="@+id/dealer1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22"
+        app:layout_constraintVertical_bias="0.193"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/dealer4"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toEndOf="@+id/dealer2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.211"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/dealer5"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toEndOf="@+id/dealer3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219"
+        app:layout_constraintVertical_bias="0.235"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/player1"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/player2"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/player1"
+        app:layout_constraintStart_toStartOf="@+id/player1"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.479"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/player3"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="16dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/player2"
+        app:layout_constraintStart_toEndOf="@+id/player1"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
         app:srcCompat="@drawable/c12" />
+
 
     <ImageView
         android:id="@+id/player4"
@@ -97,8 +115,23 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
+        app:layout_constraintStart_toEndOf="@+id/player1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.528"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/player5"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/player3"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.541"
         app:srcCompat="@drawable/c12" />
 
     <TextView
@@ -119,17 +152,17 @@
         android:id="@+id/playertextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
         android:text="@string/players_hand"
-        android:textSize="30sp"
         android:textColor="#FFF"
         android:textColorHighlight="#434141"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/standButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player2" />
+        app:layout_constraintTop_toBottomOf="@+id/player5" />
 
     <Button
         android:id="@+id/hitButton"
