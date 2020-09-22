@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_black_jack.*
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 class BlackJackActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class BlackJackActivity : AppCompatActivity() {
     private val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
     private val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
     private val playerResultList : ArrayList<Int>? = ArrayList<Int>()
-    private val myDecks = Decks(1)
+    private val myDecks = Decks(6)
     private var dealerHand = Dealer(myDecks)
     private var playerHand = Dealer(myDecks)
     private var playerFirstCard = Card()
@@ -44,6 +44,8 @@ class BlackJackActivity : AppCompatActivity() {
         dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
         playerScoreText.text = getString(R.string.player_points, playerScore.toString())
 
+        val player_name = findViewById<TextView>(R.id.playertextView)
+        player_name.text = intent.getStringExtra("playerName")
         /*
          dealersHandValue = findViewById(R.id.dealersHandValue)
          dealersHandValue.text = playerHand.valuateHand().toString()
