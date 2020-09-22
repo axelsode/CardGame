@@ -150,16 +150,6 @@ class BlackJackActivity : AppCompatActivity() {
 
     }
 
-    /* att new game knappen är gömd till spelaren över 20 och dealern över 16
-    fun newGameButton (){
-        when {
-            playerHand.valuateHand()< 20 or dealerHand.valuateHand()< 16 -> {
-                playAgainButton.visibility = View.INVISIBLE
-            }
-        }
-    }
-      */
-
     private fun hit(){
         isSplitable()
         if (playercardNum < 5){
