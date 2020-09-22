@@ -72,6 +72,20 @@
         app:srcCompat="@drawable/c12" />
 
     <ImageView
+        android:id="@+id/dealer6"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dealer4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.271"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
         android:id="@+id/player1"
         android:layout_width="80dp"
         android:layout_height="120dp"
@@ -132,6 +146,19 @@
         app:layout_constraintStart_toEndOf="@+id/player3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.541"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/player6"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toEndOf="@+id/player4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.566"
         app:srcCompat="@drawable/c12" />
 
     <TextView
