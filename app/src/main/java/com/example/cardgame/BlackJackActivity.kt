@@ -29,10 +29,10 @@ class BlackJackActivity : AppCompatActivity() {
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
 
-    /* visa poängen på dealers hand atm.
+    // visa poängen på dealers hand atm.
     lateinit var dealersHandValue : TextView
     lateinit var playersHandValue : TextView
-    */
+
 
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +45,13 @@ class BlackJackActivity : AppCompatActivity() {
         playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
-        /*
+
          dealersHandValue = findViewById(R.id.dealersHandValue)
-         dealersHandValue.text = playerHand.valuateHand().toString()
-         */
+         dealersHandValue.text = dealerHand.valuateHand().toString()
+
+        playersHandValue = findViewById(R.id.playersHandValue)
+        playersHandValue.text = playerHand.valuateHand().toString()
+
 
         newGameButton = findViewById<Button>(R.id.playAgainButton)
 
@@ -110,6 +113,8 @@ class BlackJackActivity : AppCompatActivity() {
     private fun startGame(){
         playerSplitList?.clear()
         playerResultList?.clear()
+        dealersHandValue.text = ""
+        playersHandValue.text = ""
         newGameButton.visibility = View.INVISIBLE
 
         for (dealer in dealerList!!){
@@ -152,7 +157,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     private fun hit(){
         isSplitable()
-        if (playercardNum < 5){
+        if (playercardNum < 6){
             val playedCard = playerHand.takeCard()
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
@@ -187,6 +192,7 @@ class BlackJackActivity : AppCompatActivity() {
                 }
             }
         }
+        isSplitable()
     }
 
     private fun split(){
@@ -237,7 +243,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         }else{
             newGameButton.visibility = View.VISIBLE
-            while ((dealercardNum<5) && (dealerHand.valuateHand() < 17)){
+            while ((dealercardNum<6) && (dealerHand.valuateHand() < 17)){
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
                 dealerList?.get(dealercardNum)?.visibility = View.VISIBLE
@@ -270,13 +276,34 @@ class BlackJackActivity : AppCompatActivity() {
 
     fun playerWins(){
         playerScore++
+        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+
+        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString())
+
         playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
-        Toast.makeText(this, playerScoreText.text, Toast.LENGTH_SHORT).show()
+
+
+       // Toast.makeText(this, playerScoreText.text, Toast.LENGTH_SHORT).show()
+
     }
 
     fun dealerWins(){
         dealerScore++
         dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
-        Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
+        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString())
+
+        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+
+      //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
+
+    }
+    fun bust(){
+        when{ playerHand.valuateHand() > 21 -> {
+            Toast.makeText(this, getString(R.string.you_bust), Toast.LENGTH_SHORT).show()
+            }
+
+        }
     }
 }
