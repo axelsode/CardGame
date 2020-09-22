@@ -27,7 +27,7 @@ class BlackJackActivity : AppCompatActivity() {
     private var playerScore = 0
     private lateinit var dealerScoreText : TextView
     private lateinit var playerScoreText : TextView
-
+    private lateinit var newGameButton : Button
 
     /* visa poängen på dealers hand atm.
     lateinit var dealersHandValue : TextView
@@ -50,6 +50,7 @@ class BlackJackActivity : AppCompatActivity() {
          dealersHandValue.text = playerHand.valuateHand().toString()
          */
 
+        newGameButton = findViewById<Button>(R.id.playAgainButton)
 
         val dealerCard1 = findViewById<ImageView>(R.id.dealer1)
         val dealerCard2 = findViewById<ImageView>(R.id.dealer2)
@@ -99,7 +100,7 @@ class BlackJackActivity : AppCompatActivity() {
             stand()
         }
 
-        val newGameButton = findViewById<Button>(R.id.playAgainButton)
+
         newGameButton.setOnClickListener {
             startGame()
         }
@@ -109,6 +110,7 @@ class BlackJackActivity : AppCompatActivity() {
     private fun startGame(){
         playerSplitList?.clear()
         playerResultList?.clear()
+        newGameButton.visibility = View.INVISIBLE
 
         for (dealer in dealerList!!){
             dealer.visibility = View.INVISIBLE
@@ -142,6 +144,7 @@ class BlackJackActivity : AppCompatActivity() {
         if (playerHand.valuateHand() == 21){
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
+            newGameButton.visibility = View.VISIBLE
             playerWins()
         }
 
@@ -172,11 +175,13 @@ class BlackJackActivity : AppCompatActivity() {
                 playerHand.valuateHand() > 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.INVISIBLE
+                    newGameButton.visibility = View.VISIBLE
                     dealerWins()
                 }
                 playerHand.valuateHand() == 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.INVISIBLE
+                    newGameButton.visibility = View.VISIBLE
                     playerWins()
                 }
             }
@@ -228,6 +233,7 @@ class BlackJackActivity : AppCompatActivity() {
     private fun stand(){
         playerResultList?.add(playerHand.valuateHand())
         if (!playerSplitList.isNullOrEmpty()){
+            hitButton.visibility = View.VISIBLE
             this.playerHand.clear()
             val firstCard = playerSplitList.first()
             this.playerHand.addCard(firstCard)
@@ -240,6 +246,7 @@ class BlackJackActivity : AppCompatActivity() {
             playercardNum = 1
 
         }else{
+            newGameButton.visibility = View.VISIBLE
             while ((dealercardNum<5) && (dealerHand.valuateHand() < 17)){
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
@@ -273,12 +280,13 @@ class BlackJackActivity : AppCompatActivity() {
 
     fun playerWins(){
         playerScore++
+        playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         Toast.makeText(this, playerScoreText.text, Toast.LENGTH_SHORT).show()
     }
 
     fun dealerWins(){
         dealerScore++
-        //dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
+        dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
         Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
     }
 }
