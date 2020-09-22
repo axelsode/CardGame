@@ -70,12 +70,14 @@ class BlackJackActivity : AppCompatActivity() {
         dealerList?.add(dealerCard3)
         dealerList?.add(dealerCard4)
         dealerList?.add(dealerCard5)
+        dealerList?.add(dealerCard6)
 
         playerList?.add(playerCard1)
         playerList?.add(playerCard2)
         playerList?.add(playerCard3)
         playerList?.add(playerCard4)
         playerList?.add(playerCard5)
+        playerList?.add(playerCard6)
 
         myDecks.addDecks()
         myDecks.shuffleDecks()
