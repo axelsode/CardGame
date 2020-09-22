@@ -1,0 +1,24 @@
+[33mcommit 2b8e7bebb97bef03afd98b3d7569409a34cfaa41[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: axelsode <axel.soderberg1996@gmail.com>
+Date:   Wed Sep 16 15:07:46 2020 +0200
+
+    Added positions to all buttons
+
+[33mcommit dc184449bf0172bdf2f2a1847f6293daa59e2bba[m
+Author: axelsode <axel.soderberg1996@gmail.com>
+Date:   Wed Sep 16 14:22:41 2020 +0200
+
+    Added color to the buttons
+
+[33mcommit 176bd617fcd7c1b1a59e1ea908fca308c40f5da8[m
+Merge: e2b048d 44b5b75
+Author: axelsode <axel.soderberg1996@gmail.com>
+Date:   Wed Sep 16 14:22:19 2020 +0200
+
+    Merge branch 'master' of https://github.com/axelsode/CardGame into master
+
+[33mcommit e2b048dc92cc8b77c085498563718a41a4067bb5[m
+Author: axelsode <axel.soderberg1996@gmail.com>
+Date:   Wed Sep 16 14:07:48 2020 +0200
+
+    Added color to the buttons

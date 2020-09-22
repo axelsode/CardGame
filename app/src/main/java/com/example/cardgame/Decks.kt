@@ -3,9 +3,6 @@ package com.example.cardgame
 
 class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayList<Card>(), var numberOfCards : Int = 0) {
 
-    /*
-        En klass för att hantera en eller flera kortlekar
-     */
 
     fun addDecks(){
         val colors = arrayOf("h","s","d","c")
@@ -34,6 +31,11 @@ class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayLis
     }
 
     fun takeCard() : Card? {
+        if (numberOfCards < 20){
+            clearDecks()
+            addDecks()
+            shuffleDecks()
+        }
         val card = decks?.get(0)
         decks = decks?.drop(1) as ArrayList<Card>?
         if (numberOfCards > 0){

@@ -1,0 +1,19 @@
+
+Skiss för hur det skall se ut
+
+Nr1.
+  Skappa en enkel verson med bara en activity. Med från topp:
+    1. en texView med "Dealer".
+    2. fyra platser för spelkort för dealern.
+    3. fyra platser för spelkort för spelaren.
+    4. en textView med "Player".
+    5. en rad med tre knappar: Hit, Stand och New Game.
+    6. en rad med två textViews, en för dealerns poäng och en för spelarens poäng.
+    
+ Nr2.
+   Skappa klasser och funktioner för att spelet ska gå att spela.
+    1. en klass Card som håller ett korts värde och färg. Med en funktion för att hämta dennas Image.
+    2. en klass Decks som skappar en kortlek av Cards. 
+
+
+https://www.figma.com/file/t6A0e4lBbxBrqoylTftTtk/Untitled?node-id=0%3A1

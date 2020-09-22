@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CardGame</string>
+    <string name="dealer_hand">Jakajan Käsi</string>
+    <string name="players_hand">Pelajan Käsi</string>
+    <string name="button_hit">Ota kortti</string>
+    <string name="button_stand">Jää</string>
+    <string name="button_newGame">Uusi peli</string>
+    <string name="dealer_points">Jakajan pisteet: %1$s</string>
+    <string name="player_points">Pelaajan pistet: %1$s</string>
+    <string name="dealer_wins">Jakajan vann</string>
+    <string name="player_wins">Pelaaja voitti</string>
+</resources>
