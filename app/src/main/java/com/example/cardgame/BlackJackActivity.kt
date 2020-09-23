@@ -3,10 +3,7 @@ package com.example.cardgame
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
 
 
@@ -45,7 +42,8 @@ class BlackJackActivity : AppCompatActivity() {
         playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
-
+        val player_bet = findViewById<TextView>(R.id.playerScoretextView)
+        player_bet.text = intent.getStringExtra("playerBet")
          dealersHandValue = findViewById(R.id.dealersHandValue)
          dealersHandValue.text = dealerHand.valuateHand().toString()
 
