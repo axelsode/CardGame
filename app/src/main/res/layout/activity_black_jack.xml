@@ -125,9 +125,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/standButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player2" />
+        app:layout_constraintTop_toBottomOf="@+id/player2"
+        app:layout_constraintVertical_bias="0.55" />
 
     <Button
         android:id="@+id/hitButton"
