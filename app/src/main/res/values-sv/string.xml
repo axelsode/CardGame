@@ -7,7 +7,8 @@
     <string name="button_stand">Stanna</string>
     <string name="button_newGame">Nytt spel</string>
     <string name="dealer_points">Croupierens poäng: %1$s</string>
-    <string name="player_points">Spelarens poäng: %1$s</string>
+    <string name="player_points">%1$s poäng:\n%2$s</string>
     <string name="dealer_wins">Croupieren vann</string>
     <string name="player_wins">Spelaren vann</string>
+    <string name="you_bust">Du blev tjock</string>
 </resources>

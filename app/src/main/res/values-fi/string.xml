@@ -7,7 +7,8 @@
     <string name="button_stand">Jää</string>
     <string name="button_newGame">Uusi peli</string>
     <string name="dealer_points">Jakajan pisteet: %1$s</string>
-    <string name="player_points">Pelaajan pistet: %1$s</string>
+    <string name="player_points">%1$s pistet: \n%2$s</string>
     <string name="dealer_wins">Jakajan vann</string>
     <string name="player_wins">Pelaaja voitti</string>
+    <string name="you_bust">Yli meni</string>
 </resources>
