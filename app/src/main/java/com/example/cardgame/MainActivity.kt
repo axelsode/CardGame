@@ -10,6 +10,7 @@ import android.widget.EditText
 class MainActivity : AppCompatActivity() {
 
     lateinit var nameText: EditText
+    lateinit var betText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button)
         nameText = findViewById<EditText>(R.id.editTextTextPersonName)
+        betText = findViewById<EditText>(R.id.bet)
 
         button.setOnClickListener {
             startBlackJackActivity()
@@ -26,8 +28,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun startBlackJackActivity(){
         val name = nameText.text.toString()
+        val bet = betText.text.toString()
+        val list = arrayOf(name, bet)
         val intent = Intent(this, BlackJackActivity::class.java)
         intent.putExtra("playerName", name)
+        intent.putExtra("playerBet", bet)
+
         startActivity(intent)
     }
 }
