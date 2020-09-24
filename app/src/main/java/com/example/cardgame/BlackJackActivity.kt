@@ -1,12 +1,15 @@
 package com.example.cardgame
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.properties.Delegates
 
 
 class BlackJackActivity : AppCompatActivity() {
@@ -26,7 +29,8 @@ class BlackJackActivity : AppCompatActivity() {
     private var playerScore = 0
     private var startPoint = 0
     private var endPoint = 10
-
+    private var betSize = 5
+    private var cash by Delegates.notNull<Int>()
     private lateinit var dealerScoreText : TextView
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
@@ -38,6 +42,7 @@ class BlackJackActivity : AppCompatActivity() {
     lateinit var playersHandValue : TextView
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,7 @@ class BlackJackActivity : AppCompatActivity() {
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
         val player_cash = findViewById<TextView>(R.id.playerScoretextView)
+        cash = intent.getStringExtra("playerCash")!!.toInt()
         player_cash.text = intent.getStringExtra("playerCash")
 
         endPoint = intent.getStringExtra("playerCash")!!.toInt()
@@ -95,8 +101,12 @@ class BlackJackActivity : AppCompatActivity() {
         myDecks.addDecks()
         myDecks.shuffleDecks()
 
-        startGame()
-
+        //startGame()
+        setBetSeek.visibility = View.VISIBLE
+        newGameButton.visibility = View.VISIBLE
+        hitButton.visibility = View.INVISIBLE
+        standButton.visibility = View.INVISIBLE
+        splitButton.visibility = View.INVISIBLE
 
         val hitButton = findViewById<Button>(R.id.hitButton)
         hitButton.setOnClickListener {
@@ -118,6 +128,8 @@ class BlackJackActivity : AppCompatActivity() {
             startGame()
         }
 
+        setBetSeek.max = cash
+        setBetSeek.min = 5
 
         setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -134,10 +146,13 @@ class BlackJackActivity : AppCompatActivity() {
                 if (seekBar != null) {
                     endPoint = seekBar.progress
                 }
-                Toast.makeText(this@BlackJackActivity, "Bet changed by ${endPoint-startPoint}", Toast.LENGTH_SHORT).show()
+                betSize = seekBar?.progress!!
+                //Toast.makeText(this@BlackJackActivity, "Bet changed by ${endPoint-startPoint}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BlackJackActivity, "Bet changed to ${seekBar?.progress}", Toast.LENGTH_SHORT).show()
             }
+        }
+        )
 
-        })
 
 
 
@@ -315,14 +330,15 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     fun playerWins(){
-
+        cash += betSize
+        setBetSeek.max = cash
         dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
 
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString())
 
-        playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
-
+        //playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
+        playerScoreText.text = cash.toString()
 
        // Toast.makeText(this, playerScoreText.text, Toast.LENGTH_SHORT).show()
 
@@ -330,11 +346,14 @@ class BlackJackActivity : AppCompatActivity() {
 
     fun dealerWins(){
         dealerScore++
+        cash -= betSize
+        setBetSeek.max = cash
         dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString())
 
         dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+        playerScoreText.text = cash.toString()
 
       //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
 
