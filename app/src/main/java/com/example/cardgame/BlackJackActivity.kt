@@ -222,6 +222,8 @@ class BlackJackActivity : AppCompatActivity() {
                 playerHand.valuateHand() > 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     dealerWins()
+                    Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
+
                 }
                 playerHand.valuateHand() == 21 -> {
                     hitButton.visibility = View.INVISIBLE
@@ -337,13 +339,7 @@ class BlackJackActivity : AppCompatActivity() {
       //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
 
     }
-    fun bust(){
-        when{ playerHand.valuateHand() > 21 -> {
-            Toast.makeText(this, getString(R.string.you_bust), Toast.LENGTH_SHORT).show()
-            }
 
-        }
-    }
 
 
 
