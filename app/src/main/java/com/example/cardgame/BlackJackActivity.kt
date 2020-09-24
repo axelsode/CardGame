@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class BlackJackActivity : AppCompatActivity() {
@@ -22,9 +24,14 @@ class BlackJackActivity : AppCompatActivity() {
     private var playercardNum = 0
     private var dealerScore = 0
     private var playerScore = 0
+    private var startPoint = 0
+    private var endPoint = 10
+
     private lateinit var dealerScoreText : TextView
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
+    private lateinit var setBetSeek : SeekBar
+
 
     // visa poängen på dealers hand atm.
     lateinit var dealersHandValue : TextView
@@ -42,8 +49,11 @@ class BlackJackActivity : AppCompatActivity() {
         playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
-        val player_bet = findViewById<TextView>(R.id.playerScoretextView)
-        player_bet.text = intent.getStringExtra("playerBet")
+        val player_cash = findViewById<TextView>(R.id.playerScoretextView)
+        player_cash.text = intent.getStringExtra("playerCash")
+
+        endPoint = intent.getStringExtra("playerCash")!!.toInt()
+
          dealersHandValue = findViewById(R.id.dealersHandValue)
          dealersHandValue.text = dealerHand.valuateHand().toString()
 
@@ -52,6 +62,7 @@ class BlackJackActivity : AppCompatActivity() {
 
 
         newGameButton = findViewById<Button>(R.id.playAgainButton)
+        setBetSeek = findViewById<SeekBar>(R.id.seekBar)
 
         val dealerCard1 = findViewById<ImageView>(R.id.dealer1)
         val dealerCard2 = findViewById<ImageView>(R.id.dealer2)
@@ -86,6 +97,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         startGame()
 
+
         val hitButton = findViewById<Button>(R.id.hitButton)
         hitButton.setOnClickListener {
             hit()
@@ -106,6 +118,29 @@ class BlackJackActivity : AppCompatActivity() {
             startGame()
         }
 
+
+        setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                betTextView.text = progress.toString()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                if (seekBar != null) {
+                    startPoint = seekBar.progress
+                }
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                if (seekBar != null) {
+                    endPoint = seekBar.progress
+                }
+                Toast.makeText(this@BlackJackActivity, "Bet changed by ${endPoint-startPoint}", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+
+
     }
 
     private fun startGame(){
@@ -114,6 +149,7 @@ class BlackJackActivity : AppCompatActivity() {
         dealersHandValue.text = ""
         playersHandValue.text = ""
         newGameButton.visibility = View.INVISIBLE
+        setBetSeek.visibility = View.INVISIBLE
 
         for (dealer in dealerList!!){
             dealer.visibility = View.INVISIBLE
@@ -148,6 +184,7 @@ class BlackJackActivity : AppCompatActivity() {
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
             newGameButton.visibility = View.VISIBLE
+            setBetSeek.visibility = View.VISIBLE
             playerWins()
         }
 
@@ -169,12 +206,14 @@ class BlackJackActivity : AppCompatActivity() {
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.INVISIBLE
                     newGameButton.visibility = View.VISIBLE
+                    setBetSeek.visibility = View.VISIBLE
                     dealerWins()
                 }
                 playerHand.valuateHand() == 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.INVISIBLE
                     newGameButton.visibility = View.VISIBLE
+                    setBetSeek.visibility = View.VISIBLE
                     playerWins()
                 }
             }
@@ -241,6 +280,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         }else{
             newGameButton.visibility = View.VISIBLE
+            setBetSeek.visibility = View.VISIBLE
             while ((dealercardNum<6) && (dealerHand.valuateHand() < 17)){
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
@@ -273,7 +313,7 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     fun playerWins(){
-        playerScore++
+
         dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
 
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
@@ -304,4 +344,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         }
     }
+
+
+
 }

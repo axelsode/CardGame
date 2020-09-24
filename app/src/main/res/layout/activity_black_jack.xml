@@ -179,13 +179,10 @@
         android:id="@+id/playertextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="40dp"
         android:text="@string/players_hand"
         android:textColor="#FFF"
         android:textColorHighlight="#434141"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/standButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,52 +192,41 @@
         android:id="@+id/hitButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#0AD127"
         android:text="@string/button_hit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/standButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <Button
         android:id="@+id/standButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#CD2F2F"
         android:text="@string/button_stand"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/playAgainButton"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toEndOf="@+id/hitButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <Button
         android:id="@+id/playAgainButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#2355B8"
         android:text="@string/button_newGame"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/dealerScoretextView"
-        android:layout_width="95dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/dealer_points"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/standButton"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <TextView
         android:id="@+id/playerScoretextView"
         android:layout_width="93dp"
         android:layout_height="47dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/player_points"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -258,20 +244,47 @@
         android:id="@+id/splitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="20dp"
         android:text="Split"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/standButton" />
 
     <TextView
         android:id="@+id/playersHandValue"
         android:layout_width="69dp"
         android:layout_height="55dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="177dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="104dp"
+        android:min="1"
+        android:max="100"
+        android:progress="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playertextView" />
+
+    <TextView
+        android:id="@+id/dealerScoretextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/betTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bet: 0"
+        app:layout_constraintEnd_toStartOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/playertextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
