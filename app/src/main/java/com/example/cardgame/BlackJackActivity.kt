@@ -158,7 +158,7 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun startGame(){
-        outOfMoney()
+        outOfMoney ()
         playerSplitList?.clear()
         playerResultList?.clear()
         dealersHandValue.text = ""
@@ -225,7 +225,6 @@ class BlackJackActivity : AppCompatActivity() {
                     standButton.visibility = View.INVISIBLE
                     newGameButton.visibility = View.VISIBLE
                     setBetSeek.visibility = View.VISIBLE
-                    Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
                     dealerWins()
                 }
                 playerHand.valuateHand() == 21 -> {
@@ -241,6 +240,7 @@ class BlackJackActivity : AppCompatActivity() {
                 playerHand.valuateHand() > 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     dealerWins()
+                    Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
 
                 }
                 playerHand.valuateHand() == 21 -> {
@@ -275,7 +275,7 @@ class BlackJackActivity : AppCompatActivity() {
             10,11,12,13 -> secondCard = 10
             else -> secondCard = playerSecondCard.value
         }
-        if (playercardNum == 2 && firstCard == secondCard && cash > 2 * betSize ){
+        if (playercardNum == 2 && firstCard == secondCard){
             splitButton.visibility = View.VISIBLE
         }else{
             splitButton.visibility = View.INVISIBLE
@@ -316,25 +316,21 @@ class BlackJackActivity : AppCompatActivity() {
 
             if (playerResultList != null) {
                 for (elm in playerResultList){
-                    if (elm == 21){
-                        // this case have already assigned player win! in hit function.
-                    }else if (dealerHand.valuateHand() > 21){
-                        playerWins()
-                    }else if (elm < dealerHand.valuateHand()){
-                        dealerWins()
-                    }else if (elm > dealerHand.valuateHand()){
-                        playerWins()
-                    }else if (elm > 19){
-                        playerWins()
-                    }else{
-                        dealerWins()
+                    val case1 = ((elm != 21) && (dealerHand.valuateHand() > 21))
+                    val case2 = ((elm < 21) && (elm > dealerHand.valuateHand()))
+                    val case3 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
+
+                    when{
+                        case1 -> playerWins()
+                        case2 -> playerWins()
+                        case3 -> dealerWins()
                     }
                 }
             }
         }
     }
 
-    fun playerWins(){
+    private fun playerWins(){
         cash += betSize
         setBetSeek.max = cash
         dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
@@ -349,7 +345,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     }
 
-    fun dealerWins(){
+    private fun dealerWins(){
         cash -= betSize
         setBetSeek.max = cash
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
@@ -361,13 +357,13 @@ class BlackJackActivity : AppCompatActivity() {
       //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
     }
 
-    fun outOfMoney (){
+    private fun outOfMoney (){
         if (cash == 0){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
 
+
+
 }
-
-
