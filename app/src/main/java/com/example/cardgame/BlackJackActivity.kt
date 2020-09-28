@@ -208,9 +208,21 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun hit(){
-        isSplitable()
 
-        if (playercardNum < 6){
+
+        if(playercardNum == 1){
+            if (playerHand.valuateHand() == 11){
+                playerFirstCard = Card(14, "s")
+            }else{
+                playerFirstCard = Card(playerHand.valuateHand(), "s")
+            }
+
+            val playedCard = playerHand.takeCard()
+            playerSecondCard = playedCard
+            playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
+            playerList?.get(playercardNum)?.visibility = View.VISIBLE
+            playercardNum++
+        }else if (playercardNum < 6){
             val playedCard = playerHand.takeCard()
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
