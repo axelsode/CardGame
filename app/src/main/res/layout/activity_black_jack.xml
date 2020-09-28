@@ -272,14 +272,6 @@
         app:layout_constraintTop_toBottomOf="@+id/playertextView" />
 
     <TextView
-        android:id="@+id/dealerScoretextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/betTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

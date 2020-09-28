@@ -26,13 +26,11 @@ class BlackJackActivity : AppCompatActivity() {
     private var playerSecondCard = Card()
     private var dealercardNum = 0
     private var playercardNum = 0
-    private var dealerScore = 0
     private var playerScore = 0
     private var startPoint = 0
     private var endPoint = 10
     private var betSize = 5
     private var cash by Delegates.notNull<Int>()
-    private lateinit var dealerScoreText : TextView
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
     private lateinit var setBetSeek : SeekBar
@@ -49,9 +47,8 @@ class BlackJackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_black_jack)
 
-        dealerScoreText = findViewById<TextView>(R.id.dealerScoretextView)
+
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
-        dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
         playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
@@ -203,11 +200,14 @@ class BlackJackActivity : AppCompatActivity() {
             setBetSeek.visibility = View.VISIBLE
             playerWins()
         }
+        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString())
 
     }
 
     private fun hit(){
         isSplitable()
+
         if (playercardNum < 6){
             val playedCard = playerHand.takeCard()
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
@@ -247,13 +247,13 @@ class BlackJackActivity : AppCompatActivity() {
                 }
             }
         }
+        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString())
         isSplitable()
     }
 
     private fun split(){
         val cardToMove = playerSecondCard
-
-        betSize *2
         playerHand.hand?.removeAt(1)
         playerSplitList?.add(cardToMove)
         playerList?.get(1)?.visibility = View.INVISIBLE
@@ -348,10 +348,8 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     fun dealerWins(){
-        dealerScore++
         cash -= betSize
         setBetSeek.max = cash
-        dealerScoreText.text = getString(R.string.dealer_points, dealerScore.toString())
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString())
 
@@ -359,7 +357,6 @@ class BlackJackActivity : AppCompatActivity() {
         playerScoreText.text = cash.toString()
 
       //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
-
     }
 
 
