@@ -1,5 +1,6 @@
 package com.example.cardgame
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -157,6 +158,7 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun startGame(){
+        outOfMoney()
         playerSplitList?.clear()
         playerResultList?.clear()
         dealersHandValue.text = ""
@@ -223,6 +225,7 @@ class BlackJackActivity : AppCompatActivity() {
                     standButton.visibility = View.INVISIBLE
                     newGameButton.visibility = View.VISIBLE
                     setBetSeek.visibility = View.VISIBLE
+                    Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
                     dealerWins()
                 }
                 playerHand.valuateHand() == 21 -> {
@@ -238,7 +241,6 @@ class BlackJackActivity : AppCompatActivity() {
                 playerHand.valuateHand() > 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     dealerWins()
-                    Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
 
                 }
                 playerHand.valuateHand() == 21 -> {
@@ -273,7 +275,7 @@ class BlackJackActivity : AppCompatActivity() {
             10,11,12,13 -> secondCard = 10
             else -> secondCard = playerSecondCard.value
         }
-        if (playercardNum == 2 && firstCard == secondCard){
+        if (playercardNum == 2 && firstCard == secondCard && cash > 2 * betSize ){
             splitButton.visibility = View.VISIBLE
         }else{
             splitButton.visibility = View.INVISIBLE
@@ -359,7 +361,13 @@ class BlackJackActivity : AppCompatActivity() {
       //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
     }
 
-
-
+    fun outOfMoney (){
+        if (cash == 0){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 }
+
+

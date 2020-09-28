@@ -190,7 +190,7 @@
 
     <Button
         android:id="@+id/hitButton"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#0AD127"
@@ -201,7 +201,7 @@
 
     <Button
         android:id="@+id/standButton"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#CD2F2F"
@@ -212,7 +212,7 @@
 
     <Button
         android:id="@+id/playAgainButton"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#2355B8"
