@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.abs
 import kotlin.properties.Delegates
 
 
@@ -55,8 +56,8 @@ class BlackJackActivity : AppCompatActivity() {
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
         val player_cash = findViewById<TextView>(R.id.playerScoretextView)
-        cash = intent.getStringExtra("playerCash")!!.toInt()
-        player_cash.text = intent.getStringExtra("playerCash")
+        cash = abs(intent.getStringExtra("playerCash")!!.toInt())
+        player_cash.text = cash.toString()
 
         endPoint = intent.getStringExtra("playerCash")!!.toInt()
 
