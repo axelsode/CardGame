@@ -11,4 +11,6 @@
     <string name="dealer_wins">Jakajan vann</string>
     <string name="player_wins">Pelaaja voitti</string>
     <string name="you_bust">Yli meni</string>
+    <string name="Name">Nimi</string>
+    <string name="Cash">0</string>
 </resources>

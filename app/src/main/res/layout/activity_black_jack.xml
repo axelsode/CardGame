@@ -233,8 +233,8 @@
 
     <TextView
         android:id="@+id/dealersHandValue"
-        android:layout_width="60dp"
-        android:layout_height="53dp"
+        android:layout_width="81dp"
+        android:layout_height="56dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"

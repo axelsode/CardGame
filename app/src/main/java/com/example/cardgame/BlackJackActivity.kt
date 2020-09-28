@@ -252,6 +252,8 @@ class BlackJackActivity : AppCompatActivity() {
 
     private fun split(){
         val cardToMove = playerSecondCard
+
+        betSize *2
         playerHand.hand?.removeAt(1)
         playerSplitList?.add(cardToMove)
         playerList?.get(1)?.visibility = View.INVISIBLE
