@@ -1,7 +1,7 @@
 package com.example.cardgame
 import android.content.Context
 
-class Card (var value: Int = -1, var color : String = "T"){
+class Card (var value: Int = -1, var color : String = "T", var isVisible : Boolean = true){
 
     /*  En klass för kort som skappar ett kort och har en funktion för att hämta dens Image
     */

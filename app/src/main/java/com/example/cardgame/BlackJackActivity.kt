@@ -216,7 +216,6 @@ class BlackJackActivity : AppCompatActivity() {
             }else{
                 playerFirstCard = Card(playerHand.valuateHand(), "s")
             }
-
             val playedCard = playerHand.takeCard()
             playerSecondCard = playedCard
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
