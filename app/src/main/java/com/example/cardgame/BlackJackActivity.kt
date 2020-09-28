@@ -1,5 +1,6 @@
 package com.example.cardgame
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -157,6 +158,7 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun startGame(){
+        outOfMoney ()
         playerSplitList?.clear()
         playerResultList?.clear()
         dealersHandValue.text = ""
@@ -314,25 +316,21 @@ class BlackJackActivity : AppCompatActivity() {
 
             if (playerResultList != null) {
                 for (elm in playerResultList){
-                    if (elm == 21){
-                        // this case have already assigned player win! in hit function.
-                    }else if (dealerHand.valuateHand() > 21){
-                        playerWins()
-                    }else if (elm < dealerHand.valuateHand()){
-                        dealerWins()
-                    }else if (elm > dealerHand.valuateHand()){
-                        playerWins()
-                    }else if (elm > 19){
-                        playerWins()
-                    }else{
-                        dealerWins()
+                    val case1 = ((elm != 21) && (dealerHand.valuateHand() > 21))
+                    val case2 = ((elm < 21) && (elm > dealerHand.valuateHand()))
+                    val case3 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
+
+                    when{
+                        case1 -> playerWins()
+                        case2 -> playerWins()
+                        case3 -> dealerWins()
                     }
                 }
             }
         }
     }
 
-    fun playerWins(){
+    private fun playerWins(){
         cash += betSize
         setBetSeek.max = cash
         dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
@@ -347,7 +345,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     }
 
-    fun dealerWins(){
+    private fun dealerWins(){
         cash -= betSize
         setBetSeek.max = cash
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
@@ -359,6 +357,12 @@ class BlackJackActivity : AppCompatActivity() {
       //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
     }
 
+    private fun outOfMoney (){
+        if (cash == 0){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 
 
