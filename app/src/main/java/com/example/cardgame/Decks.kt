@@ -3,7 +3,6 @@ package com.example.cardgame
 
 class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayList<Card>(), var numberOfCards : Int = 0) {
 
-
     fun addDecks(){
         val colors = arrayOf("h","s","d","c")
         val numbers = arrayOf(2,3,4,5,6,7,8,9,10,11,12,13,14)
