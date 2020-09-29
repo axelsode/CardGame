@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">CardGame</string>
     <string name="dealer_hand">Croupierens hand</string>
+    <string name="start_button">NYTT SPEL</string>
     <string name="players_hand">Spelarens Hand</string>
     <string name="button_hit">Ta kort</string>
     <string name="button_stand">Stanna</string>
@@ -13,4 +14,6 @@
     <string name="you_bust">Du blev tjock</string>
     <string name="Name">Namn</string>
     <string name="Cash">Insats</string>
+    <string name="Split">Dela</string>
+    <string name="Bet">Insats</string>
 </resources>

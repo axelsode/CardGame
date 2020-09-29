@@ -245,7 +245,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Split"
+        android:text="@string/Split"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -275,7 +275,7 @@
         android:id="@+id/betTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bet:"
+        android:text="@string/Bet"
         app:layout_constraintEnd_toStartOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/playertextView" />
 
