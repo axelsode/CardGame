@@ -39,11 +39,25 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
     private fun setCards(holder: ViewHolder, position: Int){
         val cardList = hands[position].cards
+        /*
         for ((i, card) in cardList.withIndex()){
             holder.imageList[i].setImageResource(card.getImageId(context))
             if (cardList[i].isVisible){
                 holder.imageList[i].visibility = View.VISIBLE
             }else{
+                holder.imageList[i].visibility = View.INVISIBLE
+            }
+        }*/
+        for (i in 0..5){
+            if (i < cardList.size){
+                holder.imageList[i].setImageResource(cardList[i].getImageId(context))
+                if (cardList[i].isVisible){
+                    holder.imageList[i].visibility = View.VISIBLE
+                }else{
+                    holder.imageList[i].visibility = View.INVISIBLE
+                }
+            }else{
+                holder.imageList[i].setImageResource(R.drawable.red_back)
                 holder.imageList[i].visibility = View.INVISIBLE
             }
         }
