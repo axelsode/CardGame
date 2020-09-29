@@ -20,8 +20,14 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         setCards(holder, position)
-        setWin(holder, position)
+
         setActive(holder, position)
+
+        if (HandManager.gameFinished){
+            setWin(holder, position)
+        }else{
+            holder.cardsItem.setCardBackgroundColor(R.drawable.button_default)
+        }
 
     }
 
@@ -39,15 +45,6 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
     private fun setCards(holder: ViewHolder, position: Int){
         val cardList = hands[position].cards
-        /*
-        for ((i, card) in cardList.withIndex()){
-            holder.imageList[i].setImageResource(card.getImageId(context))
-            if (cardList[i].isVisible){
-                holder.imageList[i].visibility = View.VISIBLE
-            }else{
-                holder.imageList[i].visibility = View.INVISIBLE
-            }
-        }*/
         for (i in 0..5){
             if (i < cardList.size){
                 holder.imageList[i].setImageResource(cardList[i].getImageId(context))
@@ -64,11 +61,38 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     }
 
     private fun setWin(holder: ViewHolder, position: Int){
-        when(hands[position].win){
+        val player = HandManager.hands[position].valueAtPlayerHand
+        val dealer = HandManager.valueAtDealerHand
+        val winner : Int
+        winner = when {
+            player > 21 -> {
+                2
+            }
+            dealer > 21 -> {
+                1
+            }
+            player == 21 -> {
+                1
+            }
+            player > dealer -> {
+                1
+            }
+            player < dealer -> {
+                2
+            }
+            else -> {
+                3
+            }
+        }
+
+        when(winner){
             1 -> holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
             2 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("#F44336"))
+            3 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("FF9F12"))
         }
+
     }
+
 
     override fun getItemCount() = hands.size
 
