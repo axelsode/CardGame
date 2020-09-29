@@ -353,7 +353,7 @@ class BlackJackActivity : AppCompatActivity() {
         //playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         playerScoreText.text = cash.toString()
 
-       // Toast.makeText(this, playerScoreText.text, Toast.LENGTH_SHORT).show()
+       Toast.makeText(this, "Player win", Toast.LENGTH_SHORT).show()
 
     }
 
@@ -366,7 +366,7 @@ class BlackJackActivity : AppCompatActivity() {
         dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
         playerScoreText.text = cash.toString()
 
-      //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
+      Toast.makeText(this, "Dealer Win", Toast.LENGTH_SHORT).show()
     }
 
     private fun outOfMoney (){
