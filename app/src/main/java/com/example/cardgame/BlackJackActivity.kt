@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,7 +37,7 @@ class BlackJackActivity : AppCompatActivity() {
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
     private lateinit var setBetSeek : SeekBar
-
+    lateinit var recyclerView : RecyclerView
 
     // visa poängen på dealers hand atm.
     lateinit var dealersHandValue : TextView
@@ -47,6 +49,27 @@ class BlackJackActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_black_jack)
+
+
+        //test of recyclerView
+        recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = CardRecycleAdapter(this, HandManager.hands)
+        HandManager.addHand(Hand(listOf(Card(5, "s"),Card(5, "s")
+            ,Card(5, "s"),Card(5, "s"),Card(5, "s")
+            ,Card(5, "s")),1, true))
+        HandManager.addHand(Hand(listOf(Card(5, "s"),Card(5, "s")
+            ,Card(5, "s"),Card(5, "s"),Card(5, "s")
+            ,Card(5, "s")),1, true))
+        recyclerView.adapter?.notifyDataSetChanged()
+        HandManager.addHand(Hand(listOf(Card(9,"d"))))
+        recyclerView.adapter?.notifyDataSetChanged()
+
+
+
+
+        //
+
 
 
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)

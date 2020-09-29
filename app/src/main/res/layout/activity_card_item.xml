@@ -3,17 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="#4CAF50"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button_default"
         android:elevation="@dimen/cardview_default_radius"
         android:persistentDrawingCache="all"
-        app:cardBackgroundColor="#8BC34A"
-        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/cardview_shadow_end_color"
+        app:cardCornerRadius="1dp"
         app:cardElevation="4dp"
-        app:contentPadding="10dp"
+        app:contentPadding="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="20dp"
+            android:translationX="10dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -33,7 +34,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="100dp"
+            android:translationX="60dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -42,7 +43,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="180dp"
+            android:translationX="110dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -51,7 +52,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="260dp"
+            android:translationX="160dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -60,7 +61,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="260dp"
+            android:translationX="210dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
