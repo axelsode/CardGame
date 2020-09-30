@@ -18,26 +18,24 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.cardsItem.setBackgroundColor(Color.parseColor("#80000000"))
         setCards(holder, position)
 
-        setActive(holder, position)
+        //setActive(holder)
 
         if (HandManager.gameFinished){
-            setWin(holder, position)
-        }else{
-            holder.cardsItem.setCardBackgroundColor(R.drawable.button_default)
+            setWinner(holder, position)
         }
 
     }
 
-    private fun setActive(holder: ViewHolder, position: Int){
-
-
-        if (hands[position].activ){
-            holder.imageList[2].setImageResource(R.drawable.red_back)
-            //holder.imageList[0].width
+    private fun setActive(holder: ViewHolder){
+        for (i in 0..5){
+            holder.imageList[i]
+            holder.imageList[i]
         }
+
+
 
 
 
@@ -60,35 +58,35 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
         }
     }
 
-    private fun setWin(holder: ViewHolder, position: Int){
+    private fun setWinner(holder: ViewHolder, position: Int){
         val player = HandManager.hands[position].valueAtPlayerHand
         val dealer = HandManager.valueAtDealerHand
-        val winner : Int
+        val winner : String
         winner = when {
             player > 21 -> {
-                2
+                "lose"
             }
             dealer > 21 -> {
-                1
+                "win"
             }
             player == 21 -> {
-                1
+                "win"
             }
             player > dealer -> {
-                1
+                "win"
             }
             player < dealer -> {
-                2
+                "lose"
             }
             else -> {
-                3
+                "draw"
             }
         }
 
         when(winner){
-            1 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("#2196F3"))
-            2 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("#F44336"))
-            3 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("FF9F12"))
+            "win" -> holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
+            "lose" -> holder.cardsItem.setBackgroundColor(Color.parseColor("#F44336"))
+            "draw" -> holder.cardsItem.setBackgroundColor(Color.parseColor("FF9F12"))
         }
 
     }
