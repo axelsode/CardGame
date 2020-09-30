@@ -193,6 +193,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         hitButton.visibility = View.VISIBLE
         standButton.visibility = View.VISIBLE
+        splitButton.visibility = View.VISIBLE
         isSplitable()
 
         if (playerHand.valuateHand() == 21){
