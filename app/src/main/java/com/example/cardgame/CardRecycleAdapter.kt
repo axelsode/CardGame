@@ -26,7 +26,7 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
         if (HandManager.gameFinished){
             setWin(holder, position)
         }else{
-            holder.cardsItem.setCardBackgroundColor(R.drawable.button_default)
+            holder.cardsItem.setCardBackgroundColor(R.drawable.costum_button)
         }
 
     }
@@ -63,32 +63,32 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     private fun setWin(holder: ViewHolder, position: Int){
         val player = HandManager.hands[position].valueAtPlayerHand
         val dealer = HandManager.valueAtDealerHand
-        val winner : Int
+        val winner : String
         winner = when {
             player > 21 -> {
-                2
+                "lose"
             }
             dealer > 21 -> {
-                1
+                "win"
             }
             player == 21 -> {
-                1
+                "win"
             }
             player > dealer -> {
-                1
+                "win"
             }
             player < dealer -> {
-                2
+                "lose"
             }
             else -> {
-                3
+                "draw"
             }
         }
 
         when(winner){
-            1 -> holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
-            2 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("#F44336"))
-            3 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("FF9F12"))
+            "win" -> holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
+            "lose" -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("#F44336"))
+            "draw" -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("FF9F12"))
         }
 
     }

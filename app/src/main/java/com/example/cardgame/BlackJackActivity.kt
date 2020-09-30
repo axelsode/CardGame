@@ -214,7 +214,7 @@ class BlackJackActivity : AppCompatActivity() {
         playerList[1].visibility = View.VISIBLE
 
         HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
-        HandManager.hands[HandManager.activeHand].valueAtPlayerHand = playerHand.valuateHand()
+        HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
         recyclerView.adapter?.notifyDataSetChanged()
 
         dealercardNum = 1
@@ -248,7 +248,7 @@ class BlackJackActivity : AppCompatActivity() {
             val playedCard = playerHand.takeCard()
             playerSecondCard = playedCard
             HandManager.hands[HandManager.activeHand].addCard(playedCard)
-            HandManager.hands[HandManager.activeHand].valueAtPlayerHand = playerHand.valuateHand()
+            HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
             recyclerView.adapter?.notifyDataSetChanged()
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
@@ -256,7 +256,7 @@ class BlackJackActivity : AppCompatActivity() {
         }else if (playercardNum < 6){
             val playedCard = playerHand.takeCard()
             HandManager.hands[HandManager.activeHand].addCard(playedCard)
-            HandManager.hands[HandManager.activeHand].valueAtPlayerHand = playerHand.valuateHand()
+            HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
             recyclerView.adapter?.notifyDataSetChanged()
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
@@ -340,7 +340,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     @ExperimentalStdlibApi
     private fun stand(){
-        HandManager.hands[HandManager.activeHand].valueAtPlayerHand = playerHand.valuateHand()
+        HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
         HandManager.activeHand++
         playerResultList?.add(playerHand.valuateHand())
         if (!playerSplitList.isNullOrEmpty()){
