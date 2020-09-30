@@ -86,7 +86,7 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
         }
 
         when(winner){
-            1 -> holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
+            1 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("#2196F3"))
             2 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("#F44336"))
             3 -> holder.cardsItem.setCardBackgroundColor(Color.parseColor("FF9F12"))
         }
