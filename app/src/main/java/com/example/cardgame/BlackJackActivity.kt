@@ -225,7 +225,7 @@ class BlackJackActivity : AppCompatActivity() {
         splitButton.visibility = View.VISIBLE
         isSplitable()
 
-        if (playerHand.valuateHand() == 21){
+        if (playerHand.valuateHand() == 21 && playercardNum == 2){
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
             newGameButton.visibility = View.VISIBLE
@@ -276,7 +276,7 @@ class BlackJackActivity : AppCompatActivity() {
                     HandManager.gameFinished = true
                     recyclerView.adapter?.notifyDataSetChanged()
                 }
-                playerHand.valuateHand() == 21 -> {
+                playerHand.valuateHand() == 21 && playercardNum == 2-> {
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.INVISIBLE
                     newGameButton.visibility = View.VISIBLE
@@ -296,7 +296,7 @@ class BlackJackActivity : AppCompatActivity() {
                 }
                 playerHand.valuateHand() == 21 -> {
                     hitButton.visibility = View.INVISIBLE
-                    playerWins()
+
                 }
             }
         }
