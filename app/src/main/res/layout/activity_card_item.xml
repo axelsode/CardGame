@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="377dp"
+        android:layout_height="74dp"
+        android:background="@drawable/button_default"
+        android:elevation="@dimen/cardview_default_radius"
+        android:persistentDrawingCache="all"
+        app:cardBackgroundColor="@color/cardview_shadow_end_color"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="4dp"
+        app:contentPadding="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/card1"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="10dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card2"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="60dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card3"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="110dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card4"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="160dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card5"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="210dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card6"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="260dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
