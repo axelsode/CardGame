@@ -18,7 +18,7 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.cardsItem.setBackgroundColor(Color.parseColor("#80000000"))
+        holder.cardsItem.setBackgroundColor(Color.parseColor("#00000000"))
         setCards(holder, position)
 
         //setActive(holder)
