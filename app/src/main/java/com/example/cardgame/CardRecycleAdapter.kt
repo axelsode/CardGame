@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_card_item.view.*
 
 class CardRecycleAdapter(private val context: Context, private val hands: List<Hand>): RecyclerView.Adapter<CardRecycleAdapter.ViewHolder>() {
     private val layoutInflater = LayoutInflater.from(context)
@@ -18,28 +20,34 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.cardsItem.setBackgroundColor(Color.parseColor("#80000000"))
+
         setCards(holder, position)
 
-        //setActive(holder)
+        //setActive(holder, position)
 
         if (HandManager.gameFinished){
             setWinner(holder, position)
+        }else{
+            holder.cardsItem.winLoseText.text = ""
+            holder.cardsItem.setBackgroundColor(Color.parseColor("#00000000"))
         }
 
     }
 
-    private fun setActive(holder: ViewHolder){
-        for (i in 0..5){
-            holder.imageList[i]
-            holder.imageList[i]
+    /*
+    private fun setActive(holder: ViewHolder, position: Int){
+        if(HandManager.activeHand == position){
+            val itemViewActive = layoutInflater.inflate(R.layout.activity_card_item_active, parent, false)
+                holder
+
         }
-
-
-
-
-
     }
+*/
+
+
+
+
+
 
     private fun setCards(holder: ViewHolder, position: Int){
         val cardList = hands[position].cards
@@ -84,9 +92,12 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
         }
 
         when(winner){
-            "win" -> holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
-            "lose" -> holder.cardsItem.setBackgroundColor(Color.parseColor("#F44336"))
-            "draw" -> holder.cardsItem.setBackgroundColor(Color.parseColor("FF9F12"))
+            "win" -> {holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
+                        holder.cardsItem.winLoseText.text = "Win"  }
+            "lose" -> {holder.cardsItem.setBackgroundColor(Color.parseColor("#F44336"))
+                        holder.cardsItem.winLoseText.text = "Lose"}
+            "draw" -> {holder.cardsItem.setBackgroundColor(Color.parseColor("#00000000"))
+                        holder.cardsItem.winLoseText.text = "Draw"}
         }
 
     }
@@ -96,7 +107,8 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        val cardsItem = itemView.findViewById<CardView>(R.id.cardView)!!
+         val cardsItem = itemView.findViewById<CardView>(R.id.cardView)!!
+         val winLoseText = itemView.findViewById<TextView>(R.id.winLoseText)
         private val card1 = itemView.findViewById<ImageView>(R.id.card1)!!
         private val card2 = itemView.findViewById<ImageView>(R.id.card2)!!
         private val card3 = itemView.findViewById<ImageView>(R.id.card3)!!

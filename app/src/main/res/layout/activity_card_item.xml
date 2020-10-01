@@ -2,23 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="377dp"
-        android:layout_height="74dp"
-        android:background="@drawable/button_default"
+        android:layout_width="319dp"
+        android:layout_height="80dp"
+        android:background="@color/cardview_shadow_end_color"
         android:elevation="@dimen/cardview_default_radius"
         android:persistentDrawingCache="all"
         app:cardBackgroundColor="@color/cardview_shadow_end_color"
         app:cardCornerRadius="1dp"
         app:cardElevation="4dp"
-        app:contentPadding="1dp"
+        app:contentPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintCircleRadius="10dp">
 
         <ImageView
             android:id="@+id/card1"
@@ -73,6 +76,14 @@
             android:translationX="260dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
+
+        <TextView
+            android:id="@+id/winLoseText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="bottom|right"
+            android:text="test text" />
 
     </androidx.cardview.widget.CardView>
 
