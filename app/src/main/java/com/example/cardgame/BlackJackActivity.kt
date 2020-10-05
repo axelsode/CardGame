@@ -1,5 +1,6 @@
 package com.example.cardgame
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -166,6 +167,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("StringFormatMatches")
     private fun startGame(){
 
         outOfMoney ()
@@ -222,6 +224,7 @@ class BlackJackActivity : AppCompatActivity() {
         }
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString())
+
 
     }
 
