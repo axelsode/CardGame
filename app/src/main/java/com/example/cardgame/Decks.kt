@@ -30,7 +30,7 @@ class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayLis
     }
 
     fun takeCard() : Card? {
-        if (numberOfCards < 20){
+        if (numberOfCards < 40){
             clearDecks()
             addDecks()
             shuffleDecks()

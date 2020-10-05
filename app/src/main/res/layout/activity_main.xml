@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1D4522"
+    android:background="@drawable/game_background"
     tools:context=".MainActivity">
+
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/start_button"
+        android:backgroundTint="#363D80"
+        android:text="Start Game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +51,7 @@
         android:layout_marginTop="25dp"
         android:fontFamily="sans-serif-black"
         android:text="Black Jack"
+        android:textColor="#090909"
         android:textSize="80sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,5 +83,6 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

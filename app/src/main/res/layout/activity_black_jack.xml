@@ -35,12 +35,12 @@
         android:id="@+id/dealer3"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="4dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dealer1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193"
+        app:layout_constraintVertical_bias="0.189"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
@@ -51,10 +51,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toEndOf="@+id/dealer2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211"
+        app:layout_constraintVertical_bias="0.202"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
@@ -65,10 +65,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/dealer3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.235"
+        app:layout_constraintVertical_bias="0.217"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
@@ -79,10 +79,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/dealer4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271"
+        app:layout_constraintVertical_bias="0.235"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
@@ -167,7 +167,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="25dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/dealer_hand"
+        android:textColor="#020202"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/dealer2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -179,12 +181,14 @@
         android:id="@+id/playertextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/players_hand"
-        android:textColor="#FFF"
-        android:textColorHighlight="#434141"
+        android:textColor="#020202"
+        android:textColorHighlight="#020202"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player5" />
 
@@ -193,7 +197,8 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#0AD127"
+        android:backgroundTint="#09981E"
+        android:fontFamily="sans-serif-black"
         android:text="@string/button_hit"
         app:layout_constraintEnd_toStartOf="@+id/standButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -203,10 +208,12 @@
         android:id="@+id/standButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#CD2F2F"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#A11C1C"
+        android:fontFamily="sans-serif-black"
         android:text="@string/button_stand"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -215,7 +222,8 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#2355B8"
+        android:backgroundTint="#363D80"
+        android:fontFamily="sans-serif-black"
         android:text="@string/button_newGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/standButton"
@@ -244,12 +252,26 @@
         android:id="@+id/splitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/Split"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#4196DA"
+        android:fontFamily="sans-serif-black"
+        android:text="Split"
+        android:textColorHighlight="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/standButton" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="177dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="100dp"
+        android:max="100"
+        android:min="1"
+        android:progress="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playertextView" />
 
     <TextView
         android:id="@+id/playersHandValue"
@@ -260,23 +282,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="177dp"
-        android:layout_height="21dp"
-        android:layout_marginEnd="104dp"
-        android:min="1"
-        android:max="100"
-        android:progress="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playertextView" />
-
     <TextView
         android:id="@+id/betTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Bet"
+        android:layout_marginTop="24dp"
+        android:text="Bet:"
         app:layout_constraintEnd_toStartOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/playertextView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="335dp"
+        android:layout_height="267dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.568" />
+
+    <TextView
+        android:id="@+id/cardleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
