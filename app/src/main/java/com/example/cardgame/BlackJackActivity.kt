@@ -307,6 +307,8 @@ class BlackJackActivity : AppCompatActivity() {
         playercardNum = 1
         playerSecondCard = Card()
         splitButton.visibility = View.INVISIBLE
+        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString())
     }
 
     private fun isSplitable() {
@@ -360,6 +362,7 @@ class BlackJackActivity : AppCompatActivity() {
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
             splitButton.visibility = View.INVISIBLE
+
 
             if (playerResultList != null) {
                 for (elm in playerResultList){
