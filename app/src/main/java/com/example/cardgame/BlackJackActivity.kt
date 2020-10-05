@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,7 +35,6 @@ class BlackJackActivity : AppCompatActivity() {
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
     private lateinit var setBetSeek : SeekBar
-    lateinit var recyclerView : RecyclerView
     lateinit var cardsLeft : TextView
 
     // visa poängen på dealers hand atm.
@@ -50,10 +47,6 @@ class BlackJackActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_black_jack)
-
-        recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = CardRecycleAdapter(this, HandManager.hands)
 
         cardsLeft = findViewById(R.id.cardleft)
 
@@ -202,7 +195,6 @@ class BlackJackActivity : AppCompatActivity() {
 
         HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-        recyclerView.adapter?.notifyDataSetChanged()
 
         dealercardNum = 1
         playercardNum = 2
@@ -237,7 +229,7 @@ class BlackJackActivity : AppCompatActivity() {
             playerSecondCard = playedCard
             HandManager.hands[HandManager.activeHand].addCard(playedCard)
             HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-            recyclerView.adapter?.notifyDataSetChanged()
+
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
             playercardNum++
@@ -245,7 +237,7 @@ class BlackJackActivity : AppCompatActivity() {
             val playedCard = playerHand.takeCard()
             HandManager.hands[HandManager.activeHand].addCard(playedCard)
             HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-            recyclerView.adapter?.notifyDataSetChanged()
+
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
             playercardNum++
@@ -261,7 +253,7 @@ class BlackJackActivity : AppCompatActivity() {
                     setBetSeek.visibility = View.VISIBLE
                     dealerWins()
                     HandManager.gameFinished = true
-                    recyclerView.adapter?.notifyDataSetChanged()
+
                 }
                 playerHand.valuateHand() == 21 && playercardNum == 2-> {
                     hitButton.visibility = View.INVISIBLE
@@ -270,7 +262,7 @@ class BlackJackActivity : AppCompatActivity() {
                     setBetSeek.visibility = View.VISIBLE
                     playerWins()
                     HandManager.gameFinished = true
-                    recyclerView.adapter?.notifyDataSetChanged()
+
                 }
             }
         }else {
@@ -299,7 +291,7 @@ class BlackJackActivity : AppCompatActivity() {
         playerSplitList?.add(cardToMove)
         HandManager.hands[HandManager.activeHand].removeCardSplitCard()
         HandManager.addHand(Hand(mutableListOf(cardToMove)))
-        recyclerView.adapter?.notifyDataSetChanged()
+
         playerList?.get(1)?.visibility = View.INVISIBLE
         playercardNum = 1
         playerSecondCard = Card()
@@ -373,7 +365,7 @@ class BlackJackActivity : AppCompatActivity() {
             }
             HandManager.valueAtDealerHand = dealerHand.valuateHand()
             HandManager.gameFinished = true
-            recyclerView.adapter?.notifyDataSetChanged()
+
         }
     }
 
