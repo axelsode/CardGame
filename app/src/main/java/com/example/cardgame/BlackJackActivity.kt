@@ -214,6 +214,7 @@ class BlackJackActivity : AppCompatActivity() {
         }
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString())
+        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
 
     }
 
@@ -282,6 +283,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString())
+        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
         isSplitable()
     }
 
@@ -320,6 +322,7 @@ class BlackJackActivity : AppCompatActivity() {
 
     @ExperimentalStdlibApi
     private fun stand(){
+        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
         HandManager.activeHand++
         playerResultList?.add(playerHand.valuateHand())
@@ -353,7 +356,7 @@ class BlackJackActivity : AppCompatActivity() {
             if (playerResultList != null) {
                 for (elm in playerResultList){
                     val case1 = ((elm != 21) && (dealerHand.valuateHand() > 21))
-                    val case2 = ((elm < 21) && (elm > dealerHand.valuateHand()))
+                    val case2 = ((elm <= 21) && (elm > dealerHand.valuateHand()))
                     val case3 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
 
                     when{
@@ -380,7 +383,7 @@ class BlackJackActivity : AppCompatActivity() {
         //playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         playerScoreText.text = cash.toString()
 
-       // Toast.makeText(this, playerScoreText.text, Toast.LENGTH_SHORT).show()
+       Toast.makeText(this, getString(R.string.player_wins), Toast.LENGTH_SHORT).show()
 
     }
 
@@ -393,7 +396,7 @@ class BlackJackActivity : AppCompatActivity() {
         dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
         playerScoreText.text = cash.toString()
 
-      //  Toast.makeText(this, dealerScoreText.text, Toast.LENGTH_SHORT).show()
+      Toast.makeText(this,getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
     }
 
     private fun outOfMoney (){
