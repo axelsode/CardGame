@@ -1,5 +1,7 @@
 package com.example.cardgame
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +17,9 @@ import kotlin.properties.Delegates
 
 
 class BlackJackActivity : AppCompatActivity() {
-
+    lateinit var front_anim : AnimatorSet
+    lateinit var back_anim : AnimatorSet
+    var isFront = true
     private val dealerList : ArrayList<ImageView>? = ArrayList<ImageView>()
     private val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
     private val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
@@ -49,7 +53,9 @@ class BlackJackActivity : AppCompatActivity() {
         setContentView(R.layout.activity_black_jack)
 
         cardsLeft = findViewById(R.id.cardleft)
-
+        val scale = applicationContext.resources.displayMetrics.density
+        front_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.front_animation) as AnimatorSet
+        back_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.back_animation) as AnimatorSet
 
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
         playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
@@ -184,6 +190,9 @@ class BlackJackActivity : AppCompatActivity() {
         val dealerFirstCard = dealerHand.takeCard()
         dealerList[0].setImageResource(dealerFirstCard.getImageId(this))
         dealerList[0].visibility = View.VISIBLE
+
+        flipCard(dealer1, dealer1_invisible)
+
 
         playerFirstCard = playerHand.takeCard()
         playerList[0].setImageResource(playerFirstCard.getImageId(this))
@@ -406,6 +415,13 @@ class BlackJackActivity : AppCompatActivity() {
         }
     }
 
+    fun flipCard(cardTo : ImageView, cardFrom : ImageView){
+        front_anim.setTarget(cardFrom)
+        back_anim.setTarget(cardTo)
+        front_anim.start()
+        back_anim.start()
+
+    }
 
 
 }
