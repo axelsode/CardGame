@@ -6,12 +6,17 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.os.postDelayed
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 import kotlin.math.abs
 import kotlin.properties.Delegates
 
@@ -19,9 +24,11 @@ import kotlin.properties.Delegates
 class BlackJackActivity : AppCompatActivity() {
     lateinit var front_anim : AnimatorSet
     lateinit var back_anim : AnimatorSet
-    var isFront = true
+
     private val dealerList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val dealerInvisibleList : ArrayList<ImageView>? = ArrayList<ImageView>()
     private val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val playerInvisibleList : ArrayList<ImageView>? = ArrayList<ImageView>()
     private val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
     private val playerResultList : ArrayList<Int>? = ArrayList<Int>()
     private val myDecks = Decks(6)
@@ -54,8 +61,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         cardsLeft = findViewById(R.id.cardleft)
         val scale = applicationContext.resources.displayMetrics.density
-        front_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.front_animation) as AnimatorSet
-        back_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.back_animation) as AnimatorSet
+
 
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
         playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
@@ -77,33 +83,34 @@ class BlackJackActivity : AppCompatActivity() {
         newGameButton = findViewById<Button>(R.id.playAgainButton)
         setBetSeek = findViewById<SeekBar>(R.id.seekBar)
 
-        val dealerCard1 = findViewById<ImageView>(R.id.dealer1)
-        val dealerCard2 = findViewById<ImageView>(R.id.dealer2)
-        val dealerCard3 = findViewById<ImageView>(R.id.dealer3)
-        val dealerCard4 = findViewById<ImageView>(R.id.dealer4)
-        val dealerCard5 = findViewById<ImageView>(R.id.dealer5)
-        val dealerCard6 = findViewById<ImageView>(R.id.dealer6)
 
-        val playerCard1 = findViewById<ImageView>(R.id.player1)
-        val playerCard2 = findViewById<ImageView>(R.id.player2)
-        val playerCard3 = findViewById<ImageView>(R.id.player3)
-        val playerCard4 = findViewById<ImageView>(R.id.player4)
-        val playerCard5 = findViewById<ImageView>(R.id.player5)
-        val playerCard6 = findViewById<ImageView>(R.id.player6)
+        dealerList?.add(dealer1)
+        dealerList?.add(dealer2)
+        dealerList?.add(dealer3)
+        dealerList?.add(dealer4)
+        dealerList?.add(dealer5)
+        dealerList?.add(dealer6)
 
-        dealerList?.add(dealerCard1)
-        dealerList?.add(dealerCard2)
-        dealerList?.add(dealerCard3)
-        dealerList?.add(dealerCard4)
-        dealerList?.add(dealerCard5)
-        dealerList?.add(dealerCard6)
+        dealerInvisibleList?.add(dealer1_invisible)
+        dealerInvisibleList?.add(dealer2_invisible)
+        dealerInvisibleList?.add(dealer3_invisible)
+        dealerInvisibleList?.add(dealer4_invisible)
+        dealerInvisibleList?.add(dealer5_invisible)
+        dealerInvisibleList?.add(dealer6_invisible)
 
-        playerList?.add(playerCard1)
-        playerList?.add(playerCard2)
-        playerList?.add(playerCard3)
-        playerList?.add(playerCard4)
-        playerList?.add(playerCard5)
-        playerList?.add(playerCard6)
+        playerList?.add(player1)
+        playerList?.add(player2)
+        playerList?.add(player3)
+        playerList?.add(player4)
+        playerList?.add(player5)
+        playerList?.add(player6)
+
+        playerInvisibleList?.add(player1_invisible)
+        playerInvisibleList?.add(player2_invisible)
+        playerInvisibleList?.add(player3_invisible)
+        playerInvisibleList?.add(player4_invisible)
+        playerInvisibleList?.add(player5_invisible)
+        playerInvisibleList?.add(player6_invisible)
 
         myDecks.addDecks()
         myDecks.shuffleDecks()
@@ -190,17 +197,20 @@ class BlackJackActivity : AppCompatActivity() {
         val dealerFirstCard = dealerHand.takeCard()
         dealerList[0].setImageResource(dealerFirstCard.getImageId(this))
         dealerList[0].visibility = View.VISIBLE
-
         flipCard(dealer1, dealer1_invisible)
 
 
         playerFirstCard = playerHand.takeCard()
         playerList[0].setImageResource(playerFirstCard.getImageId(this))
         playerList[0].visibility = View.VISIBLE
+        flipCard(player1, player1_invisible)
+
 
         playerSecondCard = playerHand.takeCard()
         playerList[1].setImageResource(playerSecondCard.getImageId(this))
         playerList[1].visibility = View.VISIBLE
+        flipCard(player2, player2_invisible)
+
 
         HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
@@ -242,6 +252,11 @@ class BlackJackActivity : AppCompatActivity() {
 
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
+            playerList?.get(playercardNum)?.let { playerInvisibleList?.get(playercardNum)?.let { it1 ->
+                flipCard(it,
+                    it1
+                )
+            } }
             playercardNum++
         }else if (playercardNum < 6){
             val playedCard = playerHand.takeCard()
@@ -250,6 +265,11 @@ class BlackJackActivity : AppCompatActivity() {
 
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
+            playerList?.get(playercardNum)?.let { playerInvisibleList?.get(playercardNum)?.let { it1 ->
+                flipCard(it,
+                    it1
+                )
+            } }
             playercardNum++
 
         }
@@ -355,6 +375,13 @@ class BlackJackActivity : AppCompatActivity() {
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
                 dealerList?.get(dealercardNum)?.visibility = View.VISIBLE
+                dealerList?.get(dealercardNum)?.let {
+                    dealerInvisibleList?.get(dealercardNum)?.let { it1 ->
+                        flipCard(it,
+                            it1
+                        )
+                    }
+                }
                 dealercardNum++
             }
 
@@ -416,11 +443,21 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     fun flipCard(cardTo : ImageView, cardFrom : ImageView){
+        front_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.front_animation) as AnimatorSet
+        back_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.back_animation) as AnimatorSet
         front_anim.setTarget(cardFrom)
         back_anim.setTarget(cardTo)
         front_anim.start()
         back_anim.start()
 
+        delay()
+    }
+
+    fun delay(){
+        val handler = Handler()
+        handler.postDelayed({
+            // do something after 1000ms
+        }, 1000)
     }
 
 
