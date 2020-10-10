@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.view.View
 import android.widget.*
@@ -374,21 +375,51 @@ class BlackJackActivity : AppCompatActivity() {
             while ((dealercardNum<6) && (dealerHand.valuateHand() < 17)){
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
-                dealerList?.get(dealercardNum)?.visibility = View.VISIBLE
-                dealerList?.get(dealercardNum)?.let {
-                    dealerInvisibleList?.get(dealercardNum)?.let { it1 ->
-                        flipCard(it,
-                            it1
-                        )
-                    }
-                }
                 dealercardNum++
             }
+
+            var time = dealercardNum * 1000
+
+            fun a() = object : CountDownTimer(time.toLong(), 1000) {
+                var cardnum = 1
+                override fun onFinish() {
+                    if (playerResultList != null) {
+                        for (elm in playerResultList){
+                            val case1 = ((elm != 21) && (dealerHand.valuateHand() > 21))
+                            val case2 = ((elm <= 21) && (elm > dealerHand.valuateHand()))
+                            val case3 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
+
+                            when{
+                                case1 -> playerWins()
+                                case2 -> playerWins()
+                                case3 -> dealerWins()
+                            }
+                        }
+                    }
+                }
+
+                override fun onTick(p0: Long) {
+                    if (cardnum < dealercardNum){
+                        dealerList?.get(cardnum)?.visibility = View.VISIBLE
+                        dealerList?.get((cardnum).toInt())?.let {
+                            dealerInvisibleList?.get((cardnum).toInt())?.let { it1 ->
+                                flipCard(it,
+                                    it1
+                                )
+                            }
+                        }
+                        cardnum++
+                    }
+                }
+
+            }
+
+            a().start()
 
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
             splitButton.visibility = View.INVISIBLE
-
+/*
             if (playerResultList != null) {
                 for (elm in playerResultList){
                     val case1 = ((elm != 21) && (dealerHand.valuateHand() > 21))
@@ -401,7 +432,7 @@ class BlackJackActivity : AppCompatActivity() {
                         case3 -> dealerWins()
                     }
                 }
-            }
+            }*/
             HandManager.valueAtDealerHand = dealerHand.valuateHand()
             HandManager.gameFinished = true
 
