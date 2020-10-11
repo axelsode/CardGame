@@ -21,7 +21,10 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+
         setCards(holder, position)
+
+
 
         //setActive(holder, position)
 
@@ -50,6 +53,7 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
 
     private fun setCards(holder: ViewHolder, position: Int){
+
         val cardList = hands[position].cards
         for (i in 0..5){
             if (i < cardList.size){
@@ -63,7 +67,13 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
                 holder.imageList[i].setImageResource(R.drawable.red_back)
                 holder.imageList[i].visibility = View.INVISIBLE
             }
-        }
+        }     /*
+        if (position == 0){
+            for (i in 0..5){
+                holder.imageList[i].scaleX = 2.0F
+                holder.imageList[i].scaleY = 2.0F
+            }
+        }    */
     }
 
     private fun setWinner(holder: ViewHolder, position: Int){
@@ -115,7 +125,7 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
         private val card4 = itemView.findViewById<ImageView>(R.id.card4)!!
         private val card5 = itemView.findViewById<ImageView>(R.id.card5)!!
         private val card6 = itemView.findViewById<ImageView>(R.id.card6)!!
-        val imageList = listOf(card1, card2, card3, card4, card5, card6)
+        var imageList = listOf(card1, card2, card3, card4, card5, card6)
 
     }
 }

@@ -296,8 +296,9 @@ class BlackJackActivity : AppCompatActivity() {
         val cardToMove = playerSecondCard
         playerHand.hand?.removeAt(1)
         playerSplitList?.add(cardToMove)
+
         HandManager.hands[HandManager.activeHand].removeCardSplitCard()
-        HandManager.addHand(Hand(mutableListOf(cardToMove)))
+        HandManager.addHandAt(Hand(mutableListOf(cardToMove)))
         recyclerView.adapter?.notifyDataSetChanged()
         playerList?.get(1)?.visibility = View.INVISIBLE
         playercardNum = 1
@@ -328,7 +329,7 @@ class BlackJackActivity : AppCompatActivity() {
     @ExperimentalStdlibApi
     private fun stand(){
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-        HandManager.activeHand++
+        //HandManager.activeHand++
         playerResultList?.add(playerHand.valuateHand())
         if (!playerSplitList.isNullOrEmpty()){
             hitButton.visibility = View.VISIBLE
@@ -374,6 +375,9 @@ class BlackJackActivity : AppCompatActivity() {
             HandManager.gameFinished = true
             recyclerView.adapter?.notifyDataSetChanged()
         }
+        HandManager.addHand(HandManager.hands[0])
+        HandManager.hands.removeAt(0)
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun playerWins(){
