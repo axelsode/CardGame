@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">CardGame</string>
     <string name="dealer_hand">Dealers Hand</string>
+    <string name="start_button">START GAME</string>
     <string name="players_hand">Players Hand</string>
     <string name="button_hit">Hit</string>
     <string name="button_stand">Stand</string>
-    <string name="button_newGame">New Game</string>
+    <string name="button_newGame">New Bet</string>
     <string name="dealer_points">Dealers points: %1$s</string>
     <string name="player_points">%1$s points:\n%2$s</string>
     <string name="dealer_wins">Dealer wins</string>
@@ -12,4 +13,8 @@
     <string name="you_bust">You Bust</string>
     <string name="Name">Name</string>
     <string name="Cash">Cash</string>
+    <string name="Split">Split</string>
+    <string name="Bet">Bet</string>
+    <string name="Fill_in_cash">Cash file can´t be blank</string>
+
 </resources>

@@ -20,7 +20,31 @@
         app:srcCompat="@drawable/c12" />
 
     <ImageView
+        android:id="@+id/dealer1_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="40dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.163"
+        app:srcCompat="@drawable/red_back" />
+
+    <ImageView
         android:id="@+id/dealer2"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="40dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/dealer1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/dealer2_invisible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:layout_marginStart="40dp"
@@ -35,12 +59,24 @@
         android:id="@+id/dealer3"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="4dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dealer1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193"
+        app:layout_constraintVertical_bias="0.189"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/dealer3_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="4dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dealer1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
@@ -51,10 +87,24 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toEndOf="@+id/dealer2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211"
+        app:layout_constraintVertical_bias="0.202"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/dealer4_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toEndOf="@+id/dealer2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.202"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
@@ -65,10 +115,24 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/dealer3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.235"
+        app:layout_constraintVertical_bias="0.217"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/dealer5_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/dealer3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.217"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
@@ -79,14 +143,40 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/dealer4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271"
+        app:layout_constraintVertical_bias="0.235"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/dealer6_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/dealer4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.235"
         app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/player1"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="40dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/player1_invisible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:layout_marginStart="40dp"
@@ -110,6 +200,18 @@
         app:srcCompat="@drawable/c12" />
 
     <ImageView
+        android:id="@+id/player2_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="40dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/player1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.479"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
         android:id="@+id/player3"
         android:layout_width="80dp"
         android:layout_height="120dp"
@@ -121,9 +223,33 @@
         app:layout_constraintVertical_bias="0.499"
         app:srcCompat="@drawable/c12" />
 
+    <ImageView
+        android:id="@+id/player3_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/player1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        app:srcCompat="@drawable/c12" />
 
     <ImageView
         android:id="@+id/player4"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
+        app:layout_constraintStart_toEndOf="@+id/player1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.528"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/player4_invisible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:visibility="invisible"
@@ -149,7 +275,33 @@
         app:srcCompat="@drawable/c12" />
 
     <ImageView
+        android:id="@+id/player5_invisible"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/player3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.541"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
         android:id="@+id/player6"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toEndOf="@+id/player4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.566"
+        app:srcCompat="@drawable/c12" />
+
+    <ImageView
+        android:id="@+id/player6_invisible"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:visibility="invisible"
@@ -167,7 +319,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="25dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/dealer_hand"
+        android:textColor="#020202"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/dealer2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,9 +334,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/players_hand"
-        android:textColor="#FFF"
-        android:textColorHighlight="#434141"
+        android:textColor="#020202"
+        android:textColorHighlight="#020202"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
@@ -194,7 +349,8 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#0AD127"
+        android:backgroundTint="#09981E"
+        android:fontFamily="sans-serif-black"
         android:text="@string/button_hit"
         app:layout_constraintEnd_toStartOf="@+id/standButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +361,8 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#CD2F2F"
+        android:backgroundTint="#A11C1C"
+        android:fontFamily="sans-serif-black"
         android:text="@string/button_stand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -217,7 +374,8 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#2355B8"
+        android:backgroundTint="#363D80"
+        android:fontFamily="sans-serif-black"
         android:text="@string/button_newGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/standButton"
@@ -247,20 +405,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:backgroundTint="#4196DA"
+        android:fontFamily="sans-serif-black"
         android:text="Split"
+        android:textColorHighlight="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/standButton" />
-
-    <TextView
-        android:id="@+id/playersHandValue"
-        android:layout_width="69dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -275,22 +426,22 @@
         app:layout_constraintTop_toBottomOf="@+id/playertextView" />
 
     <TextView
+        android:id="@+id/playersHandValue"
+        android:layout_width="69dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
         android:id="@+id/betTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Bet:"
         app:layout_constraintEnd_toStartOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/playertextView" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="335dp"
-        android:layout_height="267dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
 
     <TextView
         android:id="@+id/cardleft"

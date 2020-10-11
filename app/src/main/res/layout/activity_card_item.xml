@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/card1"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
             android:translationX="10dp"
             android:visibility="invisible"
@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/card2"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
             android:translationX="60dp"
             android:visibility="invisible"
@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/card3"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
             android:translationX="110dp"
             android:visibility="invisible"
@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/card4"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
             android:translationX="160dp"
             android:visibility="invisible"
@@ -61,8 +61,8 @@
 
         <ImageView
             android:id="@+id/card5"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
             android:translationX="210dp"
             android:visibility="invisible"
@@ -70,8 +70,8 @@
 
         <ImageView
             android:id="@+id/card6"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
             android:translationX="260dp"
             android:visibility="invisible"

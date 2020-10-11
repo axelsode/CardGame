@@ -2,15 +2,19 @@
 <resources>
     <string name="app_name">CardGame</string>
     <string name="dealer_hand">Jakajan Käsi</string>
+    <string name="start_button">UUSI PELI</string>
     <string name="players_hand">Pelajan Käsi</string>
     <string name="button_hit">Ota kortti</string>
     <string name="button_stand">Jää</string>
-    <string name="button_newGame">Uusi peli</string>
+    <string name="button_newGame">Uusi panos</string>
     <string name="dealer_points">Jakajan pisteet: %1$s</string>
     <string name="player_points">%1$s pistet: \n%2$s</string>
     <string name="dealer_wins">Jakajan vann</string>
     <string name="player_wins">Pelaaja voitti</string>
     <string name="you_bust">Yli meni</string>
     <string name="Name">Nimi</string>
-    <string name="Cash">0</string>
+    <string name="Cash">Rahaa</string>
+    <string name="Split">Split</string>
+    <string name="Bet">Panos</string>
+    <string name="Fill_in_cash">Rahaa ei saa olla tyhjä</string>
 </resources>

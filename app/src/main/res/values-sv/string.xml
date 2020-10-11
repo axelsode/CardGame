@@ -2,10 +2,11 @@
 <resources>
     <string name="app_name">CardGame</string>
     <string name="dealer_hand">Croupierens hand</string>
+    <string name="start_button">NYTT SPEL</string>
     <string name="players_hand">Spelarens Hand</string>
     <string name="button_hit">Ta kort</string>
     <string name="button_stand">Stanna</string>
-    <string name="button_newGame">Nytt spel</string>
+    <string name="button_newGame">Ny insats</string>
     <string name="dealer_points">Croupierens poäng: %1$s</string>
     <string name="player_points">%1$s poäng:\n%2$s</string>
     <string name="dealer_wins">Croupieren vann</string>
@@ -13,4 +14,7 @@
     <string name="you_bust">Du blev tjock</string>
     <string name="Name">Namn</string>
     <string name="Cash">Insats</string>
+    <string name="Split">Dela</string>
+    <string name="Bet">Insats</string>
+    <string name="Fill_in_cash">Insats fliken kan inte vara tom </string>
 </resources>
