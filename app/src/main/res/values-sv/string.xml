@@ -16,4 +16,5 @@
     <string name="Cash">Insats</string>
     <string name="Split">Dela</string>
     <string name="Bet">Insats</string>
+    <string name="Fill_in_cash">Insats fliken kan inte vara tom </string>
 </resources>

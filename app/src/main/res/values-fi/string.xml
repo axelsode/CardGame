@@ -13,7 +13,8 @@
     <string name="player_wins">Pelaaja voitti</string>
     <string name="you_bust">Yli meni</string>
     <string name="Name">Nimi</string>
-    <string name="Cash">0</string>
+    <string name="Cash">Rahaa</string>
     <string name="Split">Split</string>
     <string name="Bet">Panos</string>
+    <string name="Fill_in_cash">Rahaa ei saa olla tyhjä</string>
 </resources>
