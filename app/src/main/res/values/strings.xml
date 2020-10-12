@@ -10,6 +10,7 @@
     <string name="player_points">%1$s points:\n%2$s</string>
     <string name="dealer_wins">Dealer wins</string>
     <string name="player_wins">Player wins</string>
+    <string name="draw_wins">It´s a draw</string>
     <string name="you_bust">You Bust</string>
     <string name="Name">Name</string>
     <string name="Cash">Cash</string>

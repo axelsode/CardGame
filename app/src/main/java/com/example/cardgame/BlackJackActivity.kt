@@ -388,15 +388,16 @@ class BlackJackActivity : AppCompatActivity() {
                             val case1 = ((elm != 21) && (dealerHand.valuateHand() > 21))
                             val case2 = ((elm <= 21) && (elm > dealerHand.valuateHand()))
                             val case3 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
+                            val case4 = (elm == dealerHand.valuateHand())
 
                             when{
                                 case1 -> playerWins()
                                 case2 -> playerWins()
                                 case3 -> dealerWins()
+                                case4 -> draw()
                             }
                         }
                     }
-
                 }
 
                 override fun onTick(p0: Long) {
@@ -408,6 +409,7 @@ class BlackJackActivity : AppCompatActivity() {
                                     it1
                                 )
                             }
+
                         }
                         cardnum++
                     }
@@ -415,25 +417,9 @@ class BlackJackActivity : AppCompatActivity() {
 
             }.start()
 
-
-
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
             splitButton.visibility = View.INVISIBLE
-/*
-            if (playerResultList != null) {
-                for (elm in playerResultList){
-                    val case1 = ((elm != 21) && (dealerHand.valuateHand() > 21))
-                    val case2 = ((elm <= 21) && (elm > dealerHand.valuateHand()))
-                    val case3 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
-
-                    when{
-                        case1 -> playerWins()
-                        case2 -> playerWins()
-                        case3 -> dealerWins()
-                    }
-                }
-            }*/
             HandManager.valueAtDealerHand = dealerHand.valuateHand()
             HandManager.gameFinished = true
 
@@ -452,7 +438,6 @@ class BlackJackActivity : AppCompatActivity() {
         playerScoreText.text = cash.toString()
 
        Toast.makeText(this, getString(R.string.player_wins), Toast.LENGTH_SHORT).show()
-
     }
 
     private fun dealerWins(){
@@ -465,6 +450,15 @@ class BlackJackActivity : AppCompatActivity() {
         playerScoreText.text = cash.toString()
 
       Toast.makeText(this,getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun draw(){
+        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString())
+        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+        playerScoreText.text = cash.toString()
+
+        Toast.makeText(this, getString(R.string.draw_wins),Toast.LENGTH_SHORT).show()
     }
 
     private fun outOfMoney (){
@@ -482,7 +476,6 @@ class BlackJackActivity : AppCompatActivity() {
         front_anim.start()
         back_anim.start()
     }
-
 
 
 }
