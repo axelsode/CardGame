@@ -183,6 +183,7 @@ class BlackJackActivity : AppCompatActivity() {
         playersHandValue.text = ""
         newGameButton.visibility = View.INVISIBLE
         setBetSeek.visibility = View.INVISIBLE
+        splitButton.visibility = View.INVISIBLE
 
         for (dealer in dealerList!!){
             dealer.visibility = View.INVISIBLE
@@ -197,21 +198,53 @@ class BlackJackActivity : AppCompatActivity() {
 
         val dealerFirstCard = dealerHand.takeCard()
         dealerList[0].setImageResource(dealerFirstCard.getImageId(this))
-        dealerList[0].visibility = View.VISIBLE
-        flipCard(dealer1, dealer1_invisible)
 
 
         playerFirstCard = playerHand.takeCard()
         playerList[0].setImageResource(playerFirstCard.getImageId(this))
-        playerList[0].visibility = View.VISIBLE
-        flipCard(player1, player1_invisible)
 
 
         playerSecondCard = playerHand.takeCard()
         playerList[1].setImageResource(playerSecondCard.getImageId(this))
-        playerList[1].visibility = View.VISIBLE
-        flipCard(player2, player2_invisible)
 
+
+        object : CountDownTimer(3000, 1000) {
+
+            var time = 0
+
+            override fun onFinish() {
+               // playerList[1].visibility = View.VISIBLE
+                isSplitable()
+                // flipCard(player2, player2_invisible)
+                playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
+                    playerHand.valuateHand().toString())
+                dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+
+            }
+
+
+            override fun onTick(p0: Long) {
+                when (time){
+                    0 -> {
+                        playerList[0].visibility = View.VISIBLE
+                        flipCard(player1, player1_invisible)
+                        time++
+                    }
+                    1 -> {
+                        dealerList[0].visibility = View.VISIBLE
+                        flipCard(dealer1, dealer1_invisible)
+                        time++
+                    }
+                    2 -> {
+                        playerList[1].visibility = View.VISIBLE
+                        flipCard(player2, player2_invisible)
+                    }
+                }
+
+
+            }
+
+        }.start()
 
         HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
@@ -221,8 +254,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         hitButton.visibility = View.VISIBLE
         standButton.visibility = View.VISIBLE
-        splitButton.visibility = View.VISIBLE
-        isSplitable()
+        //splitButton.visibility = View.VISIBLE
 
         if (playerHand.valuateHand() == 21 && playercardNum == 2){
             hitButton.visibility = View.INVISIBLE
@@ -232,9 +264,7 @@ class BlackJackActivity : AppCompatActivity() {
             playerWins()
             HandManager.gameFinished = true
         }
-        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
-            playerHand.valuateHand().toString())
-        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+
 
     }
 

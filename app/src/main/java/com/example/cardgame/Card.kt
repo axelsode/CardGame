@@ -6,7 +6,7 @@ class Card (var value: Int = -1, var color : String = "T", var isVisible : Boole
     //  En klass för kort som skappar ett kort och har en funktion för att hämta dens Image
 
     fun initRandomCard(){
-        value = (2..14).random()
+            value = (2..14).random()
         val num = (1..4).random()
         when(num){
             1 -> color = "c"

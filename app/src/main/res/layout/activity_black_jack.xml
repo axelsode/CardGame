@@ -348,11 +348,12 @@
         android:id="@+id/hitButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#09981E"
         android:fontFamily="sans-serif-black"
         android:text="@string/button_hit"
         app:layout_constraintEnd_toStartOf="@+id/standButton"
+        app:layout_constraintHorizontal_bias="0.727"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -360,12 +361,12 @@
         android:id="@+id/standButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#A11C1C"
         android:fontFamily="sans-serif-black"
         android:text="@string/button_stand"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -373,12 +374,13 @@
         android:id="@+id/playAgainButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#363D80"
         android:fontFamily="sans-serif-black"
         android:text="@string/button_newGame"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/standButton"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <TextView
@@ -404,7 +406,7 @@
         android:id="@+id/splitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
         android:backgroundTint="#4196DA"
         android:fontFamily="sans-serif-black"
         android:text="Split"
