@@ -380,7 +380,7 @@ class BlackJackActivity : AppCompatActivity() {
 
             var time = dealercardNum * 1000
 
-            fun a() = object : CountDownTimer(time.toLong(), 1000) {
+            object : CountDownTimer(time.toLong(), 1000) {
                 var cardnum = 1
                 override fun onFinish() {
                     if (playerResultList != null) {
@@ -396,6 +396,7 @@ class BlackJackActivity : AppCompatActivity() {
                             }
                         }
                     }
+
                 }
 
                 override fun onTick(p0: Long) {
@@ -412,9 +413,9 @@ class BlackJackActivity : AppCompatActivity() {
                     }
                 }
 
-            }
+            }.start()
 
-            a().start()
+
 
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
@@ -480,16 +481,8 @@ class BlackJackActivity : AppCompatActivity() {
         back_anim.setTarget(cardTo)
         front_anim.start()
         back_anim.start()
-
-        delay()
     }
 
-    fun delay(){
-        val handler = Handler()
-        handler.postDelayed({
-            // do something after 1000ms
-        }, 1000)
-    }
 
 
 }
