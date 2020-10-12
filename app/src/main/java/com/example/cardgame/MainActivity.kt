@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_black_jack.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +24,12 @@ class MainActivity : AppCompatActivity() {
         nameText = findViewById<EditText>(R.id.editTextTextPersonName)
         betText = findViewById<EditText>(R.id.cashEditText)
         button.setOnClickListener {
-            startBlackJackActivity()
+
+           if (betText.text.isNotBlank()){
+               startBlackJackActivity()
+           } else{
+               Toast.makeText(this,getString(R.string.Fill_in_cash), Toast.LENGTH_SHORT).show()
+           }
         }
     }
 
