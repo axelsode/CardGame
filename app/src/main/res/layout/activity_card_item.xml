@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:background="@color/cardview_shadow_end_color"
         android:elevation="@dimen/cardview_default_radius"
         android:persistentDrawingCache="all"
@@ -18,10 +18,10 @@
         app:cardElevation="4dp"
         app:contentPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintCircleRadius="10dp">
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:id="@+id/card1"

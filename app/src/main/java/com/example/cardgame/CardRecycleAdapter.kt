@@ -41,20 +41,6 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
     }
 
-    /*
-    private fun setActive(holder: ViewHolder, position: Int){
-        if(HandManager.activeHand == position){
-            val itemViewActive = layoutInflater.inflate(R.layout.activity_card_item_active, parent, false)
-                holder
-
-        }
-    }
-*/
-
-
-
-
-
 
     private fun setCards(holder: ViewHolder, position: Int){
 

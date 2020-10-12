@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.os.postDelayed
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -116,7 +117,6 @@ class BlackJackActivity : AppCompatActivity() {
         myDecks.addDecks()
         myDecks.shuffleDecks()
 
-        //startGame()
         setBetSeek.visibility = View.VISIBLE
         newGameButton.visibility = View.VISIBLE
         hitButton.visibility = View.INVISIBLE
@@ -215,7 +215,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-
+        recyclerView.adapter?.notifyDataSetChanged()
         dealercardNum = 1
         playercardNum = 2
 
@@ -272,7 +272,7 @@ class BlackJackActivity : AppCompatActivity() {
                 )
             } }
             playercardNum++
-
+            recyclerView.adapter?.notifyDataSetChanged()
         }
 
         if (playerSplitList.isNullOrEmpty() && playerResultList.isNullOrEmpty()){
