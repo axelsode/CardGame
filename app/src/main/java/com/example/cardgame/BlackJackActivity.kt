@@ -51,7 +51,6 @@ class BlackJackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_black_jack)
 
-        recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = CardRecycleAdapter(this, HandManager.hands)
 
