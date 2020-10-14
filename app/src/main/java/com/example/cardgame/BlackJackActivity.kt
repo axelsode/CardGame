@@ -4,7 +4,9 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.content.Intent
 import android.media.AudioManager
+import android.media.MediaPlayer
 import android.media.ToneGenerator
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -539,9 +541,12 @@ class BlackJackActivity : AppCompatActivity() {
         back_anim.setTarget(cardTo)
         front_anim.start()
         back_anim.start()
-        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
+        //val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        //toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
+
+        val mediaPlayer = MediaPlayer.create(this, R.raw.flipcardsound)
+        mediaPlayer?.start()
     }
-
-
 }
+
+
