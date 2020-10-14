@@ -3,21 +3,16 @@ package com.example.cardgame
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.content.Intent
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.core.os.postDelayed
-import kotlinx.android.synthetic.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_black_jack.*
-import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
 import kotlin.math.abs
 import kotlin.properties.Delegates
 
@@ -65,7 +60,11 @@ class BlackJackActivity : AppCompatActivity() {
 
 
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
-        playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
+        playerScoreText.text = getString(
+            R.string.player_points,
+            intent.getStringExtra("playerName"),
+            playerScore.toString()
+        )
         val player_name = findViewById<TextView>(R.id.playertextView)
         player_name.text = intent.getStringExtra("playerName")
         val player_cash = findViewById<TextView>(R.id.playerScoretextView)
@@ -146,7 +145,7 @@ class BlackJackActivity : AppCompatActivity() {
         setBetSeek.max = cash
         setBetSeek.min = 5
 
-        setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 betTextView.text = progress.toString()
             }
@@ -163,7 +162,11 @@ class BlackJackActivity : AppCompatActivity() {
                 }
                 betSize = seekBar?.progress!!
                 //Toast.makeText(this@BlackJackActivity, "Bet changed by ${endPoint-startPoint}", Toast.LENGTH_SHORT).show()
-                Toast.makeText(this@BlackJackActivity, "Bet changed to ${seekBar?.progress}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@BlackJackActivity,
+                    "Bet changed to ${seekBar?.progress}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         )
@@ -216,9 +219,14 @@ class BlackJackActivity : AppCompatActivity() {
                // playerList[1].visibility = View.VISIBLE
                 isSplitable()
                 // flipCard(player2, player2_invisible)
-                playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
-                    playerHand.valuateHand().toString())
-                dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+                playersHandValue.text = getString(
+                    R.string.player_points, intent.getStringExtra("playerName"),
+                    playerHand.valuateHand().toString()
+                )
+                dealersHandValue.text = getString(
+                    R.string.dealer_points,
+                    dealerHand.valuateHand().toString()
+                )
 
             }
 
@@ -284,7 +292,8 @@ class BlackJackActivity : AppCompatActivity() {
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
             playerList?.get(playercardNum)?.let { playerInvisibleList?.get(playercardNum)?.let { it1 ->
-                flipCard(it,
+                flipCard(
+                    it,
                     it1
                 )
             } }
@@ -297,7 +306,8 @@ class BlackJackActivity : AppCompatActivity() {
             playerList?.get(playercardNum)?.setImageResource(playedCard.getImageId(this))
             playerList?.get(playercardNum)?.visibility = View.VISIBLE
             playerList?.get(playercardNum)?.let { playerInvisibleList?.get(playercardNum)?.let { it1 ->
-                flipCard(it,
+                flipCard(
+                    it,
                     it1
                 )
             } }
@@ -341,9 +351,14 @@ class BlackJackActivity : AppCompatActivity() {
             }
         }
 
-        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
-            playerHand.valuateHand().toString())
-        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+        playersHandValue.text = getString(
+            R.string.player_points, intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString()
+        )
+        dealersHandValue.text = getString(
+            R.string.dealer_points,
+            dealerHand.valuateHand().toString()
+        )
         isSplitable()
     }
 
@@ -364,11 +379,11 @@ class BlackJackActivity : AppCompatActivity() {
         val firstCard : Int
         val secondCard : Int
         when(playerFirstCard.value){
-            10,11,12,13 -> firstCard = 10
+            10, 11, 12, 13 -> firstCard = 10
             else -> firstCard = playerFirstCard.value
         }
         when(playerSecondCard.value){
-            10,11,12,13 -> secondCard = 10
+            10, 11, 12, 13 -> secondCard = 10
             else -> secondCard = playerSecondCard.value
         }
         if (playercardNum == 2 && firstCard == secondCard){
@@ -382,7 +397,10 @@ class BlackJackActivity : AppCompatActivity() {
 
     @ExperimentalStdlibApi
     private fun stand(){
-        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+        dealersHandValue.text = getString(
+            R.string.dealer_points,
+            dealerHand.valuateHand().toString()
+        )
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
         HandManager.activeHand++
         playerResultList?.add(playerHand.valuateHand())
@@ -435,7 +453,8 @@ class BlackJackActivity : AppCompatActivity() {
                         dealerList?.get(cardnum)?.visibility = View.VISIBLE
                         dealerList?.get((cardnum).toInt())?.let {
                             dealerInvisibleList?.get((cardnum).toInt())?.let { it1 ->
-                                flipCard(it,
+                                flipCard(
+                                    it,
                                     it1
                                 )
                             }
@@ -459,10 +478,15 @@ class BlackJackActivity : AppCompatActivity() {
     private fun playerWins(){
         cash += betSize
         setBetSeek.max = cash
-        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+        dealersHandValue.text = getString(
+            R.string.dealer_points,
+            dealerHand.valuateHand().toString()
+        )
 
-        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
-            playerHand.valuateHand().toString())
+        playersHandValue.text = getString(
+            R.string.player_points, intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString()
+        )
 
         //playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
         playerScoreText.text = cash.toString()
@@ -473,22 +497,32 @@ class BlackJackActivity : AppCompatActivity() {
     private fun dealerWins(){
         cash -= betSize
         setBetSeek.max = cash
-        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
-            playerHand.valuateHand().toString())
+        playersHandValue.text = getString(
+            R.string.player_points, intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString()
+        )
 
-        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+        dealersHandValue.text = getString(
+            R.string.dealer_points,
+            dealerHand.valuateHand().toString()
+        )
         playerScoreText.text = cash.toString()
 
-      Toast.makeText(this,getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
+      Toast.makeText(this, getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
     }
 
     private fun draw(){
-        playersHandValue.text = getString(R.string.player_points,intent.getStringExtra("playerName"),
-            playerHand.valuateHand().toString())
-        dealersHandValue.text = getString(R.string.dealer_points, dealerHand.valuateHand().toString())
+        playersHandValue.text = getString(
+            R.string.player_points, intent.getStringExtra("playerName"),
+            playerHand.valuateHand().toString()
+        )
+        dealersHandValue.text = getString(
+            R.string.dealer_points,
+            dealerHand.valuateHand().toString()
+        )
         playerScoreText.text = cash.toString()
 
-        Toast.makeText(this, getString(R.string.draw_wins),Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.draw_wins), Toast.LENGTH_SHORT).show()
     }
 
     private fun outOfMoney (){
@@ -498,13 +532,15 @@ class BlackJackActivity : AppCompatActivity() {
         }
     }
 
-    fun flipCard(cardTo : ImageView, cardFrom : ImageView){
+    fun flipCard(cardTo: ImageView, cardFrom: ImageView){
         front_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.front_animation) as AnimatorSet
         back_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.back_animation) as AnimatorSet
         front_anim.setTarget(cardFrom)
         back_anim.setTarget(cardTo)
         front_anim.start()
         back_anim.start()
+        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
     }
 
 
