@@ -14,6 +14,8 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlin.math.abs
 import kotlin.properties.Delegates
@@ -45,7 +47,7 @@ class BlackJackActivity : AppCompatActivity() {
     private lateinit var newGameButton : Button
     private lateinit var setBetSeek : SeekBar
     lateinit var cardsLeft : TextView
-
+    lateinit var recyclerView : RecyclerView
     // visa poängen på dealers hand atm.
     lateinit var dealersHandValue : TextView
     lateinit var playersHandValue : TextView
@@ -85,6 +87,9 @@ class BlackJackActivity : AppCompatActivity() {
         newGameButton = findViewById<Button>(R.id.playAgainButton)
         setBetSeek = findViewById<SeekBar>(R.id.seekBar)
 
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = CardRecycleAdapter(this, HandManager.hands)
 
         dealerList?.add(dealer1)
         dealerList?.add(dealer2)
@@ -258,7 +263,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-
+        recyclerView.adapter?.notifyDataSetChanged()
         dealercardNum = 1
         playercardNum = 2
 
@@ -362,6 +367,7 @@ class BlackJackActivity : AppCompatActivity() {
             dealerHand.valuateHand().toString()
         )
         isSplitable()
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun split(){
@@ -369,12 +375,13 @@ class BlackJackActivity : AppCompatActivity() {
         playerHand.hand?.removeAt(1)
         playerSplitList?.add(cardToMove)
         HandManager.hands[HandManager.activeHand].removeCardSplitCard()
-        HandManager.addHand(Hand(mutableListOf(cardToMove)))
+        HandManager.addHandAt1(Hand(mutableListOf(cardToMove)))
 
         playerList?.get(1)?.visibility = View.INVISIBLE
         playercardNum = 1
         playerSecondCard = Card()
         splitButton.visibility = View.INVISIBLE
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun isSplitable() {

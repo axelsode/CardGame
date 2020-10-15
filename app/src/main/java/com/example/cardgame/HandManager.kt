@@ -9,6 +9,11 @@ object HandManager {
     fun addHand(hand: Hand){
         hands.add(hand)
     }
+
+    fun addHandAt1(hand: Hand){
+        hands.add(1, hand)
+    }
+
     fun clearHands(){
         hands.clear()
         activeHand = 0

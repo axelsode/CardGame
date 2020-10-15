@@ -21,7 +21,7 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
         holder.cardsItem.setBackgroundColor(Color.parseColor("#00000000"))
         setCards(holder, position)
 
-        //setActive(holder)
+
 
         if (HandManager.gameFinished){
             setWinner(holder, position)
