@@ -48,7 +48,7 @@ class BlackJackActivity : AppCompatActivity() {
     private lateinit var setBetSeek : SeekBar
     lateinit var cardsLeft : TextView
     lateinit var recyclerView : RecyclerView
-    // visa poängen på dealers hand atm.
+
     lateinit var dealersHandValue : TextView
     lateinit var playersHandValue : TextView
 
@@ -61,7 +61,6 @@ class BlackJackActivity : AppCompatActivity() {
 
         cardsLeft = findViewById(R.id.cardleft)
         val scale = applicationContext.resources.displayMetrics.density
-
 
         playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
         playerScoreText.text = getString(
@@ -82,7 +81,6 @@ class BlackJackActivity : AppCompatActivity() {
 
         playersHandValue = findViewById(R.id.playersHandValue)
         playersHandValue.text = playerHand.valuateHand().toString()
-
 
         newGameButton = findViewById<Button>(R.id.playAgainButton)
         setBetSeek = findViewById<SeekBar>(R.id.seekBar)
@@ -122,7 +120,6 @@ class BlackJackActivity : AppCompatActivity() {
         myDecks.addDecks()
         myDecks.shuffleDecks()
 
-        //startGame()
         setBetSeek.visibility = View.VISIBLE
         newGameButton.visibility = View.VISIBLE
         hitButton.visibility = View.INVISIBLE
@@ -177,10 +174,6 @@ class BlackJackActivity : AppCompatActivity() {
             }
         }
         )
-
-
-
-
     }
 
     private fun startGame(){
@@ -201,7 +194,6 @@ class BlackJackActivity : AppCompatActivity() {
         for (player in playerList!!){
             player.visibility = View.INVISIBLE
         }
-        //********
         HandManager.clearHands()
         this.dealerHand = Dealer(myDecks)
         this.playerHand = Dealer(myDecks)
@@ -223,9 +215,7 @@ class BlackJackActivity : AppCompatActivity() {
             var time = 0
 
             override fun onFinish() {
-               // playerList[1].visibility = View.VISIBLE
                 isSplitable()
-                // flipCard(player2, player2_invisible)
                 playersHandValue.text = getString(
                     R.string.player_points, intent.getStringExtra("playerName"),
                     playerHand.valuateHand().toString()
@@ -234,7 +224,7 @@ class BlackJackActivity : AppCompatActivity() {
                     R.string.dealer_points,
                     dealerHand.valuateHand().toString()
                 )
-
+                HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
             }
 
 
@@ -243,6 +233,8 @@ class BlackJackActivity : AppCompatActivity() {
                     0 -> {
                         playerList[0].visibility = View.VISIBLE
                         flipCard(player1, player1_invisible)
+                        HandManager.addHand(Hand(mutableListOf(playerFirstCard)))
+                        recyclerView.adapter?.notifyDataSetChanged()
                         time++
                     }
                     1 -> {
@@ -253,23 +245,18 @@ class BlackJackActivity : AppCompatActivity() {
                     2 -> {
                         playerList[1].visibility = View.VISIBLE
                         flipCard(player2, player2_invisible)
+                        HandManager.hands[HandManager.activeHand].cards.add(playerSecondCard)
+                        recyclerView.adapter?.notifyDataSetChanged()
                     }
                 }
-
-
             }
-
         }.start()
 
-        HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
-        HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-        recyclerView.adapter?.notifyDataSetChanged()
         dealercardNum = 1
         playercardNum = 2
 
         hitButton.visibility = View.VISIBLE
         standButton.visibility = View.VISIBLE
-        //splitButton.visibility = View.VISIBLE
 
         if (playerHand.valuateHand() == 21 && playercardNum == 2){
             hitButton.visibility = View.INVISIBLE
@@ -411,7 +398,6 @@ class BlackJackActivity : AppCompatActivity() {
             dealerHand.valuateHand().toString()
         )
         HandManager.hands[HandManager.activeHand].valueAtPlayerHand = HandManager.hands[HandManager.activeHand].valuateHand()
-        HandManager.activeHand++
         playerResultList?.add(playerHand.valuateHand())
         if (!playerSplitList.isNullOrEmpty()){
             hitButton.visibility = View.VISIBLE
@@ -425,6 +411,11 @@ class BlackJackActivity : AppCompatActivity() {
             playerList[0].visibility = View.VISIBLE
             playerSplitList.removeFirst()
             playercardNum = 1
+            val tmpHand = HandManager.hands[0]
+            val size = HandManager.hands.size
+            HandManager.hands.add(size, tmpHand)
+            HandManager.hands.removeAt(0)
+            recyclerView.adapter?.notifyDataSetChanged()
 
         }else{
             newGameButton.visibility = View.VISIBLE
@@ -433,6 +424,7 @@ class BlackJackActivity : AppCompatActivity() {
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
                 dealercardNum++
+                //HandManager.gameFinished = true
             }
 
             var time = dealercardNum * 1000
@@ -455,6 +447,10 @@ class BlackJackActivity : AppCompatActivity() {
                             }
                         }
                     }
+
+                    HandManager.valueAtDealerHand = dealerHand.valuateHand()
+                    HandManager.gameFinished = true
+                    recyclerView.adapter?.notifyDataSetChanged()
                 }
 
                 override fun onTick(p0: Long) {
@@ -478,8 +474,8 @@ class BlackJackActivity : AppCompatActivity() {
             hitButton.visibility = View.INVISIBLE
             standButton.visibility = View.INVISIBLE
             splitButton.visibility = View.INVISIBLE
-            HandManager.valueAtDealerHand = dealerHand.valuateHand()
-            HandManager.gameFinished = true
+           // HandManager.valueAtDealerHand = dealerHand.valuateHand()
+           // HandManager.gameFinished = true
 
         }
     }
@@ -548,9 +544,6 @@ class BlackJackActivity : AppCompatActivity() {
         back_anim.setTarget(cardTo)
         front_anim.start()
         back_anim.start()
-        //val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        //toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
-
         val mediaPlayer = MediaPlayer.create(this, R.raw.flipcardsound)
         mediaPlayer?.start()
     }

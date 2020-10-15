@@ -7,8 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="409dp"
-        android:layout_height="127dp"
+        android:layout_width="410dp"
+        android:layout_height="130dp"
         android:background="@drawable/button_default"
         android:elevation="@dimen/cardview_default_radius"
         android:persistentDrawingCache="all"
@@ -25,7 +25,16 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="10dp"
+            android:translationX="50dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card1_invisible"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="50dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -34,7 +43,16 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="60dp"
+            android:translationX="90dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card2_invisible"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="90dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -43,7 +61,16 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="110dp"
+            android:translationX="140dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card3_invisible"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="140dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -52,7 +79,16 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="160dp"
+            android:translationX="190dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card4_invisible"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="190dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -61,7 +97,16 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="210dp"
+            android:translationX="240dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card5_invisible"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="240dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
@@ -70,7 +115,16 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/cardview_compat_inset_shadow"
-            android:translationX="260dp"
+            android:translationX="290dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/red_back" />
+
+        <ImageView
+            android:id="@+id/card6_invisible"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/cardview_compat_inset_shadow"
+            android:translationX="290dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/red_back" />
 
