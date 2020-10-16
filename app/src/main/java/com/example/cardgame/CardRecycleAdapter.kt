@@ -27,24 +27,11 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.cardsItem.setBackgroundColor(Color.parseColor("#00000000"))
         setCards(holder, position)
-
-
         /*
         if (HandManager.gameFinished){
             setWinner(holder, position)
         }*/
         //setWinner(holder, position)
-    }
-
-    private fun setActive(holder: ViewHolder){
-        for (i in 0..5){
-            holder.imageList[i]
-            holder.imageList[i]
-        }
-
-
-
-
 
     }
 /*
@@ -110,8 +97,8 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
         when(winner){
            "win" -> holder.cardsItem.setBackgroundColor(Color.parseColor("#2196F3"))
-            "win" -> holder.cardsItem.setBackgroundResource(R.drawable.win_background)
-            "lose" -> holder.cardsItem.setBackgroundResource(R.drawable.loss_background)
+            //"win" -> holder.cardsItem.setBackgroundResource(R.drawable.win_background)
+            //"lose" -> holder.cardsItem.setBackgroundResource(R.drawable.loss_background)
             //"draw" -> holder.cardsItem.setBackgroundResource(R.drawable.)
             "lose" -> holder.cardsItem.setBackgroundColor(Color.parseColor("#F44336"))
             "draw" -> holder.cardsItem.setBackgroundColor(Color.parseColor("FF9F12"))
