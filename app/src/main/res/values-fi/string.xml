@@ -9,12 +9,12 @@
     <string name="button_newGame">Uusi panos</string>
     <string name="dealer_points">Jakajan pisteet: %1$s</string>
     <string name="player_points">%1$s pistet: \n%2$s</string>
-    <string name="dealer_wins">Jakajan vann</string>
+    <string name="dealer_wins">Jakaja voitti</string>
     <string name="player_wins">Pelaaja voitti</string>
     <string name="draw_wins">Tasuri</string>
     <string name="you_bust">Yli meni</string>
     <string name="Name">Nimi</string>
-    <string name="Cash">Rahaa</string>
+    <string name="Cash">Saldo</string>
     <string name="Split">Split</string>
     <string name="Bet">Panos</string>
     <string name="Fill_in_cash">Rahaa ei saa olla tyhjä</string>

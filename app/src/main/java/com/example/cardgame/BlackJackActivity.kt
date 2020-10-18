@@ -337,6 +337,10 @@ class BlackJackActivity : AppCompatActivity() {
                     HandManager.gameFinished = true
 
                 }
+                playerHand.valuateHand() == 21 -> {
+                    hitButton.visibility = View.INVISIBLE
+
+                }
             }
         }else {
             when {
@@ -344,11 +348,6 @@ class BlackJackActivity : AppCompatActivity() {
                     hitButton.visibility = View.INVISIBLE
                     dealerWins()
                     Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
-
-                }
-                playerHand.valuateHand() == 21 -> {
-                    hitButton.visibility = View.INVISIBLE
-
                 }
             }
         }
@@ -388,7 +387,7 @@ class BlackJackActivity : AppCompatActivity() {
             10, 11, 12, 13 -> secondCard = 10
             else -> secondCard = playerSecondCard.value
         }
-        if (playercardNum == 2 && firstCard == secondCard){
+        if (playercardNum == 2 && firstCard == secondCard && cash >= 2*betSize){
             splitButton.visibility = View.VISIBLE
         }else{
             splitButton.visibility = View.INVISIBLE
@@ -528,7 +527,7 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun outOfMoney (){
-        if (cash == 0){
+        if (cash <= 0){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
