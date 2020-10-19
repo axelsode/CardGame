@@ -21,7 +21,7 @@ class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayLis
         }
     }
 
-    fun clearDecks(){
+    private fun clearDecks(){
         decks = ArrayList<Card>()
     }
 

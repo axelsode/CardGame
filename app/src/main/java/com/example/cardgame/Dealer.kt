@@ -1,6 +1,6 @@
 package com.example.cardgame
 
-class Dealer(var deck : Decks, var hand :  ArrayList<Card>? = ArrayList<Card>()) {
+class Dealer(private var deck : Decks, var hand :  ArrayList<Card>? = ArrayList<Card>()) {
 
     fun takeCard() : Card{
         val card = deck.takeCard()!!
@@ -35,7 +35,7 @@ class Dealer(var deck : Decks, var hand :  ArrayList<Card>? = ArrayList<Card>())
     }
 
     fun clear(){
-        hand = ArrayList<Card>()
+        hand = ArrayList()
     }
 
 }

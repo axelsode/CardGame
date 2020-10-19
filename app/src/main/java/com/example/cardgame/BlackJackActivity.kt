@@ -2,11 +2,9 @@ package com.example.cardgame
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.AudioManager
 import android.media.MediaPlayer
-import android.media.ToneGenerator
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -20,13 +18,13 @@ import kotlin.properties.Delegates
 
 
 class BlackJackActivity : AppCompatActivity() {
-    lateinit var front_anim : AnimatorSet
-    lateinit var back_anim : AnimatorSet
+    private lateinit var frontAnim : AnimatorSet
+    private lateinit var backAnim : AnimatorSet
 
-    private val dealerList : ArrayList<ImageView>? = ArrayList<ImageView>()
-    private val dealerInvisibleList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val dealerList : ArrayList<ImageView>? = ArrayList()
+    private val dealerInvisibleList : ArrayList<ImageView>? = ArrayList()
     private val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
-    private val playerInvisibleList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val playerInvisibleList : ArrayList<ImageView>? = ArrayList()
     private val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
     private val playerResultList : ArrayList<Int>? = ArrayList<Int>()
     private val myDecks = Decks(6)
@@ -44,13 +42,14 @@ class BlackJackActivity : AppCompatActivity() {
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
     private lateinit var setBetSeek : SeekBar
-    lateinit var cardsLeft : TextView
+    private lateinit var cardsLeft : TextView
 
-    // visa poängen på dealers hand atm.
+
     lateinit var dealersHandValue : TextView
     lateinit var playersHandValue : TextView
 
 
+    @SuppressLint("CutPasteId")
     @RequiresApi(Build.VERSION_CODES.O)
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,33 +57,31 @@ class BlackJackActivity : AppCompatActivity() {
         setContentView(R.layout.activity_black_jack)
 
         cardsLeft = findViewById(R.id.cardleft)
-        val scale = applicationContext.resources.displayMetrics.density
 
-
-        playerScoreText = findViewById<TextView>(R.id.playerScoretextView)
+        playerScoreText = findViewById(R.id.playerScoretextView)
         playerScoreText.text = getString(
             R.string.player_points,
             intent.getStringExtra("playerName"),
             playerScore.toString()
         )
-        val player_name = findViewById<TextView>(R.id.playertextView)
-        player_name.text = intent.getStringExtra("playerName")
-        val player_cash = findViewById<TextView>(R.id.playerScoretextView)
+
+        val playerName = findViewById<TextView>(R.id.playertextView)
+        playerName.text = intent.getStringExtra("playerName")
+
+        val playerCash = findViewById<TextView>(R.id.playerScoretextView)
         cash = abs(intent.getStringExtra("playerCash")!!.toInt())
-        player_cash.text = cash.toString()
+        playerCash.text = cash.toString()
 
         endPoint = intent.getStringExtra("playerCash")!!.toInt()
 
-         dealersHandValue = findViewById(R.id.dealersHandValue)
-         dealersHandValue.text = dealerHand.valuateHand().toString()
+        dealersHandValue = findViewById(R.id.dealersHandValue)
+        dealersHandValue.text = dealerHand.valuateHand().toString()
 
         playersHandValue = findViewById(R.id.playersHandValue)
         playersHandValue.text = playerHand.valuateHand().toString()
 
-
-        newGameButton = findViewById<Button>(R.id.playAgainButton)
-        setBetSeek = findViewById<SeekBar>(R.id.seekBar)
-
+        newGameButton = findViewById(R.id.playAgainButton)
+        setBetSeek = findViewById(R.id.seekBar)
 
         dealerList?.add(dealer1)
         dealerList?.add(dealer2)
@@ -117,7 +114,6 @@ class BlackJackActivity : AppCompatActivity() {
         myDecks.addDecks()
         myDecks.shuffleDecks()
 
-        //startGame()
         setBetSeek.visibility = View.VISIBLE
         newGameButton.visibility = View.VISIBLE
         hitButton.visibility = View.INVISIBLE
@@ -138,6 +134,7 @@ class BlackJackActivity : AppCompatActivity() {
         standButton.setOnClickListener {
             stand()
         }
+
 
 
         newGameButton.setOnClickListener {
@@ -166,16 +163,12 @@ class BlackJackActivity : AppCompatActivity() {
                 //Toast.makeText(this@BlackJackActivity, "Bet changed by ${endPoint-startPoint}", Toast.LENGTH_SHORT).show()
                 Toast.makeText(
                     this@BlackJackActivity,
-                    "Bet changed to ${seekBar?.progress}",
+                    "Bet changed to ${seekBar.progress}",
                     Toast.LENGTH_SHORT
                 ).show()
             }
         }
         )
-
-
-
-
     }
 
     private fun startGame(){
@@ -218,9 +211,7 @@ class BlackJackActivity : AppCompatActivity() {
             var time = 0
 
             override fun onFinish() {
-               // playerList[1].visibility = View.VISIBLE
                 isSplitable()
-                // flipCard(player2, player2_invisible)
                 playersHandValue.text = getString(
                     R.string.player_points, intent.getStringExtra("playerName"),
                     playerHand.valuateHand().toString()
@@ -250,10 +241,7 @@ class BlackJackActivity : AppCompatActivity() {
                         flipCard(player2, player2_invisible)
                     }
                 }
-
-
             }
-
         }.start()
 
         HandManager.addHand(Hand(mutableListOf(playerFirstCard, playerSecondCard)))
@@ -264,7 +252,6 @@ class BlackJackActivity : AppCompatActivity() {
 
         hitButton.visibility = View.VISIBLE
         standButton.visibility = View.VISIBLE
-        //splitButton.visibility = View.VISIBLE
 
         if (playerHand.valuateHand() == 21 && playercardNum == 2){
             hitButton.visibility = View.INVISIBLE
@@ -274,17 +261,15 @@ class BlackJackActivity : AppCompatActivity() {
             playerWins()
             HandManager.gameFinished = true
         }
-
-
     }
 
     private fun hit(){
 
         if(playercardNum == 1){
-            if (playerHand.valuateHand() == 11){
-                playerFirstCard = Card(14, "s")
+            playerFirstCard = if (playerHand.valuateHand() == 11){
+                Card(14, "s")
             }else{
-                playerFirstCard = Card(playerHand.valuateHand(), "s")
+                Card(playerHand.valuateHand(), "s")
             }
             val playedCard = playerHand.takeCard()
             playerSecondCard = playedCard
@@ -312,9 +297,9 @@ class BlackJackActivity : AppCompatActivity() {
                     it,
                     it1
                 )
-            } }
+                }
+            }
             playercardNum++
-
         }
 
         if (playerSplitList.isNullOrEmpty() && playerResultList.isNullOrEmpty()){
@@ -335,11 +320,9 @@ class BlackJackActivity : AppCompatActivity() {
                     setBetSeek.visibility = View.VISIBLE
                     playerWins()
                     HandManager.gameFinished = true
-
                 }
                 playerHand.valuateHand() == 21 -> {
                     hitButton.visibility = View.INVISIBLE
-
                 }
             }
         }else {
@@ -351,7 +334,6 @@ class BlackJackActivity : AppCompatActivity() {
                 }
             }
         }
-
         playersHandValue.text = getString(
             R.string.player_points, intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString()
@@ -377,15 +359,13 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun isSplitable() {
-        val firstCard : Int
-        val secondCard : Int
-        when(playerFirstCard.value){
-            10, 11, 12, 13 -> firstCard = 10
-            else -> firstCard = playerFirstCard.value
+        val firstCard : Int = when(playerFirstCard.value){
+            10, 11, 12, 13 -> 10
+            else -> playerFirstCard.value
         }
-        when(playerSecondCard.value){
-            10, 11, 12, 13 -> secondCard = 10
-            else -> secondCard = playerSecondCard.value
+        val secondCard : Int = when(playerSecondCard.value){
+            10, 11, 12, 13 -> 10
+            else -> playerSecondCard.value
         }
         if (playercardNum == 2 && firstCard == secondCard && cash >= 2*betSize){
             splitButton.visibility = View.VISIBLE
@@ -427,7 +407,7 @@ class BlackJackActivity : AppCompatActivity() {
                 dealercardNum++
             }
 
-            var time = dealercardNum * 1000
+            val time = dealercardNum * 1000
 
             object : CountDownTimer(time.toLong(), 1000) {
                 var cardnum = 1
@@ -453,13 +433,12 @@ class BlackJackActivity : AppCompatActivity() {
                     if (cardnum < dealercardNum){
                         dealerList?.get(cardnum)?.visibility = View.VISIBLE
                         dealerList?.get((cardnum).toInt())?.let {
-                            dealerInvisibleList?.get((cardnum).toInt())?.let { it1 ->
+                            dealerInvisibleList?.get((cardnum))?.let { it1 ->
                                 flipCard(
                                     it,
                                     it1
                                 )
                             }
-
                         }
                         cardnum++
                     }
@@ -534,12 +513,12 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     fun flipCard(cardTo: ImageView, cardFrom: ImageView){
-        front_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.front_animation) as AnimatorSet
-        back_anim = AnimatorInflater.loadAnimator(applicationContext, R.animator.back_animation) as AnimatorSet
-        front_anim.setTarget(cardFrom)
-        back_anim.setTarget(cardTo)
-        front_anim.start()
-        back_anim.start()
+        frontAnim = AnimatorInflater.loadAnimator(applicationContext, R.animator.front_animation) as AnimatorSet
+        backAnim = AnimatorInflater.loadAnimator(applicationContext, R.animator.back_animation) as AnimatorSet
+        frontAnim.setTarget(cardFrom)
+        backAnim.setTarget(cardTo)
+        frontAnim.start()
+        backAnim.start()
         //val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
         //toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
 
