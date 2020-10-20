@@ -1,19 +1,69 @@
 
 Skiss för hur det skall se ut
 
-Nr1.
-  Skappa en enkel verson med bara en activity. Med från topp:
-    1. en texView med "Dealer".
-    2. fyra platser för spelkort för dealern.
-    3. fyra platser för spelkort för spelaren.
-    4. en textView med "Player".
-    5. en rad med tre knappar: Hit, Stand och New Game.
-    6. en rad med två textViews, en för dealerns poäng och en för spelarens poäng.
+    Nr1.
+    Skappa en enkel verson med bara en activity. Med från topp:
+        1. en texView med "Dealer".
+        2. sex platser för spelkort för dealern.
+        3. sex platser för spelkort för spelaren.
+        4. en textView med "Player".
+        5. en rad med fyra knappar: Hit, Stand, Split och New Game.
+        6. en rad med två textViews, en för dealerns poäng och en för spelarens poäng.
     
- Nr2.
-   Skappa klasser och funktioner för att spelet ska gå att spela.
-    1. en klass Card som håller ett korts värde och färg. Med en funktion för att hämta dennas Image.
-    2. en klass Decks som skappar en kortlek av Cards. 
+    Nr1.
+    Skappa klasser och funktioner för att spelet ska gå att spela.
+        1. en klass Card som håller ett korts värde och färg. Med en funktion för att hämta dennas Image.
+        2. en klass Decks som skappar X kortlekar av Cards. Med funktion för (Decks).
+            1. skappa kort X kortlekar
+            2. blanda kortlek
+            3. dra ett kort från kortleken utan återläggning.
+            4. rensa kortleken.
+        3. Skappa en klass för att hantera spelarens och dealerns hand (Dealer). Med funktioner för
+            1. räkna handens värde.
+            2. ta ett kort till handen.
+            3. ta ett kort till handen och retunera kortet.
+            4. rensa handen.
+
+    Nr2.
+    Skappa en Main activity där uppgifter om spelaren och spelarens budget fylls i.
+    För att sedan skicka vidare informationen till BlackJackActivity.
+
+    Nr3.
+    BlackJackActivity.
+        1. display.
+            1. en texView med "Dealer".
+            2. sex platser för spelkort för dealern.
+            3. sex platser för spelkort för spelaren.
+            4. en textView med "Player", visar spelarens namn.
+            5. en rad med fyra knappar: Hit, Stand, Split och New Game.
+            6. en rad med två textViews, en för dealerns poäng och en för spelarens poäng.
+            7. en seekbar som reglerar spelarens bet.
+            8. en textView som visar spelarens bet.
+            9. en textView som visar spelarens budget.
+        2. funktioner.
+            1. StartGame
+                Ska skappa en hand för spelaren och en för dealern. visa två kort för spelaren
+                och ett för dealern. Anroppa funktioner för om spelarens hand går att splita
+                eller om spelaren redan vunnit (black jack).
+            2. Split
+                Skapar en till hand för spelaren och lägger till denna i splitList.
+                Tar bort andra kortet från spelarens aktuella hand och gör kortet osynligt i displayen.
+                Sätter split knappern till osynlig.
+            3. isSplitable
+                Tar en hand och avgör om den går att splita.
+                Vid True -> sätt Split knappen till synlig.
+            4. Stand
+               Går vidare till nästa hand i splitList om det existerar.
+               När alla spelarens händer är spelade ska funktionen spela ut dealerns hand och
+               anropa funktion för att avgöra för om spelaren vunnit sina sin hand.
+               Sätta split, hit, stand knapparna till osynlig och newGame knappen till synlig.
+            5. playerWins / dealerWins / draw
+            6. outOfMoney
+                Skickar tillbaka till MainActivity
+            7. flipCard
+                Hanterar animation och ljud för att visa ett kort.
+
+
 
 
 https://www.figma.com/file/t6A0e4lBbxBrqoylTftTtk/Untitled?node-id=0%3A1

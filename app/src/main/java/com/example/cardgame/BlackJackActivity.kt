@@ -515,9 +515,6 @@ class BlackJackActivity : AppCompatActivity() {
         backAnim.setTarget(cardTo)
         frontAnim.start()
         backAnim.start()
-        //val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        //toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
-
         val mediaPlayer = MediaPlayer.create(this, R.raw.flipcardsound)
         mediaPlayer?.start()
     }
