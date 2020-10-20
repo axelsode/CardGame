@@ -37,8 +37,8 @@ class BlackJackActivity : AppCompatActivity() {
     private var playerScore = 0
     private var startPoint = 0
     private var endPoint = 10
-    private var betSize = 5
-    private var cash by Delegates.notNull<Int>()
+    private var betSize = 0
+    var cash by Delegates.notNull<Int>()
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
     private lateinit var setBetSeek : SeekBar
@@ -175,6 +175,9 @@ class BlackJackActivity : AppCompatActivity() {
     private fun startGame(){
 
         outOfMoney ()
+        betSize = betSize.coerceAtMost(cash)
+        cash -= betSize
+        playerScoretextView.text = cash.toString()
 
         playerSplitList?.clear()
         playerResultList?.clear()
@@ -361,6 +364,8 @@ class BlackJackActivity : AppCompatActivity() {
         playercardNum = 1
         playerSecondCard = Card()
         splitButton.visibility = View.INVISIBLE
+        cash -= betSize
+        playerScoretextView.text = cash.toString()
     }
 
     private fun isSplitable() {
@@ -372,7 +377,7 @@ class BlackJackActivity : AppCompatActivity() {
             10, 11, 12, 13 -> 10
             else -> playerSecondCard.value
         }
-        if (playercardNum == 2 && firstCard == secondCard && cash >= 2*betSize){
+        if (playercardNum == 2 && firstCard == secondCard && cash >= betSize){
             splitButton.visibility = View.VISIBLE
         }else{
             splitButton.visibility = View.INVISIBLE
@@ -461,8 +466,9 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun playerWins(){
-        cash += betSize
+        cash += 2 * betSize
         setBetSeek.max = cash
+        playerScoretextView.text = cash.toString()
         dealersHandValue.text = getString(
             R.string.dealer_points,
             dealerHand.valuateHand().toString()
@@ -480,8 +486,8 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun dealerWins(){
-        cash -= betSize
         setBetSeek.max = cash
+        playerScoretextView.text = cash.toString()
         playersHandValue.text = getString(
             R.string.player_points, intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString()
@@ -497,6 +503,9 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun draw(){
+        cash += betSize
+        setBetSeek.max = cash
+        playerScoretextView.text = cash.toString()
         playersHandValue.text = getString(
             R.string.player_points, intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString()
