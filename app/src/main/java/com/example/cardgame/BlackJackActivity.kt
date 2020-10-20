@@ -167,8 +167,7 @@ class BlackJackActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        }
-        )
+        })
     }
 
     private fun startGame(){
@@ -313,7 +312,7 @@ class BlackJackActivity : AppCompatActivity() {
                     HandManager.gameFinished = true
 
                 }
-                playerHand.valuateHand() == 21 && playercardNum == 2-> {
+                playerHand.valuateHand() == 21 && playercardNum == 2 -> {
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.INVISIBLE
                     newGameButton.visibility = View.VISIBLE
@@ -330,7 +329,7 @@ class BlackJackActivity : AppCompatActivity() {
                 playerHand.valuateHand() > 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     dealerWins()
-                    Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -373,9 +372,7 @@ class BlackJackActivity : AppCompatActivity() {
             splitButton.visibility = View.INVISIBLE
         }
     }
-
-
-
+    
     @ExperimentalStdlibApi
     private fun stand(){
         dealersHandValue.text = getString(
@@ -443,7 +440,6 @@ class BlackJackActivity : AppCompatActivity() {
                         cardnum++
                     }
                 }
-
             }.start()
 
             hitButton.visibility = View.INVISIBLE
