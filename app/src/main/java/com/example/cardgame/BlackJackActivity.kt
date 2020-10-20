@@ -143,10 +143,11 @@ class BlackJackActivity : AppCompatActivity() {
 
         setBetSeek.max = cash
         setBetSeek.min = 5
-
+        var betSizeText = "5"
         setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                betTextView.text = progress.toString()
+                betSizeText = progress.toString()
+                betTextView.text = getString(R.string.Bet) + ": " + betSizeText
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
