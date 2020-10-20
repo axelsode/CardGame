@@ -1,5 +1,7 @@
 package com.example.cardgame
 
+import kotlin.math.min
+
 class Dealer(private var deck : Decks, var hand :  ArrayList<Card>? = ArrayList<Card>()) {
 
     fun takeCard() : Card{
@@ -18,16 +20,12 @@ class Dealer(private var deck : Decks, var hand :  ArrayList<Card>? = ArrayList<
                 else -> restOfHand += elm.value
             }
         }
-        while (ace > 0) {
-            if (restOfHand + 11 <= 21) {
-                restOfHand += 11
-                ace--
-            } else {
-                restOfHand++
-                ace--
-            }
-        }
-        return restOfHand
+        if (ace == 0){
+            return restOfHand
+        }else if(restOfHand + 11 + ace -1 <= 21){
+            return restOfHand + 11 + ace -1
+        }else
+            return restOfHand +ace
     }
 
     fun addCard(card: Card){
