@@ -25,7 +25,7 @@ class Dealer(private var deck : Decks, var hand :  ArrayList<Card>? = ArrayList<
         }else if(restOfHand + 11 + ace -1 <= 21){
             return restOfHand + 11 + ace -1
         }else
-            return restOfHand +ace
+            return restOfHand + ace
     }
 
     fun addCard(card: Card){

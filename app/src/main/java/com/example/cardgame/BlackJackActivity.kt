@@ -250,11 +250,15 @@ class BlackJackActivity : AppCompatActivity() {
         dealercardNum = 1
         playercardNum = 2
 
-        hitButton.visibility = View.VISIBLE
         standButton.visibility = View.VISIBLE
 
-        if (playerHand.valuateHand() == 21 && playercardNum == 2){
+        if(playerHand.valuateHand() == 21){
             hitButton.visibility = View.INVISIBLE
+        }else{
+            hitButton.visibility = View.VISIBLE
+        }
+
+        if (playerHand.valuateHand() == 21 && playercardNum == 2 && dealerHand.valuateHand()<10){
             standButton.visibility = View.INVISIBLE
             newGameButton.visibility = View.VISIBLE
             setBetSeek.visibility = View.VISIBLE
