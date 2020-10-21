@@ -72,6 +72,7 @@ class BlackJackActivity : AppCompatActivity() {
         cash = abs(intent.getStringExtra("playerCash")!!.toInt())
         playerCash.text = cash.toString()
 
+
         endPoint = intent.getStringExtra("playerCash")!!.toInt()
 
         dealersHandValue = findViewById(R.id.dealersHandValue)
@@ -533,14 +534,17 @@ class BlackJackActivity : AppCompatActivity() {
     private fun outOfMoney (){
         if (cash <= 0){
             val intent = Intent(this, MainActivity::class.java)
-            object : CountDownTimer(3000, 1000) {
+            var timeLeft = 5
+            object : CountDownTimer(5000, 1000) {
                 var cardnum = 1
                 override fun onFinish() {
                     startActivity(intent)
                 }
 
                 override fun onTick(p0: Long) {
-
+                    val gameOver = findViewById<TextView>(R.id.gameOverView)
+                    gameOver.text = getString((R.string.game_over)) + timeLeft
+                    timeLeft--
                 }
 
             }.start()
