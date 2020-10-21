@@ -143,12 +143,12 @@ class BlackJackActivity : AppCompatActivity() {
 
         setBetSeek.max = cash
         setBetSeek.min = 5.coerceAtMost(cash)
-        var betSizeText = 5.coerceAtMost(cash).toString()
-        betTextView.text = getString(R.string.Bet) + ": " + betSizeText
+        var betSize = 5.coerceAtMost(cash)
+        betTextView.text = getString(R.string.Bet) + ": " + betSize
         setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                betSizeText = progress.coerceAtMost(cash).toString()
-                betTextView.text = getString(R.string.Bet) + ": " + betSizeText
+                betSize = progress.coerceAtMost(cash)
+                betTextView.text = getString(R.string.Bet) + ": " + betSize
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -175,9 +175,15 @@ class BlackJackActivity : AppCompatActivity() {
 
     private fun startGame(){
 
-        outOfMoney ()
+        //outOfMoney ()
+
         betSize = betSize.coerceAtMost(cash)
-        cash -= betSize
+        if (cash > betSize){
+            cash -= betSize
+        }else{
+            cash = 0
+        }
+
         playerScoretextView.text = cash.toString()
 
         playerSplitList?.clear()
@@ -503,6 +509,7 @@ class BlackJackActivity : AppCompatActivity() {
 
 
       Toast.makeText(this, getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
+        outOfMoney ()
     }
 
     private fun draw(){
@@ -520,12 +527,23 @@ class BlackJackActivity : AppCompatActivity() {
         playerScoretextView.text = cash.toString()
 
         Toast.makeText(this, getString(R.string.draw_wins), Toast.LENGTH_SHORT).show()
+        outOfMoney ()
     }
 
     private fun outOfMoney (){
         if (cash <= 0){
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            object : CountDownTimer(3000, 1000) {
+                var cardnum = 1
+                override fun onFinish() {
+                    startActivity(intent)
+                }
+
+                override fun onTick(p0: Long) {
+
+                }
+
+            }.start()
         }
     }
 
