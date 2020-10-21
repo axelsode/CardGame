@@ -49,7 +49,7 @@ class BlackJackActivity : AppCompatActivity() {
     lateinit var playersHandValue : TextView
 
 
-    @SuppressLint("CutPasteId")
+    @SuppressLint("CutPasteId", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -165,7 +165,7 @@ class BlackJackActivity : AppCompatActivity() {
                 //Toast.makeText(this@BlackJackActivity, "Bet changed by ${endPoint-startPoint}", Toast.LENGTH_SHORT).show()
                 Toast.makeText(
                     this@BlackJackActivity,
-                    "Bet changed to ${seekBar.progress}",
+                    "Bet changed to ${seekBar.progress.coerceAtMost(cash)}",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -481,7 +481,8 @@ class BlackJackActivity : AppCompatActivity() {
         )
 
         //playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
-        playerScoreText.text = cash.toString()
+        playerScoretextView.text = cash.toString()
+
 
        Toast.makeText(this, getString(R.string.player_wins), Toast.LENGTH_SHORT).show()
     }
@@ -498,7 +499,8 @@ class BlackJackActivity : AppCompatActivity() {
             R.string.dealer_points,
             dealerHand.valuateHand().toString()
         )
-        playerScoreText.text = cash.toString()
+        playerScoretextView.text = cash.toString()
+
 
       Toast.makeText(this, getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
     }
@@ -515,7 +517,7 @@ class BlackJackActivity : AppCompatActivity() {
             R.string.dealer_points,
             dealerHand.valuateHand().toString()
         )
-        playerScoreText.text = cash.toString()
+        playerScoretextView.text = cash.toString()
 
         Toast.makeText(this, getString(R.string.draw_wins), Toast.LENGTH_SHORT).show()
     }
