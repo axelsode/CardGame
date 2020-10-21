@@ -1,5 +1,4 @@
 package com.example.cardgame
-//package layout
 
 class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayList<Card>(), var numberOfCards : Int = 0) {
 
