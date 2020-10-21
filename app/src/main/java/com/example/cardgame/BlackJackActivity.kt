@@ -143,7 +143,7 @@ class BlackJackActivity : AppCompatActivity() {
 
         setBetSeek.max = cash
         setBetSeek.min = 5.coerceAtMost(cash)
-        var betSize = 5.coerceAtMost(cash)
+        betSize = 5.coerceAtMost(cash)
         betTextView.text = getString(R.string.Bet) + ": " + betSize
         setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
