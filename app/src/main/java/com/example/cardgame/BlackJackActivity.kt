@@ -23,10 +23,10 @@ class BlackJackActivity : AppCompatActivity() {
 
     private val dealerList : ArrayList<ImageView>? = ArrayList()
     private val dealerInvisibleList : ArrayList<ImageView>? = ArrayList()
-    private val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val playerList : ArrayList<ImageView>? = ArrayList()
     private val playerInvisibleList : ArrayList<ImageView>? = ArrayList()
-    private val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
-    private val playerResultList : ArrayList<Int>? = ArrayList<Int>()
+    private val playerSplitList : ArrayList<Card>? = ArrayList()
+    private val playerResultList : ArrayList<Int>? = ArrayList()
     private val myDecks = Decks(6)
     private var dealerHand = Dealer(myDecks)
     private var playerHand = Dealer(myDecks)
