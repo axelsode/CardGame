@@ -2,15 +2,6 @@
 Skiss för hur det skall se ut
 
     Nr1.
-    Skappa en enkel verson med bara en activity. Med från topp:
-        1. en texView med "Dealer".
-        2. sex platser för spelkort för dealern.
-        3. sex platser för spelkort för spelaren.
-        4. en textView med "Player".
-        5. en rad med fyra knappar: Hit, Stand, Split och New Game.
-        6. en rad med två textViews, en för dealerns poäng och en för spelarens poäng.
-    
-    Nr1.
     Skappa klasser och funktioner för att spelet ska gå att spela.
         1. en klass Card som håller ett korts värde och färg. Med en funktion för att hämta dennas Image.
         2. en klass Decks som skappar X kortlekar av Cards. Med funktion för (Decks).

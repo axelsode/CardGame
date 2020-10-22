@@ -23,10 +23,10 @@ class BlackJackActivity : AppCompatActivity() {
 
     private val dealerList : ArrayList<ImageView>? = ArrayList()
     private val dealerInvisibleList : ArrayList<ImageView>? = ArrayList()
-    private val playerList : ArrayList<ImageView>? = ArrayList<ImageView>()
+    private val playerList : ArrayList<ImageView>? = ArrayList()
     private val playerInvisibleList : ArrayList<ImageView>? = ArrayList()
-    private val playerSplitList : ArrayList<Card>? = ArrayList<Card>()
-    private val playerResultList : ArrayList<Int>? = ArrayList<Int>()
+    private val playerSplitList : ArrayList<Card>? = ArrayList()
+    private val playerResultList : ArrayList<Int>? = ArrayList()
     private val myDecks = Decks(6)
     private var dealerHand = Dealer(myDecks)
     private var playerHand = Dealer(myDecks)
@@ -37,8 +37,8 @@ class BlackJackActivity : AppCompatActivity() {
     private var playerScore = 0
     private var startPoint = 0
     private var endPoint = 10
-    private var betSize = 5
-    private var cash by Delegates.notNull<Int>()
+    private var betSize = 0
+    var cash by Delegates.notNull<Int>()
     private lateinit var playerScoreText : TextView
     private lateinit var newGameButton : Button
     private lateinit var setBetSeek : SeekBar
@@ -49,7 +49,7 @@ class BlackJackActivity : AppCompatActivity() {
     lateinit var playersHandValue : TextView
 
 
-    @SuppressLint("CutPasteId")
+    @SuppressLint("CutPasteId", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +71,7 @@ class BlackJackActivity : AppCompatActivity() {
         val playerCash = findViewById<TextView>(R.id.playerScoretextView)
         cash = abs(intent.getStringExtra("playerCash")!!.toInt())
         playerCash.text = cash.toString()
+
 
         endPoint = intent.getStringExtra("playerCash")!!.toInt()
 
@@ -142,16 +143,18 @@ class BlackJackActivity : AppCompatActivity() {
         }
 
         setBetSeek.max = cash
-        setBetSeek.min = 5
-
+        setBetSeek.min = 5.coerceAtMost(cash)
+        betSize = 5.coerceAtMost(cash)
+        betTextView.text = getString(R.string.Bet) + ": " + betSize
         setBetSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                betTextView.text = progress.toString()
+                betSize = progress.coerceAtMost(cash)
+                betTextView.text = getString(R.string.Bet) + ": " + betSize
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 if (seekBar != null) {
-                    startPoint = seekBar.progress
+                    startPoint = seekBar.progress.coerceAtMost(cash)
                 }
             }
 
@@ -163,16 +166,26 @@ class BlackJackActivity : AppCompatActivity() {
                 //Toast.makeText(this@BlackJackActivity, "Bet changed by ${endPoint-startPoint}", Toast.LENGTH_SHORT).show()
                 Toast.makeText(
                     this@BlackJackActivity,
-                    "Bet changed to ${seekBar.progress}",
+                    "Bet changed to ${seekBar.progress.coerceAtMost(cash)}",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        })
+        }
+        )
     }
 
     private fun startGame(){
 
-        outOfMoney ()
+        //outOfMoney ()
+
+        betSize = betSize.coerceAtMost(cash)
+        if (cash > betSize){
+            cash -= betSize
+        }else{
+            cash = 0
+        }
+
+        playerScoretextView.text = cash.toString()
 
         playerSplitList?.clear()
         playerResultList?.clear()
@@ -249,11 +262,15 @@ class BlackJackActivity : AppCompatActivity() {
         dealercardNum = 1
         playercardNum = 2
 
-        hitButton.visibility = View.INVISIBLE
         standButton.visibility = View.VISIBLE
 
-        if (playerHand.valuateHand() == 21 && playercardNum == 2){
+        if(playerHand.valuateHand() == 21){
             hitButton.visibility = View.INVISIBLE
+        }else{
+            hitButton.visibility = View.VISIBLE
+        }
+
+        if (playerHand.valuateHand() == 21 && playercardNum == 2 && dealerHand.valuateHand()<10){
             standButton.visibility = View.INVISIBLE
             newGameButton.visibility = View.VISIBLE
             setBetSeek.visibility = View.VISIBLE
@@ -296,8 +313,9 @@ class BlackJackActivity : AppCompatActivity() {
                     it,
                     it1
                 )
-                }
             }
+            }
+
             playercardNum++
         }
 
@@ -312,7 +330,7 @@ class BlackJackActivity : AppCompatActivity() {
                     HandManager.gameFinished = true
 
                 }
-                playerHand.valuateHand() == 21 && playercardNum == 2 -> {
+                playerHand.valuateHand() == 21 && playercardNum == 2-> {
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.INVISIBLE
                     newGameButton.visibility = View.VISIBLE
@@ -329,7 +347,7 @@ class BlackJackActivity : AppCompatActivity() {
                 playerHand.valuateHand() > 21 -> {
                     hitButton.visibility = View.INVISIBLE
                     dealerWins()
-                    //Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "You bust", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -355,6 +373,8 @@ class BlackJackActivity : AppCompatActivity() {
         playercardNum = 1
         playerSecondCard = Card()
         splitButton.visibility = View.INVISIBLE
+        cash -= betSize
+        playerScoretextView.text = cash.toString()
     }
 
     private fun isSplitable() {
@@ -366,13 +386,15 @@ class BlackJackActivity : AppCompatActivity() {
             10, 11, 12, 13 -> 10
             else -> playerSecondCard.value
         }
-        if (playercardNum == 2 && firstCard == secondCard && cash >= 2*betSize){
+        if (playercardNum == 2 && firstCard == secondCard && cash >= betSize){
             splitButton.visibility = View.VISIBLE
         }else{
             splitButton.visibility = View.INVISIBLE
         }
     }
-    
+
+
+
     @ExperimentalStdlibApi
     private fun stand(){
         dealersHandValue.text = getString(
@@ -440,6 +462,7 @@ class BlackJackActivity : AppCompatActivity() {
                         cardnum++
                     }
                 }
+
             }.start()
 
             hitButton.visibility = View.INVISIBLE
@@ -452,8 +475,9 @@ class BlackJackActivity : AppCompatActivity() {
     }
 
     private fun playerWins(){
-        cash += betSize
+        cash += 2 * betSize
         setBetSeek.max = cash
+        playerScoretextView.text = cash.toString()
         dealersHandValue.text = getString(
             R.string.dealer_points,
             dealerHand.valuateHand().toString()
@@ -465,14 +489,15 @@ class BlackJackActivity : AppCompatActivity() {
         )
 
         //playerScoreText.text = getString(R.string.player_points, intent.getStringExtra("playerName"), playerScore.toString())
-        playerScoreText.text = cash.toString()
+        playerScoretextView.text = cash.toString()
+
 
        Toast.makeText(this, getString(R.string.player_wins), Toast.LENGTH_SHORT).show()
     }
 
     private fun dealerWins(){
-        cash -= betSize
         setBetSeek.max = cash
+        playerScoretextView.text = cash.toString()
         playersHandValue.text = getString(
             R.string.player_points, intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString()
@@ -482,12 +507,17 @@ class BlackJackActivity : AppCompatActivity() {
             R.string.dealer_points,
             dealerHand.valuateHand().toString()
         )
-        playerScoreText.text = cash.toString()
+        playerScoretextView.text = cash.toString()
+
 
       Toast.makeText(this, getString(R.string.dealer_wins), Toast.LENGTH_SHORT).show()
+        outOfMoney ()
     }
 
     private fun draw(){
+        cash += betSize
+        setBetSeek.max = cash
+        playerScoretextView.text = cash.toString()
         playersHandValue.text = getString(
             R.string.player_points, intent.getStringExtra("playerName"),
             playerHand.valuateHand().toString()
@@ -496,15 +526,32 @@ class BlackJackActivity : AppCompatActivity() {
             R.string.dealer_points,
             dealerHand.valuateHand().toString()
         )
-        playerScoreText.text = cash.toString()
+        playerScoretextView.text = cash.toString()
 
         Toast.makeText(this, getString(R.string.draw_wins), Toast.LENGTH_SHORT).show()
+        outOfMoney ()
     }
 
     private fun outOfMoney (){
         if (cash <= 0){
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            var timeLeft = 5
+            object : CountDownTimer(5000, 1000) {
+                override fun onFinish() {
+                    startActivity(intent)
+                }
+
+                @SuppressLint("SetTextI18n")
+                override fun onTick(p0: Long) {
+                    val gameOver = findViewById<TextView>(R.id.gameOverView)
+                    //val front = findViewById<ImageView>(R.id.game_over_image_front)
+                    if(timeLeft < 4) {
+                        gameOver.text = """${getString((R.string.game_over))}$timeLeft"""
+                    }
+                    timeLeft--
+                }
+
+            }.start()
         }
     }
 

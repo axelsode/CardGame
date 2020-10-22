@@ -12,6 +12,7 @@
     <string name="dealer_wins">Croupieren vann</string>
     <string name="player_wins">Spelaren vann</string>
     <string name="draw_wins">Det blev oavgjort</string>
+    <string name="game_over">Spelet slut om: </string>
     <string name="you_bust">Du blev tjock</string>
     <string name="Name">Namn</string>
     <string name="Cash">Insats</string>
