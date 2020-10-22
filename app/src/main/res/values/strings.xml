@@ -17,7 +17,7 @@
     <string name="Cash">Cash</string>
     <string name="Split">Split</string>
     <string name="Bet">Bet</string>
-    <string name="Fill_in_cash">Cash file can´t be blank</string>
+    <string name="Fill_in_cash">You need to put in cash in order to play</string>
 
 
 </resources>
