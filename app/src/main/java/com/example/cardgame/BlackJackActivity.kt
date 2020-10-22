@@ -544,9 +544,15 @@ class BlackJackActivity : AppCompatActivity() {
                 @SuppressLint("SetTextI18n")
                 override fun onTick(p0: Long) {
                     val gameOver = findViewById<TextView>(R.id.gameOverView)
-                    //val front = findViewById<ImageView>(R.id.game_over_image_front)
+                    val front = findViewById<ImageView>(R.id.game_over_image_front)
+                    val back = findViewById<ImageView>(R.id.game_over_image_back)
+                    //back.visibility = View.VISIBLE
                     if(timeLeft < 4) {
                         gameOver.text = """${getString((R.string.game_over))}$timeLeft"""
+                    }
+                    if (timeLeft == 1){
+                        back.visibility = View.VISIBLE
+                        flipCard(back, front)
                     }
                     timeLeft--
                 }
