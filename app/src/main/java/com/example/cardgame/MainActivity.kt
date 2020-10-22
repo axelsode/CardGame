@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         betText = findViewById(R.id.cashEditText)
         button.setOnClickListener {
 
-           if (betText.text.isNotBlank()){
+           if (betText.text.isNotBlank() && betText.text.toString().toInt() > 0 ){
                startBlackJackActivity()
            } else{
                Toast.makeText(this,getString(R.string.Fill_in_cash), Toast.LENGTH_SHORT).show()
