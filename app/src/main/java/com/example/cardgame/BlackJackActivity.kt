@@ -313,8 +313,9 @@ class BlackJackActivity : AppCompatActivity() {
                     it,
                     it1
                 )
-                }
             }
+            }
+
             playercardNum++
         }
 
@@ -536,13 +537,14 @@ class BlackJackActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             var timeLeft = 5
             object : CountDownTimer(5000, 1000) {
-                var cardnum = 1
                 override fun onFinish() {
                     startActivity(intent)
                 }
 
                 override fun onTick(p0: Long) {
                     val gameOver = findViewById<TextView>(R.id.gameOverView)
+                    //val front = findViewById<ImageView>(R.id.game_over_image_front)
+
                     gameOver.text = getString((R.string.game_over)) + timeLeft
                     timeLeft--
                 }
