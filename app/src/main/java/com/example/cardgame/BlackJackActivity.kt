@@ -136,6 +136,8 @@ class BlackJackActivity : AppCompatActivity() {
             stand()
         }
 
+
+
         newGameButton.setOnClickListener {
             startGame()
         }
@@ -336,11 +338,11 @@ class BlackJackActivity : AppCompatActivity() {
                     playerWins()
                     HandManager.gameFinished = true
                 }
-
-                playerHand.valuateHand() == 21 && playercardNum >= 2-> {
+                playerHand.valuateHand() == 21 && playercardNum >= 2->{
                     hitButton.visibility = View.INVISIBLE
                     standButton.visibility = View.VISIBLE
                 }
+
             }
         }else {
             when {
@@ -421,6 +423,10 @@ class BlackJackActivity : AppCompatActivity() {
             newGameButton.visibility = View.VISIBLE
             setBetSeek.visibility = View.VISIBLE
             while ((dealercardNum<6) && (dealerHand.valuateHand() < 17)){
+                if ((playercardNum == 2) && (playerHand.valuateHand() == 21) && playerSplitList.isNullOrEmpty()
+                    && (dealercardNum == 2)){
+                    break
+                }
                 val playedCard = dealerHand.takeCard()
                 dealerList?.get(dealercardNum)?.setImageResource(playedCard.getImageId(this))
                 dealercardNum++
@@ -433,19 +439,25 @@ class BlackJackActivity : AppCompatActivity() {
                 override fun onFinish() {
                     if (playerResultList != null) {
                         for (elm in playerResultList){
-                            val case1 = (dealerHand.valuateHand() == 21 && dealercardNum == 2)
-                            val case2 = ((elm != 21) && (dealerHand.valuateHand() > 21))
-                            val case3 = ((elm <= 21) && (elm > dealerHand.valuateHand()))
-                            val case4 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
-                            val case5 = (elm == dealerHand.valuateHand())
-
+                            val case1 = (((dealercardNum == 2) && (dealerHand.valuateHand() == 21))
+                                                      && !((playercardNum == 2) && (elm == 21)))
+                            val case2 = (((dealercardNum == 2) && (dealerHand.valuateHand() == 21))
+                                                      && ((playercardNum == 2) && (elm == 21)))
+                            val case3 = (((dealercardNum > 2))
+                                                      && ((playercardNum == 2) && (elm == 21)))
+                            val case4 = ((elm != 21) && (dealerHand.valuateHand() > 21))
+                            val case5 = ((elm <= 21) && (elm > dealerHand.valuateHand()))
+                            val case6 = ((elm < 21) && (elm < dealerHand.valuateHand()) && (dealerHand.valuateHand() <= 21))
+                            val case7 = (elm == dealerHand.valuateHand())
 
                             when{
                                 case1 -> dealerWins()
-                                case2 -> playerWins()
+                                case2 -> draw()
                                 case3 -> playerWins()
-                                case4 -> dealerWins()
-                                case5 -> draw()
+                                case4 -> playerWins()
+                                case5 -> playerWins()
+                                case6 -> dealerWins()
+                                case7 -> draw()
                             }
                         }
                     }
