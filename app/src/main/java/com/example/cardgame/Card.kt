@@ -5,6 +5,6 @@ class Card (var value: Int = -1, private var color : String = "T", var isVisible
 
     fun getImageId(context: Context) : Int {
         val str = color + value
-        return context.getResources().getIdentifier("drawable/" + str, null, context.getPackageName())
+        return context.resources.getIdentifier("drawable/$str", null, context.packageName)
     }
 }

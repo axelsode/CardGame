@@ -20,24 +20,16 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.cardsItem.setBackgroundColor(Color.parseColor("#00000000"))
         setCards(holder, position)
-
         //setActive(holder)
-
         if (HandManager.gameFinished){
             setWinner(holder, position)
         }
-
     }
-
     private fun setActive(holder: ViewHolder){
         for (i in 0..5){
             holder.imageList[i]
             holder.imageList[i]
         }
-
-
-
-
 
     }
 
@@ -91,9 +83,7 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
 
     }
 
-
     override fun getItemCount() = hands.size
-
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val cardsItem = itemView.findViewById<CardView>(R.id.cardView)!!
@@ -104,6 +94,5 @@ class CardRecycleAdapter(private val context: Context, private val hands: List<H
         private val card5 = itemView.findViewById<ImageView>(R.id.card5)!!
         private val card6 = itemView.findViewById<ImageView>(R.id.card6)!!
         val imageList = listOf(card1, card2, card3, card4, card5, card6)
-
     }
 }
