@@ -541,11 +541,13 @@ class BlackJackActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
+                @SuppressLint("SetTextI18n")
                 override fun onTick(p0: Long) {
                     val gameOver = findViewById<TextView>(R.id.gameOverView)
                     //val front = findViewById<ImageView>(R.id.game_over_image_front)
-
-                    gameOver.text = getString((R.string.game_over)) + timeLeft
+                    if(timeLeft < 4) {
+                        gameOver.text = """${getString((R.string.game_over))}$timeLeft"""
+                    }
                     timeLeft--
                 }
 
