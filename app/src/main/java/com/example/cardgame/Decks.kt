@@ -5,7 +5,7 @@ class Decks(var numberOfDecks : Int = 1, var decks : ArrayList<Card>? = ArrayLis
     fun addDecks(){
         val colors = arrayOf("h","s","d","c")
         val numbers = arrayOf(2,3,4,5,6,7,8,9,10,11,12,13,14)
-        //val numbers = arrayOf(12,13,14) // For testing
+        //val numbers = arrayOf(13,14) // For testing
         for (num in numbers){
             for (color in  colors){
                 if (numberOfDecks == 1){
