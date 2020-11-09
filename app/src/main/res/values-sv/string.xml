@@ -11,6 +11,7 @@
     <string name="player_points">%1$s poäng:\n%2$s</string>
     <string name="dealer_wins">Croupieren vann</string>
     <string name="player_wins">Spelaren vann</string>
+    <string name="password">Lösenord</string>
     <string name="draw_wins">Det blev oavgjort</string>
     <string name="game_over">Spelet slutar om: </string>
     <string name="you_bust">Du blev tjock</string>
