@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val db = FirebaseFirestore.getInstance()
 
-        val button = findViewById<Button>(R.id.button)
+        val button = findViewById<Button>(R.id.button_startgame)
         nameText = findViewById(R.id.editTextTextPersonName)
         betText = findViewById(R.id.cashEditText)
         button.setOnClickListener {
