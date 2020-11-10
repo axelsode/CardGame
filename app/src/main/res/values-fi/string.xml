@@ -11,6 +11,7 @@
     <string name="player_points">%1$s pistet: \n%2$s</string>
     <string name="dealer_wins">Jakaja voitti</string>
     <string name="player_wins">Pelaaja voitti</string>
+    <string name="password">Salasana</string>
     <string name="draw_wins">Tasuri</string>
     <string name="game_over">Peli sulkeutuu: </string>
     <string name="you_bust">Yli meni</string>

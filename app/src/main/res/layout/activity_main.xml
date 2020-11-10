@@ -9,13 +9,16 @@
 
 
     <Button
-        android:id="@+id/button_startgame"
+        android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="#363D80"
-        android:text="Start Game"
-        app:layout_constraintEnd_toEndOf="@+id/cashEditText"
+        android:text="Start"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.782"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cashEditText" />
 
     <ImageView
@@ -63,11 +66,25 @@
         android:ems="10"
         android:hint="@string/Name"
         android:inputType="textCapSentences"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        tools:text="Name" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/editPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="numberSigned"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
     <EditText
         android:id="@+id/cashEditText"
@@ -77,20 +94,44 @@
         android:ems="10"
         android:hint="@string/Cash"
         android:inputType="numberSigned"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPasswordText" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="372dp"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_new_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName" />
 
     <Button
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:backgroundTint="#18131B"
+        android:layout_marginTop="80dp"
         android:text="Back"
-        app:layout_constraintEnd_toStartOf="@+id/button_startgame"
-        app:layout_constraintStart_toStartOf="@+id/cashEditText"
-        tools:layout_editor_absoluteY="534dp" />
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/button_start"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cashEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
