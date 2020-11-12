@@ -12,8 +12,6 @@ import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.cardgame.AppDatabase.Companion.getInstance
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -91,6 +89,20 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
                         else -> {
                             backFun()
                         }
+                    }
+                }
+            }else if (loginRegister == "register"){
+                launch{
+                    val newCash = betText.text.toString().toInt()
+                    val profile = user.await()
+                    if (profile.isNotEmpty()){
+                        Log.d("!!!", "User name exist")
+                        Toast.makeText(this@MainActivity, "error", Toast.LENGTH_SHORT).show()
+                    }else{
+                        val newUser = User(0, name, password, newCash)
+                        saveUser(newUser)
+                        startBlackJackActivity(name, newCash.toString())
+
                     }
                 }
             }
@@ -181,7 +193,12 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         }
     }
      */
+    fun saveUser(user : User){
+        launch(Dispatchers.IO) {
+            db.userDao.insert(user)
+        }
 
+    }
     fun loadByUserName(name : String) =
         async(Dispatchers.IO) {
             db.userDao.findByUserName(name)
