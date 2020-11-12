@@ -34,6 +34,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044593087100:android:066bb9b9787ed84a74aff9",
+        "android_client_info": {
+          "package_name": "com.myapplication.cardgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044593087100-svjt7aqc826edkd6e8v3rsi8gpq2o5gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt48skcaxdrMXlKFVXcS0aXzphbQFO8ck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044593087100-svjt7aqc826edkd6e8v3rsi8gpq2o5gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

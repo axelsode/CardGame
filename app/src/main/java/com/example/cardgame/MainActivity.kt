@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -21,10 +22,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var start_button: Button
     var loginRegister = "none"
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val db = FirebaseFirestore.getInstance()
+
 
         start_button = findViewById(R.id.button_start)
         nameText = findViewById(R.id.editTextTextPersonName)
@@ -34,12 +37,14 @@ class MainActivity : AppCompatActivity() {
         register_button = findViewById(R.id.button_new_player)
         back_button = findViewById(R.id.button_back)
 
+
         back_button.setOnClickListener {
             backFun()
         }
 
         login_button.setOnClickListener {
             login()
+            //saveLogin()
 
         }
 
@@ -52,8 +57,9 @@ class MainActivity : AppCompatActivity() {
            if (betText.text.isNotBlank() && betText.text.toString().toInt() > 0 ){
                startBlackJackActivity()
            } else{
-               Toast.makeText(this,getString(R.string.Fill_in_cash), Toast.LENGTH_SHORT).show()
+               Toast.makeText(this, getString(R.string.Fill_in_cash), Toast.LENGTH_SHORT).show()
            }
+            //saveLogin()
         }
     }
 
@@ -97,4 +103,24 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("playerCash", bet)
         startActivity(intent)
     }
+
+    /*private fun saveLogin(){
+        val name = nameText.text.toString().trim()
+        // om man vill ha ett varnings tecken
+        if (name.isEmpty()){
+            nameText.error = "Please enter a name"
+            return
+        }
+
+        val ref = FirebaseDatabase.getInstance().getReference("Names")
+        val userUid = ref.push().key
+
+        val user = User(userUid, name, 0)
+
+        ref.child(userUid.toString()).setValue(user).addOnCompleteListener {
+            Toast.makeText(applicationContext, "User saved successfully", Toast.LENGTH_LONG).show()
+        }
+    }
+     */
+
 }
