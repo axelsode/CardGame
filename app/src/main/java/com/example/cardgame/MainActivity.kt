@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cardgame.AppDatabase.Companion.getInstance
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -21,12 +22,15 @@ class MainActivity : AppCompatActivity() {
     lateinit var back_button: Button
     lateinit var start_button: Button
     var loginRegister = "none"
+    private lateinit var db : AppDatabase
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val db = FirebaseFirestore.getInstance()
+
+        db = AppDatabase.getInstance(this)
 
 
         start_button = findViewById(R.id.button_start)
