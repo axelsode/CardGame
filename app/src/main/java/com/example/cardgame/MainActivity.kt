@@ -2,18 +2,19 @@ package com.example.cardgame
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Query
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.cardgame.AppDatabase.Companion.getInstance
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 
@@ -39,10 +40,13 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         setContentView(R.layout.activity_main)
 
         job = Job()
-        db = AppDatabase.getInstance(this)
+        db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "user")
+            .fallbackToDestructiveMigration()
+            .build()
 
+        //test users
         addNewUser(User(0,"Axel","123456789", 90))
-        addNewUser(User(0,"David","111111111", 80))
+        //addNewUser(User(0,"David","111111111", 80))
 
 
         start_button = findViewById(R.id.button_start)
@@ -70,12 +74,36 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
 
         start_button.setOnClickListener {
 
-           if (betText.text.isNotBlank() && betText.text.toString().toInt() > 0 ){
+            val name = nameText.text.toString()
+            val password = passwordText.text.toString()
+            val user = loadByUserName(name)
+
+            if (loginRegister == "login"){
+                launch{
+                    val profile = user.await()
+                    when {
+                        profile.isEmpty() -> {
+                            backFun()
+                        }
+                        profile[0].password == password -> {
+                            startBlackJackActivity(name, profile[0].cash.toString())
+                        }
+                        else -> {
+                            backFun()
+                        }
+                    }
+                }
+            }
+
+
+           /*if (betText.text.isNotBlank() && betText.text.toString().toInt() > 0 ){
                startBlackJackActivity()
            } else{
                Toast.makeText(this, getString(R.string.Fill_in_cash), Toast.LENGTH_SHORT).show()
            }
-            //saveLogin()
+
+            */
+
         }
     }
 
@@ -97,6 +125,7 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
     }
 
     private fun login(){
+
         back_button.visibility = View.VISIBLE
         start_button.visibility = View.VISIBLE
         nameText.visibility = View.VISIBLE
@@ -104,6 +133,11 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         login_button.visibility = View.INVISIBLE
         register_button.visibility = View.INVISIBLE
         loginRegister = "login"
+
+
+
+
+
     }
 
     private fun register(){
@@ -115,14 +149,17 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         login_button.visibility = View.INVISIBLE
         register_button.visibility = View.INVISIBLE
         loginRegister = "register"
+
+        val name = nameText.text.toString()
+        val password = passwordText.text.toString()
     }
 
-    private fun startBlackJackActivity(){
-        val name = nameText.text.toString()
-        val bet = betText.text.toString()
+    private fun startBlackJackActivity(name :String, cash : String){
+        //val name = nameText.text.toString()
+        //val bet = betText.text.toString()
         val intent = Intent(this, BlackJackActivity::class.java)
         intent.putExtra("playerName", name)
-        intent.putExtra("playerCash", bet)
+        intent.putExtra("playerCash", cash)
         startActivity(intent)
     }
 
@@ -144,5 +181,11 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         }
     }
      */
+
+    fun loadByUserName(name : String) =
+        async(Dispatchers.IO) {
+            db.userDao.findByUserName(name)
+        }
+
 
 }
