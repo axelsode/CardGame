@@ -20,4 +20,5 @@
     <string name="Split">Dela</string>
     <string name="Bet">Insats</string>
     <string name="Fill_in_cash">Du måste lägga en insats för att kunna spela</string>
+    <string name="user_already_exists" translatable="false">Användare finns redan</string>
 </resources>

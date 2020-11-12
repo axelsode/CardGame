@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
                     val profile = user.await()
                     if (profile.isNotEmpty()){
                         Log.d("!!!", "User name exist")
-                        Toast.makeText(this@MainActivity, "error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity,getString(R.string.user_already_exists) , Toast.LENGTH_SHORT).show()
                     }else{
                         val newUser = User(0, name, password, newCash)
                         saveUser(newUser)

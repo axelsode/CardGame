@@ -20,4 +20,5 @@
     <string name="Split">Split</string>
     <string name="Bet">Panos</string>
     <string name="Fill_in_cash">Sinun pitää panostaa että saat pelata</string>
+    <string name="user_already_exists">Käytäjä on jo olemassa</string>
 </resources>
