@@ -10,9 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cardgame.AppDatabase.Companion.getInstance
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , CoroutineScope {
+
+    private lateinit var job : Job
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     lateinit var nameText: EditText
     lateinit var passwordText: EditText
@@ -28,9 +37,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val db = FirebaseFirestore.getInstance()
 
+        job = Job()
         db = AppDatabase.getInstance(this)
+
+        addNewUser(User(0,"Axel","123456789", 90))
+        addNewUser(User(0,"David","111111111", 80))
 
 
         start_button = findViewById(R.id.button_start)
@@ -64,6 +76,12 @@ class MainActivity : AppCompatActivity() {
                Toast.makeText(this, getString(R.string.Fill_in_cash), Toast.LENGTH_SHORT).show()
            }
             //saveLogin()
+        }
+    }
+
+    fun addNewUser(user: User){
+        launch(Dispatchers.IO) {
+            db.userDao.insert(user)
         }
     }
 
