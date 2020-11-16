@@ -198,7 +198,9 @@ class BlackJackActivity : AppCompatActivity() {
 
             }
             R.id.action_highscore -> {
+                val intent = Intent(this, HighScoreActivity::class.java)
                 Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show()
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
