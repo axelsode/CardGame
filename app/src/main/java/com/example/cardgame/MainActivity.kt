@@ -3,6 +3,8 @@ package com.example.cardgame
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -106,16 +108,30 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
                     }
                 }
             }
+        }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
 
-           /*if (betText.text.isNotBlank() && betText.text.toString().toInt() > 0 ){
-               startBlackJackActivity()
-           } else{
-               Toast.makeText(this, getString(R.string.Fill_in_cash), Toast.LENGTH_SHORT).show()
-           }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_logout -> {
+                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
 
-            */
-
+                true
+            }
+            R.id.action_highscore -> {
+                Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -175,24 +191,6 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         startActivity(intent)
     }
 
-    /*private fun saveLogin(){
-        val name = nameText.text.toString().trim()
-        // om man vill ha ett varnings tecken
-        if (name.isEmpty()){
-            nameText.error = "Please enter a name"
-            return
-        }
-
-        val ref = FirebaseDatabase.getInstance().getReference("Names")
-        val userUid = ref.push().key
-
-        val user = User(userUid, name, 0)
-
-        ref.child(userUid.toString()).setValue(user).addOnCompleteListener {
-            Toast.makeText(applicationContext, "User saved successfully", Toast.LENGTH_LONG).show()
-        }
-    }
-     */
     fun saveUser(user : User){
         launch(Dispatchers.IO) {
             db.userDao.insert(user)
