@@ -20,6 +20,8 @@
     <string name="Bet">Bet</string>
     <string name="Fill_in_cash">You need to put in cash in order to play</string>
     <string name="user_already_exists">User already exists</string>
+    <string name="logout">Logout</string>
+    <string name="high_score">High Score</string>
 
 
 </resources>

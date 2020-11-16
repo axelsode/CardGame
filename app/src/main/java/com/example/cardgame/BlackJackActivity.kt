@@ -8,10 +8,13 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cardgame.AppDatabase.Companion.getInstance
 import kotlinx.android.synthetic.main.activity_black_jack.*
 import kotlin.math.abs
 import kotlin.properties.Delegates
@@ -172,6 +175,34 @@ class BlackJackActivity : AppCompatActivity() {
             }
         }
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_blackjack, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_logout -> {
+
+                val intent = Intent(this, MainActivity::class.java)
+                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
+                startActivity(intent)
+                finish()
+                true
+
+            }
+            R.id.action_highscore -> {
+                Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun startGame(){
@@ -587,5 +618,4 @@ class BlackJackActivity : AppCompatActivity() {
         mediaPlayer?.start()
     }
 }
-
 

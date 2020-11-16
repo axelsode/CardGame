@@ -12,13 +12,17 @@
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#363D80"
         android:text="Start"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cashEditText"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toEndOf="@+id/button_back"
-        app:layout_constraintTop_toBottomOf="@+id/cashEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/cashEditText"
+        app:layout_constraintVertical_bias="0.229" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -61,13 +65,12 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/Name"
         android:inputType="textCapSentences"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -123,11 +126,14 @@
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:text="Back"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cashEditText"
-        app:layout_constraintTop_toBottomOf="@+id/cashEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/cashEditText"
+        app:layout_constraintVertical_bias="0.229" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
