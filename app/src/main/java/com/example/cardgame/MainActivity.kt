@@ -122,11 +122,7 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_logout -> {
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
 
-                true
-            }
             R.id.action_highscore -> {
                 Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show()
                 true
