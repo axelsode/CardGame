@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class HighScoreRecycleAdapter(val context: Context ) :
+class HighScoreRecycleAdapter(val context: Context, val userlist: List<User> ) :
    RecyclerView.Adapter<HighScoreRecycleAdapter.ViewHolder>() {
 
     val layoutInflater = LayoutInflater.from(context)
@@ -20,7 +20,10 @@ class HighScoreRecycleAdapter(val context: Context ) :
     }
 
     override fun onBindViewHolder(holder: HighScoreRecycleAdapter.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val user = userlist[position]
+        holder.higScoreNameItem.text = user.name
+        holder.higScoreScoreItem.text = user.cash.toString()
+        holder.higScoreTimeItem.text = user.time.toString()
     }
 
     override fun getItemCount(): Int {
