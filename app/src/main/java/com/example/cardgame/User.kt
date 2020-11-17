@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey
 class User(@PrimaryKey(autoGenerate = true) val id: Int,
            @ColumnInfo(name = "name")val name: String,
            @ColumnInfo(name = "password")val password: String,
-           @ColumnInfo(name = "cash")val cash: Int) {
+           @ColumnInfo(name = "cash")val cash: Int,
+           @ColumnInfo(name = "time")val time: Long){
 
 }

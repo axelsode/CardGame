@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
             .build()
 
         //test users
-        addNewUser(User(0,"Axel","123456789", 90))
+        //addNewUser(User(0,"Axel","123456789", 90))
         //addNewUser(User(0,"David","111111111", 80))
 
 
@@ -101,7 +101,8 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
                         Log.d("!!!", "User name exist")
                         Toast.makeText(this@MainActivity,getString(R.string.user_already_exists) , Toast.LENGTH_SHORT).show()
                     }else{
-                        val newUser = User(0, name, password, newCash)
+                        val time = System.currentTimeMillis()
+                        val newUser = User(0, name, password, newCash, time)
                         saveUser(newUser)
                         startBlackJackActivity(name, newCash.toString())
 
@@ -122,9 +123,10 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-
             R.id.action_highscore -> {
+                val intent = Intent(this, HighScoreActivity::class.java)
                 Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show()
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
