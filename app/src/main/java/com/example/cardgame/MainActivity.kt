@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
                             backFun()
                         }
                         profile[0].password == password -> {
-                            startBlackJackActivity(name, profile[0].cash.toString())
+                            startBlackJackActivity(name, password, profile[0].cash.toString())
                         }
                         else -> {
                             backFun()
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
                         val time = System.currentTimeMillis()
                         val newUser = User(0, name, password, newCash, time)
                         saveUser(newUser)
-                        startBlackJackActivity(name, newCash.toString())
+                        startBlackJackActivity(name, password, newCash.toString())
 
                     }
                 }
@@ -180,11 +180,12 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         val password = passwordText.text.toString()
     }
 
-    private fun startBlackJackActivity(name :String, cash : String){
+    private fun startBlackJackActivity(name : String, password : String, cash : String){
         //val name = nameText.text.toString()
         //val bet = betText.text.toString()
         val intent = Intent(this, BlackJackActivity::class.java)
         intent.putExtra("playerName", name)
+        intent.putExtra("password", password)
         intent.putExtra("playerCash", cash)
         startActivity(intent)
     }

@@ -8,19 +8,33 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.example.cardgame.AppDatabase.Companion.getInstance
 import kotlinx.android.synthetic.main.activity_black_jack.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 import kotlin.math.abs
 import kotlin.properties.Delegates
 
 
-class BlackJackActivity : AppCompatActivity() {
+class BlackJackActivity : AppCompatActivity(), CoroutineScope {
+
+    private lateinit var job : Job
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
+
+    private lateinit var db : AppDatabase
+
     private lateinit var frontAnim : AnimatorSet
     private lateinit var backAnim : AnimatorSet
 
@@ -58,7 +72,10 @@ class BlackJackActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_black_jack)
-
+        job = Job()
+        db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "user")
+            .fallbackToDestructiveMigration()
+            .build()
         cardsLeft = findViewById(R.id.cardleft)
 
         playerScoreText = findViewById(R.id.playerScoretextView)
@@ -190,10 +207,11 @@ class BlackJackActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_logout -> {
 
-                val intent = Intent(this, MainActivity::class.java)
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
-                startActivity(intent)
-                finish()
+               // val intent = Intent(this, MainActivity::class.java)
+               // Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
+               // startActivity(intent)
+               // finish()
+                exitToMain()
                 true
 
             }
@@ -205,6 +223,28 @@ class BlackJackActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun exitToMain(){
+        launch{
+            val newCash = cash
+            val name = intent.getStringExtra("playerName")
+            val password = intent.getStringExtra("password")
+            val time = System.currentTimeMillis()
+            val newUser = User(0, name!!, password!!, newCash, time)
+            saveUser(newUser)
+        }
+        val intent = Intent(this, MainActivity::class.java)
+        Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
+        finish()
+    }
+
+    fun saveUser(user : User){
+        launch(Dispatchers.IO) {
+            db.userDao.insert(user)
+        }
+
     }
 
     private fun startGame(){
@@ -586,7 +626,8 @@ class BlackJackActivity : AppCompatActivity() {
             var timeLeft = 5
             object : CountDownTimer(5000, 1000) {
                 override fun onFinish() {
-                    startActivity(intent)
+                   // startActivity(intent)
+                    exitToMain()
                 }
 
                 @SuppressLint("SetTextI18n")

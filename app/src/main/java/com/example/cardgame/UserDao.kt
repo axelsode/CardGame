@@ -19,4 +19,10 @@ interface UserDao {
 
     @Query("SELECT * FROM user WHERE name LIKE :categoryName" )
     fun findByUserName(categoryName: String) : List<User>
+
+    @Query("""SELECT * FROM user WHERE name LIKE :categoryName ORDER BY time LIKE :time DESC LIMIT 1""")
+    fun findByUserNameDESC(categoryName: String, time: Long) : List<User>
+
+    @Query("""SELECT * FROM user WHERE name LIKE :categoryName ORDER BY time LIKE :time ASC LIMIT 1""")
+    fun findByUserNameACS(categoryName: String, time: Long) : List<User>
 }
