@@ -40,6 +40,8 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
         val users = loadAll()
 
         recyclerView.adapter = HighScoreRecycleAdapter(this@HighScoreActivity, highScoreList)
+        val adapter = recyclerView.adapter
+
         launch{
             var data = users.await()
             var tmp = ""
@@ -55,7 +57,7 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
                 tmp += "\n" + elm.time
             }
             testText.text = tmp
-
+            adapter?.notifyDataSetChanged()
 
         }
     }
