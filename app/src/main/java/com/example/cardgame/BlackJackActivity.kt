@@ -18,10 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.example.cardgame.AppDatabase.Companion.getInstance
 import kotlinx.android.synthetic.main.activity_black_jack.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.abs
 import kotlin.properties.Delegates
@@ -29,6 +26,7 @@ import kotlin.properties.Delegates
 
 class BlackJackActivity : AppCompatActivity(), CoroutineScope {
 
+    val ONWEEK =  604800000
     private lateinit var job : Job
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
@@ -226,26 +224,50 @@ class BlackJackActivity : AppCompatActivity(), CoroutineScope {
     }
 
     fun exitToMain(){
+        val name = intent.getStringExtra("playerName")
+        val thisuser = name?.let { loadByUserName(it) }
         launch{
             val newCash = cash
-            val name = intent.getStringExtra("playerName")
             val password = intent.getStringExtra("password")
             val time = System.currentTimeMillis()
             val newUser = User(0, name!!, password!!, newCash, time)
             saveUser(newUser)
-        }
+            val profile = thisuser?.await()
+            if (profile != null){
+                var i = 0
+                for (elm in profile) {
+                         if ((elm.time < time - ONWEEK)){
+                             if(i != 0){
+                              deleteUser(elm)
+                             }
+                             i++
+                         }
+                    }
+                }
+            }
+
         val intent = Intent(this, MainActivity::class.java)
         Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
         startActivity(intent)
         finish()
     }
+    fun deleteUser(user : User){
+        launch(Dispatchers.IO) {
+            db.userDao.delete(user)
+        }
 
+    }
     fun saveUser(user : User){
         launch(Dispatchers.IO) {
             db.userDao.insert(user)
         }
 
     }
+
+    fun loadByUserName(name : String) =
+        async(Dispatchers.IO) {
+            db.userDao.findByUserName(name)
+        }
 
     private fun startGame(){
 
