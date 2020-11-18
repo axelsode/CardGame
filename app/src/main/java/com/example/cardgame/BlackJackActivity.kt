@@ -26,7 +26,7 @@ import kotlin.properties.Delegates
 
 class BlackJackActivity : AppCompatActivity(), CoroutineScope {
 
-    val ONWEEK =  604800000
+    private val ON_WEEK =  604800000
     private lateinit var job : Job
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
@@ -236,7 +236,7 @@ class BlackJackActivity : AppCompatActivity(), CoroutineScope {
             if (profile != null){
                 var i = 0
                 for (elm in profile) {
-                         if ((elm.time < time - ONWEEK)){
+                         if ((elm.time < time - ON_WEEK)){
                              if(i != 0){
                               deleteUser(elm)
                              }
