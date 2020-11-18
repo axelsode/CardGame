@@ -22,7 +22,7 @@ class HighScoreRecycleAdapter(val context: Context, val userlist: List<User> ) :
         val user = userlist[position]
         holder.higScoreNameItem.text = user.name.toString()
         holder.higScoreScoreItem.text = user.cash.toString()
-        holder.higScoreTimeItem.text = user.time.toString()
+        holder.higScoreTimeItem.text =  user.getDateTime(user.time)            //user.time.toString()
     }
 
     override fun getItemCount() = userlist.size

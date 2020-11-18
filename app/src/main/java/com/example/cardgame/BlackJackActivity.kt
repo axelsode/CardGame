@@ -225,14 +225,14 @@ class BlackJackActivity : AppCompatActivity(), CoroutineScope {
 
     fun exitToMain(){
         val name = intent.getStringExtra("playerName")
-        val thisuser = name?.let { loadByUserName(it) }
+        val thisUser = name?.let { loadByUserName(it) }
         launch{
             val newCash = cash
             val password = intent.getStringExtra("password")
             val time = System.currentTimeMillis()
             val newUser = User(0, name!!, password!!, newCash, time)
             saveUser(newUser)
-            val profile = thisuser?.await()
+            val profile = thisUser?.await()
             if (profile != null){
                 var i = 0
                 for (elm in profile) {
