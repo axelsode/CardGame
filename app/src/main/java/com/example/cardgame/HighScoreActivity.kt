@@ -43,8 +43,6 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
         highScoreListFinal = mutableListOf<UserScore>()
         val users = loadAll()
 
-        recyclerView.adapter = HighScoreRecycleAdapter(this@HighScoreActivity, highScoreList)
-        val adapter = recyclerView.adapter
 
         launch{
             var data = users.await()
@@ -62,7 +60,7 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
                     thisUser.filterByTimeBefore(System.currentTimeMillis() - ON_WEEK)
                 } catch (e: NumberFormatException) {
                     emptyList()
-                }  //thisUser.filterByTimeBefore(System.currentTimeMillis() - ON_WEEK).sortByTime()[0]
+                }
 
                 var change: Double
                 if (!oldList.isEmpty()){
@@ -76,7 +74,7 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
                 highScoreList.add(user)
             }
             highScoreListFinal = highScoreList.sortByChange() as MutableList<UserScore>
-            var tmp = ""
+        /*    var tmp = ""
             var i = 0
             for (elm in data){
                // highScoreList.add(elm)
@@ -90,7 +88,9 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
                 tmp += "\n" + highScoreListFinal[0].name
 
             }
-            testText.text = tmp
+            testText.text = tmp*/
+            recyclerView.adapter = HighScoreRecycleAdapter(this@HighScoreActivity, highScoreListFinal)
+            val adapter = recyclerView.adapter
             adapter?.notifyDataSetChanged()
 
         }
