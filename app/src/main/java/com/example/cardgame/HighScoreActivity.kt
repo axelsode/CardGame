@@ -38,7 +38,7 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
             .fallbackToDestructiveMigration()
             .build()
 
-        testText = findViewById(R.id.testText)
+
         highScoreList = mutableListOf<UserScore>()
         highScoreListFinal = mutableListOf<UserScore>()
         val users = loadAll()
@@ -74,21 +74,7 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
                 highScoreList.add(user)
             }
             highScoreListFinal = highScoreList.sortByChange() as MutableList<UserScore>
-        /*    var tmp = ""
-            var i = 0
-            for (elm in data){
-               // highScoreList.add(elm)
-                i++
-                tmp += "\n :$i"
-                tmp += "\n" + elm.id
-                tmp += "\n" + elm.name
-                tmp += "\n" + elm.cash
-                tmp += "\n" + elm.password
-                tmp += "\n" + elm.time
-                tmp += "\n" + highScoreListFinal[0].name
 
-            }
-            testText.text = tmp*/
             recyclerView.adapter = HighScoreRecycleAdapter(this@HighScoreActivity, highScoreListFinal)
             val adapter = recyclerView.adapter
             adapter?.notifyDataSetChanged()

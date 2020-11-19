@@ -1,5 +1,6 @@
 package com.example.cardgame
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -19,16 +20,26 @@ class HighScoreRecycleAdapter(val context: Context, val userlist: List<UserScore
         return ViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HighScoreRecycleAdapter.ViewHolder, position: Int) {
         val user = userlist[position]
+        val change = "%.2f".format(user.change)
         holder.higScoreNameItem.text = user.name.toString()
         holder.higScoreScoreItem.text = user.cash.toString()
-        holder.higScoreTimeItem.text =  user.getDateTime(user.time)
-        holder.higScoreChangeItem.text = user.change.toString()
+        holder.higScoreTimeItem.text = "Last played " + user.getDateTime(user.time)
+        holder.higScoreChangeItem.text = "Change last week:  " + change +" %" //user.change.toString()
         if (user.change > 0){
             holder.higScoreChangeItem.setTextColor(Color.GREEN)
-        }else{
+            holder.higScoreNameItem.setTextColor(Color.GREEN)
+            holder.higScoreScoreItem.setTextColor(Color.GREEN)
+            holder.higScoreTimeItem.setTextColor(Color.GREEN)
+        }
+        if(user.change < 0){
             holder.higScoreChangeItem.setTextColor(Color.RED)
+            holder.higScoreNameItem.setTextColor(Color.RED)
+            holder.higScoreScoreItem.setTextColor(Color.RED)
+            holder.higScoreTimeItem.setTextColor(Color.RED)
+
         }
 
 
