@@ -214,6 +214,13 @@ class BlackJackActivity : AppCompatActivity(), CoroutineScope {
 
             }
             R.id.action_highscore -> {
+                val name = intent.getStringExtra("playerName")
+                val newCash = cash
+                val password = intent.getStringExtra("password")
+                val time = System.currentTimeMillis()
+                val newUser = User(0, name!!, password!!, newCash, time)
+                saveUser(newUser)
+
                 val intent = Intent(this, HighScoreActivity::class.java)
                 Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show()
                 startActivity(intent)

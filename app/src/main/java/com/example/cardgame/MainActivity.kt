@@ -85,8 +85,9 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
                         profile.isEmpty() -> {
                             backFun()
                         }
+
                         profile[0].password == password -> {
-                            startBlackJackActivity(name, password, profile[0].cash.toString())
+                            startBlackJackActivity(name, password, profile.sortByTime()[0].cash.toString())
                         }
                         else -> {
                             backFun()
@@ -201,5 +202,6 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
             db.userDao.findByUserName(name)
         }
 
+    fun List<User>.sortByTime() = this.sortedByDescending { it.time }
 
 }
