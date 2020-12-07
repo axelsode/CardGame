@@ -24,7 +24,7 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
     lateinit var testText : TextView
     lateinit var recyclerView: RecyclerView
     lateinit var highScoreList : MutableList<UserScore>
-    lateinit var highScoreListFinal : MutableList<UserScore>
+    //lateinit var highScoreListFinal : MutableList<UserScore>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,8 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
 
 
         highScoreList = mutableListOf<UserScore>()
-        highScoreListFinal = mutableListOf<UserScore>()
+        recyclerView.adapter = HighScoreRecycleAdapter(this@HighScoreActivity, highScoreList)
+        val adapter = recyclerView.adapter
         val users = loadAll()
 
 
@@ -73,10 +74,10 @@ class HighScoreActivity : AppCompatActivity(), CoroutineScope {
                 val user = UserScore(id, last.cash, last.time, change)
                 highScoreList.add(user)
             }
-            highScoreListFinal = highScoreList.sortByChange() as MutableList<UserScore>
+            val tmpList = highScoreList.sortByChange() as MutableList<UserScore>
+            highScoreList.clear()
+            highScoreList.addAll(tmpList)
 
-            recyclerView.adapter = HighScoreRecycleAdapter(this@HighScoreActivity, highScoreListFinal)
-            val adapter = recyclerView.adapter
             adapter?.notifyDataSetChanged()
 
         }
