@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/david/StudioProjects/CardGame/app/src/main/res/drawable/button_default.xml" value="0.24074074074074073" />
+        <entry key="..\:/Users/david/StudioProjects/CardGame/app/src/main/res/drawable/costum_button.xml" value="0.2703125" />
+        <entry key="..\:/Users/david/StudioProjects/CardGame/app/src/main/res/drawable/game_background.xml" value="0.24074074074074073" />
+        <entry key="..\:/Users/david/StudioProjects/CardGame/app/src/main/res/layout/activity_black_jack.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/david/StudioProjects/CardGame/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/david/StudioProjects/CardGame/app/src/main/res/menu/menu_blackjack.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/StudioProjects/CardGame/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
